@@ -465,11 +465,11 @@ class DashboardView(APIView):
 
         # Chart data: issue status distribution
         from django.db.models import Count
-        status_counts = Issue.objects.values('status').annotate(count=Count('id'))
+        status_counts = Issue.objects.filter(project__in=projects).values('status').annotate(count=Count('id'))
         status_chart = {s['status']: s['count'] for s in status_counts}
 
         # Chart data: issue priority distribution
-        priority_counts = Issue.objects.values('priority').annotate(count=Count('id'))
+        priority_counts = Issue.objects.filter(project__in=projects).values('priority').annotate(count=Count('id'))
         priority_chart = {p['priority']: p['count'] for p in priority_counts}
 
         # Admin stats: total registered users
