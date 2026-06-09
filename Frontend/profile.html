@@ -440,8 +440,8 @@
       if (!u) return;
 
       const av = document.getElementById('profile-avatar');
-      if (u.profile_photo) {
-        av.innerHTML = `<img src="${u.profile_photo}" alt="avatar" />`;
+      if (u.profile_photo_url) {
+        av.innerHTML = `<img src="${u.profile_photo_url}" alt="avatar" />`;
       } else {
         av.textContent = u.avatar || '👨‍💻';
       }
@@ -547,11 +547,11 @@
           method: 'POST',
           body: fd // apiFetch in app.js automatically handles FormData without Content-Type
         });
-        profileData.profile_photo = res.profile_photo;
+        profileData.profile_photo_url = res.profile_photo_url;
         
         // Update user storage avatar cache
         const stored = getUser();
-        if (stored) { stored.avatar = res.profile_photo; localStorage.setItem('ie_user', JSON.stringify(stored)); }
+        if (stored) { stored.profile_photo_url = res.profile_photo_url; localStorage.setItem('ie_user', JSON.stringify(stored)); }
 
         renderProfile();
         closePhotoModal();

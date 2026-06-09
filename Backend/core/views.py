@@ -91,7 +91,7 @@ class ProfilePhotoView(APIView):
             return Response({'error': 'No file uploaded'}, status=status.HTTP_400_BAD_REQUEST)
         request.user.profile_photo = photo
         request.user.save(update_fields=['profile_photo'])
-        return Response({'profile_photo': request.build_absolute_uri(request.user.profile_photo.url)})
+        return Response({'profile_photo_url': request.build_absolute_uri(request.user.profile_photo.url)})
 
 
 # ── USERS ────────────────────────────────────────────────────────────────────

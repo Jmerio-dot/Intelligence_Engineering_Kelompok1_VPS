@@ -68,7 +68,7 @@ async function renderSidebar(activePage, activePid) {
     <!-- User Footer -->
     <div class="sb-footer">
       <a href="/profile.html" class="sb-user" title="Profil Saya" style="text-decoration:none;">
-        <div class="sb-avatar">${user?.avatar || '🙂'}</div>
+        <div class="sb-avatar">${user?.profile_photo_url ? `<img src="${user.profile_photo_url}" style="width:100%;height:100%;object-fit:cover;" />` : (user?.avatar || '👨‍💻')}</div>
         <div class="sb-user-info">
           <div class="sb-user-name">${user?.name?.split(' ')[0] || 'User'}</div>
           <div class="sb-user-role">Lihat Profil</div>
