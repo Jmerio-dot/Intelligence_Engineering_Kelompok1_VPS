@@ -157,7 +157,7 @@ class ProjectDetailView(APIView):
         p = self.get_project(pk)
         if not p:
             return Response({'error': 'Project not found'}, status=status.HTTP_404_NOT_FOUND)
-        for field in ['name', 'description', 'status']:
+        for field in ['name', 'key', 'type', 'description', 'status']:
             if field in request.data:
                 setattr(p, field, request.data[field])
         p.save()
@@ -169,6 +169,22 @@ class ProjectDetailView(APIView):
             return Response({'error': 'Project not found'}, status=status.HTTP_404_NOT_FOUND)
         p.delete()
         return Response({'success': True})
+
+class ProjectCompleteView(APIView):
+    def post(self, request, pk):
+        try:
+            p = Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Response({'error': 'Project not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        unfinished = Issue.objects.filter(project=p).exclude(status='done').count()
+        if unfinished > 0:
+            return Response({'error': f'Terdapat {unfinished} issue yang belum selesai. Selesaikan semua issue terlebih dahulu!'}, status=status.HTTP_400_BAD_REQUEST)
+            
+        completion_type = request.data.get('type', 'temporary')
+        p.status = 'archived' if completion_type == 'permanent' else 'done'
+        p.save()
+        return Response(ProjectSerializer(p, context={'request': request}).data)
 
 
 # ── TRANSCRIPT ────────────────────────────────────────────────────────────────

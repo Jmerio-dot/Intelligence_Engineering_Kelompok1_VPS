@@ -20,6 +20,7 @@ urlpatterns = [
     # ── Projects ──────────────────────────────────────────────────────────────
     path('projects',                    views.ProjectListCreateView.as_view(), name='projects'),
     path('projects/<int:pk>',           views.ProjectDetailView.as_view(),     name='project_detail'),
+    path('projects/<int:pk>/complete',  views.ProjectCompleteView.as_view(),   name='project_complete'),
     path('projects/<int:pk>/board',     views.BoardView.as_view(),             name='project_board'),
     path('projects/<int:pk>/transcript',views.ProjectTranscriptView.as_view(),name='project_transcript'),
     path('projects/<int:pk>/stats',     views.ProjectStatsView.as_view(),      name='project_stats'),
