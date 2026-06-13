@@ -26,9 +26,9 @@
         <select id="assignee-filter" class="filter-select" onchange="renderBoard()">
           <option value="">Semua Anggota</option>
         </select>
-        <button class="btn-outline" onclick="openProjectSettingsModal()" style="padding:0.4rem 0.8rem; border-color:#e2e8f0; color:var(--text); background:#fff;">⚙️ Pengaturan</button>
-        <button class="btn-primary" onclick="openCompleteProjectModal()" style="background:#10b981; color:#fff; border:none; padding:0.4rem 0.8rem; box-shadow:0 4px 10px rgba(16,185,129,0.3);">✅ Selesai</button>
-        <button class="btn-primary" onclick="location.href='create_issue.html?pid='+pid">+ Issue Cerdas</button>
+        <button id="btn-settings" class="btn-outline" onclick="openProjectSettingsModal()" style="padding:0.4rem 0.8rem; border-color:#e2e8f0; color:var(--text); background:#fff;">⚙️ Pengaturan</button>
+        <button id="btn-complete" class="btn-primary" onclick="openCompleteProjectModal()" style="background:#10b981; color:#fff; border:none; padding:0.4rem 0.8rem; box-shadow:0 4px 10px rgba(16,185,129,0.3);">✅ Selesai</button>
+        <button id="btn-add-issue" class="btn-primary" onclick="location.href='create_issue.html?pid='+pid">+ Issue Cerdas</button>
       </div>
     </div>
     <div class="app-content">
@@ -86,60 +86,85 @@
 
 <!-- PROJECT SETTINGS MODAL -->
 <div id="project-settings-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)this.style.display='none'">
-  <div class="modal" style="max-width:600px; max-height:90vh; overflow-y:auto;">
-    <div class="modal-title">⚙️ Pengaturan Proyek</div>
-    <div class="form-group">
-      <label class="form-label">Project Name *</label>
-      <input id="ps-name" class="form-input" />
+  <div class="modal" style="max-width:800px; max-height:90vh; overflow-y:auto; background:#f8fafc; padding:2rem;">
+    <div class="modal-title" style="margin-bottom:1.5rem; font-size:1.5rem;">⚙️ Pengaturan Proyek</div>
+    
+    <!-- Info -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+      <div class="form-group"><label class="form-label">Project Name *</label><input id="ps-name" class="form-input" /></div>
+      <div class="form-group"><label class="form-label">Project Key *</label><input id="ps-key" class="form-input" maxlength="5" style="text-transform:uppercase;" /></div>
+      <div class="form-group"><label class="form-label">Type</label><select id="ps-type" class="form-select"><option value="scrum">Scrum</option><option value="kanban">Kanban</option><option value="safe">SAFe</option><option value="custom">Custom</option></select></div>
+      <div class="form-group"><label class="form-label">General Description</label><textarea id="ps-desc" class="form-textarea" rows="2"></textarea></div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Project Key *</label>
-      <input id="ps-key" class="form-input" maxlength="5" style="text-transform:uppercase;" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Type</label>
-      <select id="ps-type" class="form-select">
-        <option value="scrum">Scrum</option>
-        <option value="kanban">Kanban</option>
-        <option value="safe">SAFe</option>
-        <option value="custom">Custom</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">General Description</label>
-      <textarea id="ps-desc" class="form-textarea" rows="2"></textarea>
-    </div>
-    <hr style="margin:1rem 0; border:none; border-top:1px solid #e2e8f0;"/>
-    <div style="font-weight:700;margin-bottom:0.5rem;color:var(--ocean);">Organizational Objectives</div>
-    <textarea id="ps-org-obj" class="form-textarea" rows="2" placeholder="Objektif..."></textarea>
-    <div style="font-weight:700;margin-top:1rem;margin-bottom:0.5rem;color:var(--ocean);">User Outcomes</div>
-    <textarea id="ps-user-out" class="form-textarea" rows="2" placeholder="Outcomes..."></textarea>
-    <div style="font-weight:700;margin-top:1rem;margin-bottom:0.5rem;color:var(--ocean);">Model Properties</div>
-    <textarea id="ps-model-prop" class="form-textarea" rows="2" placeholder="Properties..."></textarea>
-    <hr style="margin:1rem 0; border:none; border-top:1px solid #e2e8f0;"/>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-      <div class="form-group">
-        <label class="form-label">Start Date</label>
-        <input id="ps-plan-start" type="date" class="form-input" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">End Date</label>
-        <input id="ps-plan-end" type="date" class="form-input" />
+
+    <!-- Organizational Objectives -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:0.25rem;color:var(--ocean);">Organizational Objectives *</div>
+      <div style="font-size:0.75rem; color:var(--muted); margin-bottom:1rem;">Apa nilai bisnis utama yang ingin dicapai perusahaan melalui sistem cerdas ini?</div>
+      <div class="form-group"><textarea id="ps-org-obj" class="form-textarea" rows="2"></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label class="form-label">Bagaimana cara mencapainya?</label><textarea id="ps-org-how" class="form-textarea" rows="2"></textarea></div>
+        <div class="form-group"><label class="form-label">Bagaimana cara mengukurnya?</label><textarea id="ps-org-measure" class="form-textarea" rows="2"></textarea></div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Deployment Strategy</label>
-      <textarea id="ps-plan-deploy" class="form-textarea" rows="2"></textarea>
+
+    <!-- Leading Indicators -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:0.25rem;color:var(--ocean); display:flex; justify-content:space-between; align-items:center;">
+        Leading Indicators *
+        <button type="button" class="btn-outline btn-sm" onclick="addPsIndicatorRow()">+ Tambah Baris</button>
+      </div>
+      <div style="font-size:0.75rem; color:var(--muted); margin-bottom:1rem;">Indikator metrik prediksi keberhasilan dibandingkan kompetitor.</div>
+      <table style="width:100%; text-align:left; border-collapse:collapse; font-size:0.85rem;" id="ps-table-indicators">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); color:var(--text2);">
+            <th style="padding:0.5rem;">Fitur</th><th style="padding:0.5rem;">Sistem Kita</th><th style="padding:0.5rem;">Produk Kompetitor</th><th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
-    <div class="form-group">
-      <label class="form-label">Maintenance Strategy</label>
-      <textarea id="ps-plan-maint" class="form-textarea" rows="2"></textarea>
+
+    <!-- User Outcomes -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:0.25rem;color:var(--ocean);">User Outcomes *</div>
+      <div style="font-size:0.75rem; color:var(--muted); margin-bottom:1rem;">Manfaat nyata apa yang akan dirasakan oleh pengguna?</div>
+      <div class="form-group"><textarea id="ps-user-out" class="form-textarea" rows="2"></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label class="form-label">Bagaimana cara mencapainya?</label><textarea id="ps-user-how" class="form-textarea" rows="2"></textarea></div>
+        <div class="form-group"><label class="form-label">Bagaimana cara mengukurnya?</label><textarea id="ps-user-measure" class="form-textarea" rows="2"></textarea></div>
+      </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Operations</label>
-      <textarea id="ps-plan-ops" class="form-textarea" rows="2"></textarea>
+
+    <!-- Model Properties -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:0.25rem;color:var(--ocean);">Model Properties *</div>
+      <div style="font-size:0.75rem; color:var(--muted); margin-bottom:1rem;">Spesifikasi teknis dan kriteria akurasi model AI/Machine Learning-nya.</div>
+      <div class="form-group"><textarea id="ps-model-prop" class="form-textarea" rows="2"></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label class="form-label">Bagaimana cara mencapainya?</label><textarea id="ps-model-how" class="form-textarea" rows="2"></textarea></div>
+        <div class="form-group"><label class="form-label">Bagaimana cara mengukurnya?</label><textarea id="ps-model-measure" class="form-textarea" rows="2"></textarea></div>
+      </div>
     </div>
-    <div class="modal-actions" style="margin-top:1.5rem;">
+
+    <!-- Planning & Supervisors -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+      <div style="font-weight:700;font-size:1.1rem;margin-bottom:1rem;color:var(--ocean);">Planning & Supervisors</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label class="form-label">Start Date</label><input id="ps-plan-start" type="date" class="form-input" /></div>
+        <div class="form-group"><label class="form-label">End Date</label><input id="ps-plan-end" type="date" class="form-input" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Deployment Strategy</label><textarea id="ps-plan-deploy" class="form-textarea" rows="2"></textarea></div>
+      <div class="form-group"><label class="form-label">Maintenance Strategy</label><textarea id="ps-plan-maint" class="form-textarea" rows="2"></textarea></div>
+      <div class="form-group"><label class="form-label">Operations</label><textarea id="ps-plan-ops" class="form-textarea" rows="2"></textarea></div>
+      <div class="form-group">
+        <label class="form-label">Supervisor *</label>
+        <div id="ps-list-stakeholders" style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.5rem;"></div>
+        <button class="btn-outline btn-sm" onclick="addPsSupervisor()">+ Add Supervisor</button>
+      </div>
+    </div>
+
+    <div class="modal-actions" style="margin-top:1.5rem; display:flex; justify-content:flex-end; gap:0.5rem;">
       <button class="btn-outline btn-sm" onclick="document.getElementById('project-settings-modal').style.display='none'">Cancel</button>
       <button class="btn-primary btn-sm" onclick="saveProjectSettings()">Simpan Perubahan</button>
     </div>
@@ -180,7 +205,7 @@
   const pid = new URLSearchParams(location.search).get('pid');
   if (!pid) location.href = '/projects.html';
 
-  let boardData = {}, allMembers = [], currentSprintId = null;
+  let boardData = {}, allMembers = [], currentSprintId = null, projectData = null;
 
   const COLS = [
     { key: 'todo',        label: 'To Do',       color: '#64748b' },
@@ -196,7 +221,13 @@
       apiFetch(`/projects/${pid}/sprints`),
       apiFetch('/users'),
     ]);
-    document.title = `${project.name} Board – Intelligence Engineering`;
+    projectData = project;
+    if (project.status === 'archived') {
+      document.getElementById('btn-settings').style.display = 'none';
+      document.getElementById('btn-complete').style.display = 'none';
+      document.getElementById('btn-add-issue').style.display = 'none';
+    }
+    document.title = `${project.name} Board — Intelligence Engineering`;
     document.getElementById('breadcrumb').textContent = project.name;
     document.getElementById('page-title').textContent = 'Board';
     allMembers = members;
@@ -259,8 +290,9 @@
 
   function renderCard(issue) {
     const labels = (issue.labels||'').split(',').filter(Boolean).map(l => `<span class="label-chip">${l.trim()}</span>`).join('');
+    const isArchived = (projectData && projectData.status === 'archived');
     return `
-      <div class="issue-card" draggable="true" data-id="${issue.id}" onclick="openQuickView(${issue.id})">
+      <div class="issue-card" ${isArchived ? '' : 'draggable="true"'} data-id="${issue.id}" onclick="openQuickView(${issue.id})">
         <div class="issue-card-key">${TYPE_ICON[issue.type]||'✅'} ${issue.issue_key}</div>
         <div class="issue-card-title">${issue.title}</div>
         ${labels ? `<div style="margin-bottom:0.5rem;">${labels}</div>` : ''}
@@ -280,10 +312,12 @@
   // ── Drag & Drop ────────────────────────────────────────────────────────────
   let dragId = null;
   function setupDrag(card) {
+    if (projectData && projectData.status === 'archived') return;
     card.addEventListener('dragstart', e => { dragId = card.dataset.id; card.classList.add('dragging'); e.dataTransfer.effectAllowed='move'; });
     card.addEventListener('dragend', () => card.classList.remove('dragging'));
   }
   function setupDrop(zone) {
+    if (projectData && projectData.status === 'archived') return;
     zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
     zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
     zone.addEventListener('drop', async e => {
@@ -356,6 +390,27 @@
   }
 
   // PROJECT SETTINGS
+  window.addPsIndicatorRow = function(fitur='', kita='', komp='') {
+    const tbody = document.getElementById('ps-table-indicators').querySelector('tbody');
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid var(--border)';
+    tr.innerHTML = `
+      <td style="padding:0.5rem;"><input type="text" class="ind-fitur" style="width:100%; border:1px solid #e2e8f0; border-radius:4px; padding:0.4rem;" value="${fitur.replace(/"/g, '&quot;')}"></td>
+      <td style="padding:0.5rem;"><input type="text" class="ind-kita" style="width:100%; border:1px solid #e2e8f0; border-radius:4px; padding:0.4rem;" value="${kita.replace(/"/g, '&quot;')}"></td>
+      <td style="padding:0.5rem;"><input type="text" class="ind-komp" style="width:100%; border:1px solid #e2e8f0; border-radius:4px; padding:0.4rem;" value="${komp.replace(/"/g, '&quot;')}"></td>
+      <td style="padding:0.5rem;"><button type="button" class="btn-outline btn-sm" onclick="this.closest('tr').remove()" style="color:#ef4444; border-color:#ef4444; padding:0.2rem 0.5rem;">❌</button></td>
+    `;
+    tbody.appendChild(tr);
+  };
+
+  window.addPsSupervisor = function(val='') {
+    const list = document.getElementById('ps-list-stakeholders');
+    const div = document.createElement('div');
+    div.style.display = 'flex'; div.style.gap = '0.5rem'; div.style.alignItems = 'center';
+    div.innerHTML = `<input type="text" style="flex:1; border:1px solid #e2e8f0; border-radius:4px; padding:0.5rem;" value="${val.replace(/"/g, '&quot;')}" /><button class="btn-outline btn-sm" onclick="this.parentElement.remove()" style="color:#ef4444; border-color:#ef4444;">❌</button>`;
+    list.appendChild(div);
+  };
+
   window.openProjectSettingsModal = function() {
     document.getElementById('project-settings-modal').style.display = 'flex';
     document.getElementById('ps-name').value = projectData.name || '';
@@ -366,13 +421,39 @@
       const d = JSON.parse(projectData.description || '{}');
       document.getElementById('ps-desc').value = d.description || projectData.description || '';
       document.getElementById('ps-org-obj').value = d.objectives?.organizational?.obj || '';
+      document.getElementById('ps-org-how').value = d.objectives?.organizational?.how || '';
+      document.getElementById('ps-org-measure').value = d.objectives?.organizational?.measure || '';
+
       document.getElementById('ps-user-out').value = d.objectives?.user_outcomes?.obj || '';
+      document.getElementById('ps-user-how').value = d.objectives?.user_outcomes?.how || '';
+      document.getElementById('ps-user-measure').value = d.objectives?.user_outcomes?.measure || '';
+
       document.getElementById('ps-model-prop').value = d.objectives?.model_properties?.obj || '';
+      document.getElementById('ps-model-how').value = d.objectives?.model_properties?.how || '';
+      document.getElementById('ps-model-measure').value = d.objectives?.model_properties?.measure || '';
+
+      const tbody = document.getElementById('ps-table-indicators').querySelector('tbody');
+      tbody.innerHTML = '';
+      if (d.objectives?.leading_indicators?.length > 0) {
+        d.objectives.leading_indicators.forEach(ind => addPsIndicatorRow(ind.fitur, ind.sistem_kita, ind.kompetitor));
+      } else {
+        addPsIndicatorRow('', '', '');
+      }
+
       document.getElementById('ps-plan-start').value = d.planning?.startDate || '';
       document.getElementById('ps-plan-end').value = d.planning?.endDate || '';
       document.getElementById('ps-plan-deploy').value = d.planning?.deployment || '';
       document.getElementById('ps-plan-maint').value = d.planning?.maintenance || '';
       document.getElementById('ps-plan-ops').value = d.planning?.operations || '';
+
+      const list = document.getElementById('ps-list-stakeholders');
+      list.innerHTML = '';
+      if (d.planning?.supervisors?.length > 0) {
+        d.planning.supervisors.forEach(s => addPsSupervisor(s));
+      } else {
+        addPsSupervisor('');
+      }
+
     } catch(e) {
       document.getElementById('ps-desc').value = projectData.description || '';
     }
@@ -391,16 +472,33 @@
       if (!d.objectives.organizational) d.objectives.organizational = {};
       if (!d.objectives.user_outcomes) d.objectives.user_outcomes = {};
       if (!d.objectives.model_properties) d.objectives.model_properties = {};
-      d.objectives.organizational.obj = document.getElementById('ps-org-obj').value;
-      d.objectives.user_outcomes.obj = document.getElementById('ps-user-out').value;
-      d.objectives.model_properties.obj = document.getElementById('ps-model-prop').value;
       
+      d.objectives.organizational.obj = document.getElementById('ps-org-obj').value;
+      d.objectives.organizational.how = document.getElementById('ps-org-how').value;
+      d.objectives.organizational.measure = document.getElementById('ps-org-measure').value;
+
+      d.objectives.user_outcomes.obj = document.getElementById('ps-user-out').value;
+      d.objectives.user_outcomes.how = document.getElementById('ps-user-how').value;
+      d.objectives.user_outcomes.measure = document.getElementById('ps-user-measure').value;
+
+      d.objectives.model_properties.obj = document.getElementById('ps-model-prop').value;
+      d.objectives.model_properties.how = document.getElementById('ps-model-how').value;
+      d.objectives.model_properties.measure = document.getElementById('ps-model-measure').value;
+
+      const indRows = Array.from(document.getElementById('ps-table-indicators').querySelectorAll('tbody tr'));
+      d.objectives.leading_indicators = indRows.map(r => ({
+        fitur: r.querySelector('.ind-fitur').value,
+        sistem_kita: r.querySelector('.ind-kita').value,
+        kompetitor: r.querySelector('.ind-komp').value
+      }));
+
       if (!d.planning) d.planning = {};
       d.planning.startDate = document.getElementById('ps-plan-start').value;
       d.planning.endDate = document.getElementById('ps-plan-end').value;
       d.planning.deployment = document.getElementById('ps-plan-deploy').value;
       d.planning.maintenance = document.getElementById('ps-plan-maint').value;
       d.planning.operations = document.getElementById('ps-plan-ops').value;
+      d.planning.supervisors = Array.from(document.getElementById('ps-list-stakeholders').querySelectorAll('input')).map(i => i.value).filter(v => v.trim() !== '');
 
       const body = {
         name: document.getElementById('ps-name').value,

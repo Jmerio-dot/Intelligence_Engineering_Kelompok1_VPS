@@ -113,10 +113,11 @@ class IssueSerializer(serializers.ModelSerializer):
     sprint_name     = serializers.CharField(source='sprint.name',     read_only=True)
     project_name    = serializers.CharField(source='project.name',    read_only=True)
     project_key     = serializers.CharField(source='project.key',     read_only=True)
+    project_status  = serializers.CharField(source='project.status',  read_only=True)
 
     class Meta:
         model  = Issue
-        fields = ['id','project_id','project_name','project_key','sprint_id','sprint_name',
+        fields = ['id','project_id','project_name','project_key','project_status','sprint_id','sprint_name',
                   'issue_key','title','description','type','status','priority',
                   'assignee_id','assignee_name','assignee_avatar',
                   'reporter_id','reporter_name',

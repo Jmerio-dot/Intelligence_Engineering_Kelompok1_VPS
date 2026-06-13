@@ -346,6 +346,18 @@
       document.getElementById('link-board').href = `/board.html?pid=${issue.project_id}`;
       document.getElementById('link-backlog').href = `/backlog.html?pid=${issue.project_id}`;
 
+      if (issue.project_status === 'archived') {
+        document.querySelectorAll('input, textarea, select').forEach(el => el.disabled = true);
+        document.querySelectorAll('button').forEach(btn => {
+          if (!btn.classList.contains('intel-tab-btn') && !btn.classList.contains('btn-back')) {
+            btn.style.display = 'none';
+          }
+        });
+        const dropZone = document.getElementById('drop-zone');
+        if (dropZone) dropZone.style.display = 'none';
+        showToast('Proyek dalam mode Read-Only.', 'info');
+      }
+
       await renderSidebar('issue', issue.project_id);
 
       // Load all users (not just members) for assignee
