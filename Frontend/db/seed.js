@@ -22,7 +22,7 @@ async function seed() {
     { name: 'Agnar Raka Baskara',       email: 'agnar@intring.ai',  password: 'demo123', role: 'admin', avatar: '👨‍🔬' },
     { name: 'Satria Putra',             email: 'satria@intring.ai', password: 'demo123', role: 'member', avatar: '👨‍💻' },
     { name: 'Gusty',                    email: 'gusty@intring.ai',  password: 'demo123', role: 'member', avatar: '🧑‍🚀' },
-    { name: 'Demo User',                email: 'demo@intring.ai',   password: 'demo123', role: 'member', avatar: '🙂' },
+    { name: 'Demo User',                email: 'demo@intring.ai',   password: 'demo123', role: 'member', avatar: '👤' },
   ];
 
   const userIds = {};

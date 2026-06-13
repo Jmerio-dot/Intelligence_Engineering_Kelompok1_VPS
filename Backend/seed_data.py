@@ -17,26 +17,11 @@ User = get_user_model()
 print("🌱 Seeding database...")
 
 # ── Core Users ────────────────────────────────────────────────────────────────
-admin_user, created = User.objects.get_or_create(
-    email='admin@intring.ai',
-    defaults={'name': 'Admin IntRing', 'role': 'admin', 'avatar': '⚡', 'is_staff': True, 'is_superuser': True}
-)
-if created: admin_user.set_password('admin123'); admin_user.save()
-print(f"  {'✅ Created' if created else '⚡ Exists'} admin user: admin@intring.ai / admin123")
-
-demo_user, created = User.objects.get_or_create(
-    email='demo@intring.ai',
-    defaults={'name': 'Demo User', 'role': 'member', 'avatar': '🙂'}
-)
-if created: demo_user.set_password('demo123'); demo_user.save()
-print(f"  {'✅ Created' if created else '⚡ Exists'} demo user: demo@intring.ai / demo123")
-
-dev_user, created = User.objects.get_or_create(
-    email='dev@intring.ai',
-    defaults={'name': 'Dev Engineer', 'role': 'member', 'avatar': '👨‍💻'}
-)
-if created: dev_user.set_password('dev123'); dev_user.save()
-print(f"  {'✅ Created' if created else '⚡ Exists'} dev user: dev@intring.ai / dev123")
+admin_user, _ = User.objects.update_or_create(email='fadhil@intring.ai', defaults={'name': 'Fadhil Ramadhan', 'role': 'admin', 'avatar': '👤', 'password': make_password('demo123'), 'is_staff': True, 'is_superuser': True})
+admin_user, _ = User.objects.update_or_create(email='agnar@intring.ai',  defaults={'name': 'Agnar Raka Baskara', 'role': 'admin', 'avatar': '👤', 'password': make_password('demo123')})
+dev_user, _ = User.objects.update_or_create(email='satria@intring.ai', defaults={'name': 'Satria Putra', 'role': 'member', 'avatar': '👤', 'password': make_password('demo123')})
+dev_user, _ = User.objects.update_or_create(email='gusty@intring.ai',  defaults={'name': 'Gusty', 'role': 'member', 'avatar': '👤', 'password': make_password('demo123')})
+demo_user, _ = User.objects.update_or_create(email='demo@intring.ai',   defaults={'name': 'Demo User', 'role': 'member', 'avatar': '👤', 'password': make_password('demo123')})
 
 # ── Projects ──────────────────────────────────────────────────────────────────
 proj1, created = Project.objects.get_or_create(

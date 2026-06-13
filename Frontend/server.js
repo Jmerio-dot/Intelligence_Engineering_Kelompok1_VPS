@@ -71,7 +71,7 @@ app.post('/api/auth/register', wrap(async (req, res) => {
   if (await db.get('SELECT id FROM users WHERE email=?', [email])) return res.status(400).json({ error: 'Email sudah terdaftar' });
   const now = new Date().toISOString();
   const r = await db.run('INSERT INTO users (name,email,password_hash,role,avatar,created_at) VALUES (?,?,?,?,?,?)',
-    [name, email, bcrypt.hashSync(password, 10), 'member', '🙂', now]);
+    [name, email, bcrypt.hashSync(password, 10), 'member', '👤', now]);
   const user = await db.get('SELECT id,name,email,role,avatar,created_at FROM users WHERE id=?', [r.lastID]);
   const token = jwt.sign({ id: user.id, email: user.email, name: user.name, role: user.role, avatar: user.avatar }, JWT_SECRET, { expiresIn: '7d' });
   res.json({ token, user });
