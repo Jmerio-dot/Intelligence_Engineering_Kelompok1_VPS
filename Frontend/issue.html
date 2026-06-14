@@ -90,11 +90,16 @@
           <!-- INTELLIGENCE TABS (Dinamis jika issue cerdas) -->
             <div id="intel-container" style="display:none; margin-top:1.5rem; border:1px solid var(--border); border-radius:12px; overflow:hidden;">
               <div style="display:flex; border-bottom:1px solid var(--border); background:#f8fafc;" id="intel-tabs">
-                <button class="intel-tab-btn active" onclick="switchIntelTab('obj')">Meaningful Objectives</button>
-                <button class="intel-tab-btn" onclick="switchIntelTab('exp')">Intelligence Experiences</button>
-                <button class="intel-tab-btn" onclick="switchIntelTab('impl')">Intelligence Implementation</button>
-                <button class="intel-tab-btn" onclick="switchIntelTab('stat')">Creation Status</button>
-                <button class="intel-tab-btn" onclick="switchIntelTab('orch')">Orchestration</button>
+                <div style="display:flex; flex:1;">
+                  <button class="intel-tab-btn active" onclick="switchIntelTab('obj')">Meaningful Objectives</button>
+                  <button class="intel-tab-btn" onclick="switchIntelTab('exp')">Intelligence Experiences</button>
+                  <button class="intel-tab-btn" onclick="switchIntelTab('impl')">Intelligence Implementation</button>
+                  <button class="intel-tab-btn" onclick="switchIntelTab('stat')">Creation Status</button>
+                  <button class="intel-tab-btn" onclick="switchIntelTab('orch')">Orchestration</button>
+                </div>
+                <div style="padding: 0.5rem 1rem; border-left: 1px solid var(--border); display:flex; align-items:center;">
+                  <a id="btn-edit-intel" href="#" class="btn-outline btn-sm" style="text-decoration:none; white-space:nowrap; padding: 0.25rem 0.75rem; font-size:0.75rem;">✏️ Edit Data</a>
+                </div>
               </div>
             <div id="intel-content" style="padding:1.5rem; background:#fff;"></div>
           </div>
@@ -400,6 +405,7 @@
       if ((issue.meaningful_objectives && Object.keys(issue.meaningful_objectives).length > 0) || 
           (issue.intelligence_experience && Object.keys(issue.intelligence_experience).length > 0)) {
         document.getElementById('intel-container').style.display = 'block';
+        document.getElementById('btn-edit-intel').href = `edit_intelligence.html?id=${issueId}`;
         window.intelData = issue;
         switchIntelTab('obj');
       }
