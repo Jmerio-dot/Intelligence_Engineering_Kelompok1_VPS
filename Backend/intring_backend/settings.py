@@ -6,6 +6,11 @@ Mendukung praktikum Pemrograman Web (Parent-Child Data Entry)
 
 from pathlib import Path
 from datetime import timedelta
+import os
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -65,10 +70,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'intring_backend.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'intring_django.db',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'intring_django.db'}",
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
