@@ -739,7 +739,15 @@
 
     const printStyle = document.createElement('style');
     printStyle.innerHTML = `
-      #paper-page { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; min-height: auto !important; padding: 0 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; margin: 0 !important; transform: none !important; word-wrap: break-word !important; word-break: normal !important; overflow-wrap: break-word !important; }
+      body, html { background: #fff !important; }
+      .app-sidebar, .app-topbar, .ctrl-panel, .preview-toolbar { display: none !important; }
+      .app-layout { display: block !important; }
+      .app-main { margin: 0 !important; padding: 0 !important; width: 100% !important; overflow: visible !important; }
+      .app-content { padding: 0 !important; margin: 0 !important; overflow: visible !important; }
+      .transcript-layout { display: block !important; gap: 0 !important; }
+      .preview-wrap { border: none !important; box-shadow: none !important; border-radius: 0 !important; background: transparent !important; }
+      .paper-container { max-height: none !important; padding: 0 !important; overflow: visible !important; background: transparent !important; }
+      #paper-page { width: 800px !important; max-width: 800px !important; box-sizing: border-box !important; min-height: auto !important; padding: 0 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; margin: 0 !important; transform: none !important; word-wrap: break-word !important; word-break: normal !important; overflow-wrap: break-word !important; }
       .tr-row { display: block !important; margin-bottom: 12px !important; max-width: 100% !important; page-break-inside: avoid !important; }
       .tr-label { display: block !important; font-weight: bold !important; color: #444 !important; margin-bottom: 4px !important; font-style: normal !important; page-break-after: avoid !important; }
       .tr-value { display: block !important; color: #000 !important; line-height: 1.6 !important; max-width: 100% !important; white-space: pre-wrap !important; word-wrap: break-word !important; overflow-wrap: break-word !important; word-break: normal !important; page-break-inside: avoid !important; }
@@ -768,7 +776,7 @@
         margin:       15,
         filename:     `transcript_${safeName}.pdf`,
         image:        { type: 'jpeg', quality: 1.0 },
-        html2canvas:  { scale: 2, useCORS: true, letterRendering: true, windowWidth: 800 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
         pagebreak:    { mode: ['css', 'legacy'] }
       };
