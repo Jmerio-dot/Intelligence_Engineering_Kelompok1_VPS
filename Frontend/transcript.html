@@ -238,53 +238,6 @@
     }
     .stat-chip.green { background: #dcfce7; color: #15803d; }
     .stat-chip.amber { background: #fef3c7; color: #b45309; }
-
-    /* Print Styles */
-    @media print {
-      body * { visibility: hidden; }
-      .app-layout, .app-sidebar, .app-topbar, .ctrl-panel { display: none !important; }
-      
-      #paper-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: visible;
-        background: white;
-      }
-      
-      #paper-container * { visibility: visible; }
-      
-      #paper-page {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        background: #ffffff !important;
-        color: #000000 !important;
-        transform: none !important;
-      }
-      
-      /* Reset dark theme colors for print */
-      .tr-row { display: block !important; margin-bottom: 12px !important; page-break-inside: avoid; }
-      .tr-label { display: block !important; font-weight: bold !important; color: #444 !important; margin-bottom: 4px !important; font-style: normal !important; }
-      .tr-value { display: block !important; color: #000 !important; line-height: 1.6 !important; max-width: 100% !important; white-space: pre-wrap !important; word-wrap: break-word !important; overflow-wrap: break-word !important; word-break: normal !important; }
-      .tr-main-title { color: #000 !important; border-bottom: 2px solid #000 !important; }
-      .tr-section-title { color: #111 !important; border-bottom: 1px solid #ccc !important; }
-      .tr-issue { border: 1px solid #ccc !important; page-break-inside: avoid; margin-bottom: 15px !important; }
-      .tr-issue-title { color: #0056b3 !important; }
-      .tr-issue-desc { color: #222 !important; }
-      .tr-table { color: #000 !important; }
-      .tr-table th { background: #eee !important; color: #000 !important; border: 1px solid #ccc !important; }
-      .tr-table td { border: 1px solid #ccc !important; color: #000 !important; }
-      .tr-file-link { color: #0056b3 !important; }
-      .tr-no-issues { color: #555 !important; }
-      .tr-list-item { color: #000 !important; }
-      .tr-list-item::before { color: #444 !important; }
-    }
   </style>
 </head>
 <body>
@@ -374,7 +327,7 @@
                     <div class="dl-option-sub">Download ZIP berisi transkrip PDF dan semua lampiran.</div>
                   </div>
                 </label>
-                <button class="btn-download" id="btn-dl" onclick="doProcess()">
+                <button class="btn-download" id="btn-dl" onclick="doDownload()">
                   🚀 Proses
                 </button>
               </div>
@@ -714,7 +667,7 @@
   }
 
   // ── Download ──────────────────────────────────────────────────────────────
-  window.doProcess = async function() {
+  window.doDownload = async function() {
     const type = document.querySelector('input[name="dl-type"]:checked')?.value;
     
     if (type === 'print') {
@@ -730,58 +683,40 @@
     btn.disabled = true;
     btn.textContent = 'Memproses...';
 
-    const originalScrollX = window.scrollX;
-    const originalScrollY = window.scrollY;
-    window.scrollTo(0, 0);
-
+    // Inject temporary print styles
     const printStyle = document.createElement('style');
     printStyle.innerHTML = `
-      body, html { background: #ffffff !important; display: block !important; margin: 0 !important; padding: 0 !important; }
-      .app-sidebar, .app-topbar, .ctrl-panel, .preview-toolbar { display: none !important; }
-      .app-layout, .app-main, .app-content, .transcript-layout, .preview-wrap, .paper-container {
-        display: block !important; position: static !important; width: 100% !important; max-width: none !important;
-        margin: 0 !important; padding: 0 !important; transform: none !important; overflow: visible !important;
-        background: #ffffff !important; box-shadow: none !important; border: none !important;
-      }
-      #paper-page {
-        width: 800px !important; max-width: 800px !important; margin: 0 !important; padding: 20px 40px !important;
-        background: #ffffff !important; color: #000000 !important; position: static !important; box-sizing: border-box !important;
-        font-family: 'Times New Roman', Times, serif !important; transform: none !important; box-shadow: none !important;
-      }
-      #paper-page * { font-family: 'Times New Roman', Times, serif !important; color: #000000 !important; background: transparent !important; }
-      #paper-page .tr-row { display: block !important; margin-bottom: 12px !important; page-break-inside: avoid !important; width: 100% !important; }
-      #paper-page .tr-label { display: block !important; font-weight: bold !important; margin-bottom: 4px !important; page-break-after: avoid !important; }
-      #paper-page .tr-value { display: block !important; line-height: 1.6 !important; white-space: pre-wrap !important; word-break: normal !important; page-break-inside: avoid !important; }
-      #paper-page .tr-value br { display: block !important; content: "" !important; margin-bottom: 4px !important; }
-      #paper-page .tr-value b, #paper-page .tr-value strong { font-weight: 700 !important; }
-      #paper-page .tr-main-title { border-bottom: 2px solid #000 !important; padding-bottom: 10px !important; margin-bottom: 20px !important; }
-      #paper-page .tr-section-title { border-bottom: 1px solid #ccc !important; padding-bottom: 5px !important; margin-bottom: 10px !important; margin-top: 25px !important; page-break-after: avoid !important; }
-      #paper-page .tr-issue { border: 1px solid #ccc !important; padding: 15px !important; margin-bottom: 15px !important; page-break-inside: avoid !important; box-sizing: border-box !important; width: 100% !important; }
-      #paper-page .tr-issue-title { color: #0056b3 !important; font-size: 13pt !important; margin-bottom: 8px !important; page-break-after: avoid !important; }
-      #paper-page .tr-issue-desc { white-space: pre-wrap !important; }
-      #paper-page .tr-file-link { color: #0056b3 !important; text-decoration: none !important; }
-      #paper-page .tr-no-issues { color: #555 !important; }
-      #paper-page .tr-watermark { display: none !important; }
-      #paper-page .tr-table { width: 100% !important; max-width: 100% !important; table-layout: fixed !important; border-collapse: collapse !important; page-break-inside: auto !important; margin-top: 10px !important; }
-      #paper-page .tr-table tr { page-break-inside: avoid !important; page-break-after: auto !important; }
-      #paper-page .tr-table th { border: 1px solid #ccc !important; background: #2c3e50 !important; color: #fff !important; padding: 8px !important; text-align: left !important; word-wrap: break-word !important; }
-      #paper-page .tr-table td { border: 1px solid #ccc !important; padding: 8px !important; word-wrap: break-word !important; }
+      #paper-page { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; min-height: auto !important; padding: 0 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; margin: 0 !important; transform: none !important; word-wrap: break-word !important; word-break: normal !important; overflow-wrap: break-word !important; }
+      .tr-row { display: block !important; margin-bottom: 12px !important; max-width: 100% !important; page-break-inside: avoid !important; }
+      .tr-label { display: block !important; font-weight: bold !important; color: #444 !important; margin-bottom: 4px !important; font-style: normal !important; page-break-after: avoid !important; }
+      .tr-value { display: block !important; color: #000 !important; line-height: 1.6 !important; max-width: 100% !important; white-space: pre-wrap !important; word-break: normal !important; overflow-wrap: break-word !important; page-break-inside: avoid !important; }
+      .tr-value br { display: block !important; content: "" !important; margin-bottom: 4px !important; }
+      .tr-value b, .tr-value strong { color: #222 !important; }
+      .tr-main-title { color: #000 !important; letter-spacing: 0 !important; border-bottom: 2px solid #000 !important; padding-bottom: 10px !important; margin-bottom: 20px !important; }
+      .tr-section-title { color: #111 !important; border-bottom: 1px solid #ccc !important; letter-spacing: 0 !important; padding-bottom: 5px !important; margin-bottom: 10px !important; margin-top: 25px !important; page-break-after: avoid !important; }
+      .tr-issue { border: 1px solid #ccc !important; padding: 15px !important; margin-bottom: 15px !important; page-break-inside: avoid !important; max-width: 100% !important; box-sizing: border-box !important; }
+      .tr-issue-title { color: #0056b3 !important; font-size: 13pt !important; margin-bottom: 8px !important; word-break: normal !important; page-break-after: avoid !important; }
+      .tr-issue-desc { color: #222 !important; max-width: 100% !important; white-space: pre-wrap !important; word-break: normal !important; }
+      .tr-file-link { color: #0056b3 !important; text-decoration: none !important; }
+      .tr-no-issues { color: #555 !important; }
+      .tr-watermark { display: none !important; }
+      .tr-table { color: #000 !important; table-layout: fixed !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; page-break-inside: auto !important; }
+      .tr-table tr { page-break-inside: avoid !important; page-break-after: auto !important; }
+      .tr-table th { border: 1px solid #ccc !important; background: #2c3e50 !important; color: #fff !important; word-break: normal !important; white-space: pre-wrap !important; overflow-wrap: break-word !important; padding: 6px !important; }
+      .tr-table td { border: 1px solid #ccc !important; color: #000 !important; word-break: normal !important; white-space: pre-wrap !important; overflow-wrap: break-word !important; padding: 6px !important; }
     `;
     document.head.appendChild(printStyle);
 
     try {
-      await new Promise(r => setTimeout(r, 150));
-
       const safeName = project.name.replace(/[^a-zA-Z0-9_-]/g, '_');
       const element = document.getElementById('paper-page');
       
       const opt = {
-        margin:       10,
+        margin:       15,
         filename:     `transcript_${safeName}.pdf`,
         image:        { type: 'jpeg', quality: 1.0 },
-        html2canvas:  { scale: 2, useCORS: true, scrollX: 0, scrollY: 0, windowWidth: 800 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak:    { mode: ['css', 'legacy'] }
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
       if (type === 'pdf') {
@@ -825,7 +760,6 @@
       showToast('Gagal memproses: ' + e.message, 'error');
     } finally {
       document.head.removeChild(printStyle);
-      window.scrollTo(originalScrollX, originalScrollY);
       btn.disabled = false;
       btn.innerHTML = '🚀 Proses';
     }
