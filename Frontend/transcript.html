@@ -357,11 +357,10 @@
   let zoomPct = 75;
   function applyZoom() {
     const p = document.getElementById('paper-page');
-    p.style.transform = `scale(${zoomPct / 100})`;
+    p.style.zoom = zoomPct / 100;
     document.getElementById('zoom-label').textContent = `${zoomPct}%`;
-    // adjust container height so scrollbar works
-    const naturalH = p.scrollHeight;
-    document.getElementById('paper-container').style.minHeight = `${naturalH * zoomPct / 100 + 48}px`;
+    // Native zoom handles layout recalculation automatically, so we don't need minHeight hacks.
+    document.getElementById('paper-container').style.minHeight = 'auto';
   }
   window.changeZoom = (delta) => {
     zoomPct = Math.min(150, Math.max(30, zoomPct + delta));

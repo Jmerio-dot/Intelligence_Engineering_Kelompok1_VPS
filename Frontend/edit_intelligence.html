@@ -438,7 +438,7 @@
     }
     if (mo.leading_indicators && mo.leading_indicators.length) {
       document.getElementById('table-indicators').querySelector('tbody').innerHTML = '';
-      mo.leading_indicators.forEach(i => addIndicatorRowVal(i.col1, i.col2, i.col3));
+      mo.leading_indicators.forEach(i => addIndicatorRowVal(i.col1 || i[0], i.col2 || i[1], i.col3 || i[2]));
     }
     if (mo.user_outcomes) {
       document.getElementById('mo-user-out').value = mo.user_outcomes.obj || '';
@@ -461,25 +461,25 @@
     }
     if (ie.functions && ie.functions.length) {
       document.getElementById('table-fungsi').querySelector('tbody').innerHTML = '';
-      ie.functions.forEach(f => addFuncRowVal('table-fungsi', f.col1, f.col2));
+      ie.functions.forEach(f => addFuncRowVal('table-fungsi', f.col1 || f[0], f.col2 || f[1]));
     }
     if (ie.error_mitigation && ie.error_mitigation.length) {
       document.getElementById('table-error').querySelector('tbody').innerHTML = '';
-      ie.error_mitigation.forEach(f => addFuncRowVal('table-error', f.col1, f.col2));
+      ie.error_mitigation.forEach(f => addFuncRowVal('table-error', f.col1 || f[0], f.col2 || f[1]));
     }
     if (ie.data_collection && ie.data_collection.length) {
       document.getElementById('table-data').querySelector('tbody').innerHTML = '';
-      ie.data_collection.forEach(f => addFuncRowVal('table-data', f.col1, f.col2));
+      ie.data_collection.forEach(f => addFuncRowVal('table-data', f.col1 || f[0], f.col2 || f[1]));
     }
 
     const im = issue.intelligence_implementation || {};
     if (im.business_process && im.business_process.length) {
       document.getElementById('table-bp').querySelector('tbody').innerHTML = '';
-      im.business_process.forEach(f => addFuncRowVal('table-bp', f.col1, f.col2));
+      im.business_process.forEach(f => addFuncRowVal('table-bp', f.col1 || f[0], f.col2 || f[1]));
     }
     if (im.technology && im.technology.length) {
       document.getElementById('table-tech').querySelector('tbody').innerHTML = '';
-      im.technology.forEach(f => addFuncRowVal('table-tech', f.col1, f.col2));
+      im.technology.forEach(f => addFuncRowVal('table-tech', f.col1 || f[0], f.col2 || f[1]));
     }
   });
 
