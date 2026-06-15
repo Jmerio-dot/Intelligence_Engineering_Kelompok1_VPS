@@ -737,24 +737,24 @@
     btn.disabled = true;
     btn.textContent = 'Memproses...';
 
-    // Inject temporary print styles
     const printStyle = document.createElement('style');
     printStyle.innerHTML = `
-      #paper-page { width: 800px !important; max-width: 800px !important; box-sizing: border-box !important; min-height: auto !important; padding: 25px !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; margin: 0 auto !important; transform: none !important; word-wrap: break-word !important; word-break: normal !important; overflow-wrap: break-word !important; }
+      #paper-page { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; min-height: auto !important; padding: 0 !important; box-shadow: none !important; background: #ffffff !important; color: #000000 !important; margin: 0 !important; transform: none !important; word-wrap: break-word !important; word-break: normal !important; overflow-wrap: break-word !important; }
       .tr-row { display: block !important; margin-bottom: 12px !important; max-width: 100% !important; page-break-inside: avoid !important; }
-      .tr-label { display: block !important; font-weight: bold !important; color: #444 !important; margin-bottom: 4px !important; font-style: normal !important; }
-      .tr-value { display: block !important; color: #000 !important; line-height: 1.6 !important; max-width: 100% !important; white-space: pre-wrap !important; word-wrap: break-word !important; overflow-wrap: break-word !important; word-break: normal !important; }
+      .tr-label { display: block !important; font-weight: bold !important; color: #444 !important; margin-bottom: 4px !important; font-style: normal !important; page-break-after: avoid !important; }
+      .tr-value { display: block !important; color: #000 !important; line-height: 1.6 !important; max-width: 100% !important; white-space: pre-wrap !important; word-wrap: break-word !important; overflow-wrap: break-word !important; word-break: normal !important; page-break-inside: avoid !important; }
       .tr-value br { display: block !important; content: "" !important; margin-bottom: 4px !important; }
       .tr-value b, .tr-value strong { color: #222 !important; }
       .tr-main-title { color: #000 !important; letter-spacing: 0 !important; border-bottom: 2px solid #000 !important; padding-bottom: 10px !important; margin-bottom: 20px !important; }
-      .tr-section-title { color: #111 !important; border-bottom: 1px solid #ccc !important; letter-spacing: 0 !important; padding-bottom: 5px !important; margin-bottom: 10px !important; margin-top: 25px !important; }
+      .tr-section-title { color: #111 !important; border-bottom: 1px solid #ccc !important; letter-spacing: 0 !important; padding-bottom: 5px !important; margin-bottom: 10px !important; margin-top: 25px !important; page-break-after: avoid !important; }
       .tr-issue { border: 1px solid #ccc !important; padding: 15px !important; margin-bottom: 15px !important; page-break-inside: avoid !important; max-width: 100% !important; box-sizing: border-box !important; }
-      .tr-issue-title { color: #0056b3 !important; font-size: 13pt !important; margin-bottom: 8px !important; word-break: normal !important; word-wrap: break-word !important; }
+      .tr-issue-title { color: #0056b3 !important; font-size: 13pt !important; margin-bottom: 8px !important; word-break: normal !important; word-wrap: break-word !important; page-break-after: avoid !important; }
       .tr-issue-desc { color: #222 !important; max-width: 100% !important; white-space: pre-wrap !important; word-wrap: break-word !important; word-break: normal !important; }
       .tr-file-link { color: #0056b3 !important; text-decoration: none !important; }
       .tr-no-issues { color: #555 !important; }
       .tr-watermark { display: none !important; }
-      .tr-table { color: #000 !important; table-layout: fixed !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+      .tr-table { color: #000 !important; table-layout: fixed !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; page-break-inside: auto !important; }
+      .tr-table tr { page-break-inside: avoid !important; page-break-after: auto !important; }
       .tr-table th { border: 1px solid #ccc !important; background: #2c3e50 !important; color: #fff !important; word-wrap: break-word !important; overflow-wrap: break-word !important; word-break: normal !important; }
       .tr-table td { border: 1px solid #ccc !important; color: #000 !important; word-wrap: break-word !important; overflow-wrap: break-word !important; word-break: normal !important; }
     `;
@@ -768,8 +768,9 @@
         margin:       15,
         filename:     `transcript_${safeName}.pdf`,
         image:        { type: 'jpeg', quality: 1.0 },
-        html2canvas:  { scale: 2, useCORS: true, letterRendering: false },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true, windowWidth: 800 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['css', 'legacy'] }
       };
 
       if (type === 'pdf') {
