@@ -1,4 +1,4 @@
-﻿(async () => {
+(async () => {
       if (!requireAuth()) return;
       await renderSidebar('laporan');
 

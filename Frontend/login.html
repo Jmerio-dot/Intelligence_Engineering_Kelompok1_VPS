@@ -511,7 +511,7 @@
       localStorage.setItem('ie_user', JSON.stringify(data.user));
       btn.textContent = '✅ Berhasil!';
       btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
-      setTimeout(() => window.location.href = '/dashboard.html', 800);
+      setTimeout(() => window.location.href = 'dashboard.html', 800);
     } catch (err) {
       errEl.textContent = err.message; errEl.style.display = 'block';
       btn.textContent = 'Masuk →'; btn.disabled = false;
@@ -541,7 +541,7 @@
       localStorage.setItem('ie_user', JSON.stringify(data.user));
       btn.textContent = '✅ Akun Dibuat!';
       btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
-      setTimeout(() => window.location.href = '/dashboard.html', 800);
+      setTimeout(() => window.location.href = 'dashboard.html', 800);
     } catch (err) {
       errEl.textContent = err.message; errEl.style.display = 'block';
       btn.textContent = 'Buat Akun →'; btn.disabled = false;

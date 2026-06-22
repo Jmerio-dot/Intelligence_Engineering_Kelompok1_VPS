@@ -1,8 +1,8 @@
-﻿window.doDownload = async function() {
+window.doDownload = async function() {
     const type = document.querySelector('input[name="dl-type"]:checked')?.value;
     const btn  = document.getElementById('btn-dl');
     btn.disabled = true;
-    btn.textContent = 'Memproses…';
+    btn.textContent = 'Memproses�';
 
     try {
       const transcriptText = buildPlainText();
@@ -21,23 +21,23 @@
       if (type === 'pdf') {
         if (typeof html2pdf === 'undefined') {
           showToast('Library PDF belum dimuat. Coba refresh halaman.', 'error');
-          btn.disabled = false; btn.textContent = '⬇️ Download Sekarang';
+          btn.disabled = false; btn.textContent = '?? Download Sekarang';
           return;
         }
         await html2pdf().set(opt).from(element).save();
         btn.disabled = false;
-        btn.textContent = '⬇️ Download Sekarang';
-        showToast('✅ PDF berhasil didownload!');
+        btn.textContent = '?? Download Sekarang';
+        showToast('? PDF berhasil didownload!');
         return;
       } else {
         if (typeof JSZip === 'undefined') {
           showToast('JSZip belum dimuat. Coba refresh halaman.', 'error');
-          btn.disabled = false; btn.textContent = '⬇️ Download Sekarang';
+          btn.disabled = false; btn.textContent = '?? Download Sekarang';
           return;
         }
         if (typeof html2pdf === 'undefined') {
           showToast('Library PDF belum dimuat.', 'error');
-          btn.disabled = false; btn.textContent = '⬇️ Download Sekarang';
+          btn.disabled = false; btn.textContent = '?? Download Sekarang';
           return;
         }
         const zip = new JSZip();
@@ -73,13 +73,13 @@
 
         const content = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
         triggerDownload(content, `transcript_${safeName}.zip`);
-        showToast(`✅ ZIP berhasil didownload! (${allAtts.length} file)`);
+        showToast(`? ZIP berhasil didownload! (${allAtts.length} file)`);
       }
     } catch(e) {
       showToast('Gagal download: ' + e.message, 'error');
     } finally {
       btn.disabled = false;
-      btn.innerHTML = '⬇️ Download Sekarang';
+      btn.innerHTML = '?? Download Sekarang';
     }
   };
 

@@ -2,13 +2,13 @@
 // Ganti ke port 8000 (Django) atau 3000 (Node.js)
 // Django backend: http://localhost:8000/api
 // Node.js backend: http://localhost:3000/api
-const API = '/api';
+const API = '/intelligence-engineering/api';
 
 function getToken() { return localStorage.getItem('ie_token'); }
 function getUser()  { try { return JSON.parse(localStorage.getItem('ie_user')); } catch { return null; } }
 
 function requireAuth() {
-  if (!getToken()) { window.location.href = '/login.html'; return false; }
+  if (!getToken()) { window.location.href = 'login.html'; return false; }
   return true;
 }
 
@@ -38,7 +38,7 @@ async function apiFetch(path, options = {}) {
   if (res.status === 401) {
     localStorage.removeItem('ie_token');
     localStorage.removeItem('ie_user');
-    window.location.href = '/login.html';
+    window.location.href = 'login.html';
     throw new Error('Session expired');
   }
   if (!res.ok) {
@@ -62,7 +62,7 @@ async function apiFetch(path, options = {}) {
 function logout() {
   localStorage.removeItem('ie_token');
   localStorage.removeItem('ie_user');
-  window.location.href = '/login.html';
+  window.location.href = 'login.html';
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────

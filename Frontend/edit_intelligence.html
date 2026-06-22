@@ -149,7 +149,7 @@
     <div class="app-topbar">
       <button class="btn-back" onclick="history.back()">← Kembali</button>
       <div class="topbar-title-group">
-        <div class="breadcrumb" id="breadcrumb-container"><a href="/projects.html">Proyek</a> / <span id="breadcrumb-project">—</span></div>
+        <div class="breadcrumb" id="breadcrumb-container"><a href="projects.html">Proyek</a> / <span id="breadcrumb-project">—</span></div>
         <h1 id="page-title">Edit Issue Cerdas</h1>
       </div>
     </div>
@@ -422,7 +422,7 @@
   apiFetch(`/issues/${issueId}`).then(issue => {
     issueData = issue;
     renderSidebar('board', issue.project_id);
-    document.getElementById('breadcrumb-container').innerHTML = `<a href="/projects.html">Proyek</a> / <a href="/board.html?pid=${issue.project_id}">${issue.project_name}</a> / <a href="/issue.html?id=${issueId}">${issue.issue_key}</a> / Edit`;
+    document.getElementById('breadcrumb-container').innerHTML = `<a href="projects.html">Proyek</a> / <a href="board.html?pid=${issue.project_id}">${issue.project_name}</a> / <a href="issue.html?id=${issueId}">${issue.issue_key}</a> / Edit`;
     document.title = `Edit Intelligence - ${issue.issue_key}`;
 
     document.getElementById('basic-title').value = issue.title;

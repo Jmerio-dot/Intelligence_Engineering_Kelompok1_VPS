@@ -307,7 +307,7 @@
         <div class="attach-item" id="att-${a.id}">
           <div class="attach-file-icon">${fileIcon(a.mimetype, a.original_name)}</div>
           <div class="attach-info">
-            <a class="attach-name" href="/uploads/${a.filename}" target="_blank" download="${a.original_name}">${a.original_name}</a>
+            <a class="attach-name" href="uploads/${a.filename}" target="_blank" download="${a.original_name}">${a.original_name}</a>
             <div class="attach-meta">${formatBytes(a.size)} · ${a.uploader_name} · ${timeAgo(a.created_at)}</div>
           </div>
           <button class="attach-del" title="Hapus lampiran" onclick="deleteAttachment(${a.id}, '${a.original_name.replace(/'/g,"\\'")}')">🗑</button>

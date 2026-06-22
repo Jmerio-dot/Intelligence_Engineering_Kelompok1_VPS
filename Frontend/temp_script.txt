@@ -1,4 +1,4 @@
-﻿      function renderProjectCard(p) {
+      function renderProjectCard(p) {
         const isDone = p.status === 'done';
         const meta = parseProjectMeta(p.description);
         const desc = meta && meta.description ? meta.description : (p.description || 'Tidak ada deskripsi.');
