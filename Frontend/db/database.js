@@ -152,6 +152,30 @@ async function initSchema() {
       FOREIGN KEY (issue_id) REFERENCES issues(id) ON DELETE CASCADE,
       FOREIGN KEY (user_id) REFERENCES users(id)
     );
+    CREATE TABLE IF NOT EXISTS team_submissions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      project_id INTEGER NOT NULL,
+      team_name TEXT NOT NULL,
+      title TEXT NOT NULL,
+      description TEXT DEFAULT '',
+      file_path TEXT DEFAULT '',
+      original_filename TEXT DEFAULT '',
+      submitted_by INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+      FOREIGN KEY (submitted_by) REFERENCES users(id)
+    );
+    CREATE TABLE IF NOT EXISTS client_reports (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      project_id INTEGER NOT NULL,
+      public_token TEXT UNIQUE NOT NULL,
+      title TEXT NOT NULL,
+      summary TEXT DEFAULT '',
+      generated_by INTEGER NOT NULL,
+      created_at TEXT NOT NULL,
+      FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+      FOREIGN KEY (generated_by) REFERENCES users(id)
+    );
   `);
 }
 

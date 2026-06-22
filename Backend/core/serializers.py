@@ -3,7 +3,7 @@ DRF Serializers untuk semua model Core
 """
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Project, ProjectMember, Sprint, Issue, Comment, Attachment, ActivityLog
+from .models import Project, ProjectMember, Sprint, Issue, Comment, Attachment, ActivityLog, TeamSubmission, ClientReport
 
 User = get_user_model()
 
@@ -171,6 +171,30 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         model  = ActivityLog
         fields = ['id','user_id','user_name','user_avatar','project_id','issue_id',
                   'action','detail','created_at']
+
+
+# ── Team Submissions ──
+class TeamSubmissionSerializer(serializers.ModelSerializer):
+    submitter_name   = serializers.CharField(source='submitted_by.name', read_only=True)
+    submitter_avatar = serializers.CharField(source='submitted_by.avatar', read_only=True)
+
+    class Meta:
+        model  = TeamSubmission
+        fields = '__all__'
+
+
+# ── Client Reports ──
+class ClientReportSerializer(serializers.ModelSerializer):
+    generator_name = serializers.CharField(source='generated_by.name', read_only=True)
+    project_name   = serializers.CharField(source='project.name', read_only=True)
+    project_key    = serializers.CharField(source='project.key', read_only=True)
+    project_type   = serializers.CharField(source='project.type', read_only=True)
+    project_description = serializers.CharField(source='project.description', read_only=True)
+    project_status = serializers.CharField(source='project.status', read_only=True)
+
+    class Meta:
+        model  = ClientReport
+        fields = '__all__'
 
 
 # ── Dashboard ─────────────────────────────────────────────────────────────────

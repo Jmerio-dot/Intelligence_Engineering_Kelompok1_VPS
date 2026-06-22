@@ -5,6 +5,7 @@ Semua model ini digunakan oleh REST API untuk frontend JS.
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+import uuid
 
 
 # ── Custom User ──────────────────────────────────────────────────────────────
@@ -221,3 +222,39 @@ class ActivityLog(models.Model):
 
     def __str__(self):
         return f'{self.user.name}: {self.action}'
+
+
+# ── Team Submission ──
+class TeamSubmission(models.Model):
+    project           = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='submissions')
+    team_name         = models.CharField(max_length=200)
+    title             = models.CharField(max_length=500)
+    description       = models.TextField(blank=True, default='')
+    file_path         = models.FileField(upload_to='submissions/%Y/%m/', blank=True, null=True)
+    original_filename = models.CharField(max_length=500, blank=True, default='')
+    submitted_by      = models.ForeignKey(User, on_delete=models.CASCADE, related_name='team_submissions')
+    created_at        = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table = 'core_team_submissions'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'[{self.team_name}] {self.title}'
+
+
+# ── Client Report ──
+class ClientReport(models.Model):
+    project      = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='client_reports')
+    public_token = models.CharField(max_length=100, unique=True, default=uuid.uuid4)
+    title        = models.CharField(max_length=500)
+    summary      = models.TextField(blank=True, default='')
+    generated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='generated_reports')
+    created_at   = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table = 'core_client_reports'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title

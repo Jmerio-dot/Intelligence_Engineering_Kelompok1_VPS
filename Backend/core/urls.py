@@ -55,6 +55,14 @@ urlpatterns = [
     # 🔍 Search (Praktikum 6) ────────────────────────────────────────────────────────
     path('search',        views.SearchView.as_view(),       name='search'),
 
-    # 🤖 Intelligence Creation API ──────────────────────────────────────────────
+    # 🌟 Intelligence Creation API ────────────────────────────────────────────────
     path('integration/send-to-creation', views.SendToCreationWebhook.as_view(), name='webhook_send_creation'),
+
+    # 🌟 Team Submissions & Client Reports ────────────────────────────────────────
+    path('projects/<int:pk>/submissions', views.TeamSubmissionListCreateView.as_view(), name='project_submissions'),
+    path('submissions/<int:pk>',          views.TeamSubmissionDeleteView.as_view(),     name='submission_delete'),
+    path('projects/<int:pk>/client-reports', views.ClientReportListCreateView.as_view(),  name='project_reports'),
+    path('projects/<int:pk>/client-report',  views.ClientReportListCreateView.as_view(),  name='project_report_create'),
+    path('client-reports/<int:pk>',          views.ClientReportDeleteView.as_view(),      name='report_delete'),
+    path('report/<str:token>',               views.PublicClientReportView.as_view(),      name='public_report'),
 ]

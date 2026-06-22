@@ -364,6 +364,96 @@ app.get('/api/dashboard', auth, wrap(async (req, res) => {
   res.json({ totalProjects: tp.c, assignedToMe: am.c, inProgress: ip.c, completedToday: ct.c, myIssues, recentProjects, recentActivity });
 }));
 
+// ── TEAM SUBMISSIONS ────────────────────────────────────────────────────────
+app.get('/api/projects/:id/submissions', auth, wrap(async (req, res) => {
+  const rows = await db.all(
+    `SELECT ts.*, u.name as submitter_name, u.avatar as submitter_avatar
+     FROM team_submissions ts JOIN users u ON ts.submitted_by=u.id
+     WHERE ts.project_id=? ORDER BY ts.created_at DESC`,
+    [req.params.id]
+  );
+  res.json(rows);
+}));
+
+app.post('/api/projects/:id/submissions', auth, upload.single('file'), wrap(async (req, res) => {
+  const { team_name, title, description } = req.body;
+  if (!team_name || !title) return res.status(400).json({ error: 'Team dan judul wajib diisi' });
+  const now = new Date().toISOString();
+  const filePath = req.file ? `/uploads/${req.file.filename}` : '';
+  const originalFilename = req.file ? req.file.originalname : '';
+  const r = await db.run(
+    'INSERT INTO team_submissions (project_id,team_name,title,description,file_path,original_filename,submitted_by,created_at) VALUES (?,?,?,?,?,?,?,?)',
+    [req.params.id, team_name, title, description || '', filePath, originalFilename, req.user.id, now]
+  );
+  logActivity(req.user.id, req.params.id, null, 'submission_added', `[${team_name}] ${title}`);
+  const row = await db.get(
+    'SELECT ts.*, u.name as submitter_name FROM team_submissions ts JOIN users u ON ts.submitted_by=u.id WHERE ts.id=?',
+    [r.lastID]
+  );
+  res.json(row);
+}));
+
+app.delete('/api/submissions/:id', auth, wrap(async (req, res) => {
+  const sub = await db.get('SELECT * FROM team_submissions WHERE id=?', [req.params.id]);
+  if (!sub) return res.status(404).json({ error: 'Not found' });
+  if (sub.file_path) {
+    const filePath = path.join(__dirname, sub.file_path);
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+  }
+  await db.run('DELETE FROM team_submissions WHERE id=?', [req.params.id]);
+  res.json({ success: true });
+}));
+
+// ── CLIENT REPORTS ──────────────────────────────────────────────────────────
+app.get('/api/projects/:id/client-reports', auth, wrap(async (req, res) => {
+  const rows = await db.all(
+    `SELECT cr.*, u.name as generator_name
+     FROM client_reports cr JOIN users u ON cr.generated_by=u.id
+     WHERE cr.project_id=? ORDER BY cr.created_at DESC`,
+    [req.params.id]
+  );
+  res.json(rows);
+}));
+
+app.post('/api/projects/:id/client-report', auth, wrap(async (req, res) => {
+  const { title, summary } = req.body;
+  if (!title) return res.status(400).json({ error: 'Judul laporan wajib diisi' });
+  const crypto = require('crypto');
+  const token = crypto.randomBytes(16).toString('hex');
+  const now = new Date().toISOString();
+  const r = await db.run(
+    'INSERT INTO client_reports (project_id,public_token,title,summary,generated_by,created_at) VALUES (?,?,?,?,?,?)',
+    [req.params.id, token, title, summary || '', req.user.id, now]
+  );
+  logActivity(req.user.id, req.params.id, null, 'report_generated', `Laporan: ${title}`);
+  res.json({ id: r.lastID, public_token: token });
+}));
+
+app.delete('/api/client-reports/:id', auth, wrap(async (req, res) => {
+  await db.run('DELETE FROM client_reports WHERE id=?', [req.params.id]);
+  res.json({ success: true });
+}));
+
+// Public endpoint — no auth required
+app.get('/api/report/:token', wrap(async (req, res) => {
+  const report = await db.get(
+    `SELECT cr.*, u.name as generator_name, p.name as project_name, p.key as project_key, p.type as project_type, p.description as project_description, p.status as project_status
+     FROM client_reports cr
+     JOIN users u ON cr.generated_by=u.id
+     JOIN projects p ON cr.project_id=p.id
+     WHERE cr.public_token=?`,
+    [req.params.token]
+  );
+  if (!report) return res.status(404).json({ error: 'Laporan tidak ditemukan' });
+  const submissions = await db.all(
+    `SELECT ts.*, u.name as submitter_name
+     FROM team_submissions ts JOIN users u ON ts.submitted_by=u.id
+     WHERE ts.project_id=? ORDER BY ts.team_name ASC, ts.created_at DESC`,
+    [report.project_id]
+  );
+  res.json({ report, submissions });
+}));
+
 // ── START ───────────────────────────────────────────────────────────────────
 async function start() {
   await initSchema();

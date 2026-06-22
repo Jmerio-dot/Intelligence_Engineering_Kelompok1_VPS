@@ -9,6 +9,7 @@ django.setup()
 
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from core.models import Project, ProjectMember, Sprint, Issue, Comment, ActivityLog
 from data_entry.models import Pengguna, Content
 

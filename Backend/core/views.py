@@ -12,12 +12,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import Project, ProjectMember, Sprint, Issue, Comment, Attachment, ActivityLog
+from .models import Project, ProjectMember, Sprint, Issue, Comment, Attachment, ActivityLog, TeamSubmission, ClientReport
 from .serializers import (
     UserSerializer, UserRegisterSerializer, UserProfileUpdateSerializer,
     ProjectSerializer, ProjectCreateSerializer, ProjectMemberSerializer,
     SprintSerializer, IssueSerializer, IssueCreateUpdateSerializer,
     CommentSerializer, AttachmentSerializer, ActivityLogSerializer,
+    TeamSubmissionSerializer, ClientReportSerializer,
 )
 
 User = get_user_model()
@@ -703,3 +704,108 @@ class SendToCreationWebhook(APIView):
             "message": f"Successfully sent project {project_id}, issue {issue_id} to Intelligence Creation team."
         }, status=status.HTTP_200_OK)
 
+# -- Team Submissions ----------------------------------------------------------
+class TeamSubmissionListCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Response({'error': 'Project not found'}, status=404)
+        subs = TeamSubmission.objects.filter(project=project)
+        return Response(TeamSubmissionSerializer(subs, many=True, context={'request': request}).data)
+
+    def post(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Response({'error': 'Project not found'}, status=404)
+        team_name = request.data.get('team_name')
+        title = request.data.get('title')
+        description = request.data.get('description', '')
+        file = request.FILES.get('file')
+        if not team_name or not title:
+            return Response({'error': 'Team dan judul wajib diisi'}, status=400)
+        
+        sub = TeamSubmission.objects.create(
+            project=project,
+            team_name=team_name,
+            title=title,
+            description=description,
+            file_path=file if file else None,
+            original_filename=file.name if file else '',
+            submitted_by=request.user
+        )
+        log_activity(request.user, project=project, action='submission_added', detail=f'[{team_name}] {title}')
+        return Response(TeamSubmissionSerializer(sub, context={'request': request}).data)
+
+class TeamSubmissionDeleteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        try:
+            sub = TeamSubmission.objects.get(pk=pk)
+        except TeamSubmission.DoesNotExist:
+            return Response({'error': 'Not found'}, status=404)
+        sub.file_path.delete(save=False)
+        sub.delete()
+        return Response({'success': True})
+
+
+# -- Client Reports ------------------------------------------------------------
+class ClientReportListCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Response({'error': 'Project not found'}, status=404)
+        reports = ClientReport.objects.filter(project=project)
+        return Response(ClientReportSerializer(reports, many=True, context={'request': request}).data)
+
+    def post(self, request, pk):
+        try:
+            project = Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Response({'error': 'Project not found'}, status=404)
+        title = request.data.get('title')
+        summary = request.data.get('summary', '')
+        if not title:
+            return Response({'error': 'Judul laporan wajib diisi'}, status=400)
+        
+        import uuid
+        token = uuid.uuid4().hex
+        report = ClientReport.objects.create(
+            project=project,
+            public_token=token,
+            title=title,
+            summary=summary,
+            generated_by=request.user
+        )
+        log_activity(request.user, project=project, action='report_generated', detail=f'Laporan: {title}')
+        return Response({'id': report.id, 'public_token': token})
+
+class ClientReportDeleteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        ClientReport.objects.filter(pk=pk).delete()
+        return Response({'success': True})
+
+class PublicClientReportView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, token):
+        try:
+            report = ClientReport.objects.get(public_token=token)
+        except ClientReport.DoesNotExist:
+            return Response({'error': 'Laporan tidak ditemukan'}, status=404)
+        
+        subs = TeamSubmission.objects.filter(project=report.project).order_by('team_name', '-created_at')
+        return Response({
+            'report': ClientReportSerializer(report, context={'request': request}).data,
+            'submissions': TeamSubmissionSerializer(subs, many=True, context={'request': request}).data
+        })

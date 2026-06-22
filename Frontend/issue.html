@@ -507,11 +507,24 @@
         `;
       } else if (tab === 'orch') {
         document.querySelector('.intel-tab-btn[onclick="switchIntelTab(\'orch\')"]').classList.add('active');
+        const orchList = (data.creation_status && data.creation_status.orchestration) || [];
+        let orchHtml = '';
+        if (orchList.length > 0) {
+            orchHtml = orchList.map(o => `
+              <div style="border:1px solid var(--border); padding:1rem; margin-bottom:1rem; border-radius:0.5rem; display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                      <div style="font-weight:700; color:var(--ocean);">${o.category}</div>
+                      <div style="font-size:0.85rem; color:var(--muted); margin-top:0.25rem;">Status: ${o.status}</div>
+                  </div>
+                  <div style="font-size:0.85rem; color:var(--muted);">${o.created_at || ''}</div>
+              </div>
+            `).join('');
+        } else {
+            orchHtml = `<div class="intel-box" style="text-align:center;color:var(--muted);padding:2rem;">Data orchestration belum tersedia.</div>`;
+        }
         content.innerHTML = `
           <div class="intel-section-title">Orchestration</div>
-          <div class="intel-box" style="text-align:center;color:var(--muted);padding:2rem;">
-            Data orchestration belum tersedia.
-          </div>
+          ${orchHtml}
         `;
       }
     };

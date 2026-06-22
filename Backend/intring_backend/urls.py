@@ -23,6 +23,9 @@ urlpatterns = [
 
     # ── REST API v2 (ViewSet + Router — Praktikum 10) ───────────────────────
     path('api/v2/', include(router.urls)),
+    
+    # Tambahan agar ada tombol Login di Browsable API
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # ── Django Form Views (data entry praktikum) ─────────────────────────────
     path('data-entry/', include('data_entry.urls')),

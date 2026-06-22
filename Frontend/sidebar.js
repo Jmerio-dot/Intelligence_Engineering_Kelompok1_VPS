@@ -129,6 +129,7 @@ async function loadSidebarProjects(activePid) {
           <a href="/board.html?pid=${p.id}" class="sb-proj-link">🗂️ Board</a>
           <a href="/backlog.html?pid=${p.id}" class="sb-proj-link">📋 Backlog</a>
           <a href="/transcript.html?pid=${p.id}" class="sb-proj-link">📄 Transcript</a>
+          <a href="/submissions.html?pid=${p.id}" class="sb-proj-link">📦 Pengumpulan</a>
         </div>
       </div>
     `).join('');

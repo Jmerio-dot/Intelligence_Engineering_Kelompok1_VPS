@@ -217,3 +217,4 @@ python manage.py runserver
 
 > **Catatan:** Error HTTP 500 "no such table" terjadi jika model belum di-migrate.
 > Solusi: jalankan `makemigrations` dan `migrate` terlebih dahulu.
+"# IntelligenceEngineering_kelompok1" 

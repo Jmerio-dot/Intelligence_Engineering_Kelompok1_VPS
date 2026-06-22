@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laporan Proyek — IntRing PM</title>
+  <link rel="stylesheet" href="app-theme.css" />
+  <style>
+    /* ── GOOGLE FONT ── */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f0f4f8;
+      color: #1a2332;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Subtle background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(0,150,199,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(2,62,138,0.05) 0%, transparent 50%),
+        linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ── CONTAINER ── */
+    .report-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    /* ── HEADER ── */
+    .report-header {
+      background: linear-gradient(135deg, #012a6b 0%, #023e8a 30%, #0077b6 65%, #0096c7 100%);
+      padding: 2.5rem 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .report-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(72,202,228,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .report-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(144,224,239,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .header-logo {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .header-logo svg {
+      width: 28px;
+      height: 28px;
+    }
+    .header-brand-text {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.03em;
+    }
+    .header-project-name {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .header-report-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1rem;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .header-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+    }
+    .header-meta-item svg {
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .header-divider {
+      height: 4px;
+      background: linear-gradient(90deg, #48cae4, #90e0ef, #0096c7);
+      border: none;
+    }
+
+    /* ── PROJECT SUMMARY CARD ── */
+    .project-summary-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-top: -1.5rem;
+      position: relative;
+      z-index: 2;
+      border: 1px solid #e0eaf4;
+      box-shadow: 0 4px 24px rgba(0,62,138,0.08), 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .project-summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(90deg, #023e8a, #0096c7, #48cae4);
+    }
+    .psc-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #7aacc8;
+      margin-bottom: 1rem;
+    }
+    .psc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+    .psc-field {}
+    .psc-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #7aacc8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.25rem;
+    }
+    .psc-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #1a2332;
+    }
+    .psc-key-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: linear-gradient(135deg, #023e8a, #0096c7);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+    .psc-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+    .psc-description {
+      grid-column: 1 / -1;
+      margin-top: 0.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eef3fa;
+    }
+    .psc-description .psc-value {
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: #3a6080;
+      line-height: 1.65;
+    }
+
+    /* ── REPORT SUMMARY CALLOUT ── */
+    .report-summary-callout {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f4ff 100%);
+      border: 1px solid #bae6fd;
+      border-left: 4px solid #0096c7;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.75rem;
+    }
+    .callout-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .callout-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #0077b6, #48cae4);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .callout-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #023e8a;
+    }
+    .callout-text {
+      font-size: 0.88rem;
+      color: #2a5070;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    /* ── TEAM SECTIONS ── */
+    .team-section {
+      margin-top: 2rem;
+    }
+    .team-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .team-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .team-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      flex: 1;
+    }
+    .team-count {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+    }
+
+    /* Team color schemes */
+    .team-1 .team-header { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+    .team-1 .team-icon { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+    .team-1 .team-icon svg { color: #fff; }
+    .team-1 .team-name { color: #1e40af; }
+    .team-1 .team-count { background: #dbeafe; color: #1e40af; }
+    .team-1 .submission-card { border-left-color: #3b82f6; }
+
+    .team-2 .team-header { background: linear-gradient(135deg, #f0fdf4, #dcfce7); }
+    .team-2 .team-icon { background: linear-gradient(135deg, #16a34a, #22c55e); }
+    .team-2 .team-icon svg { color: #fff; }
+    .team-2 .team-name { color: #166534; }
+    .team-2 .team-count { background: #dcfce7; color: #166534; }
+    .team-2 .submission-card { border-left-color: #22c55e; }
+
+    .team-3 .team-header { background: linear-gradient(135deg, #fefce8, #fef9c3); }
+    .team-3 .team-icon { background: linear-gradient(135deg, #ca8a04, #eab308); }
+    .team-3 .team-icon svg { color: #fff; }
+    .team-3 .team-name { color: #854d0e; }
+    .team-3 .team-count { background: #fef9c3; color: #854d0e; }
+    .team-3 .submission-card { border-left-color: #eab308; }
+
+    .team-4 .team-header { background: linear-gradient(135deg, #fff7ed, #ffedd5); }
+    .team-4 .team-icon { background: linear-gradient(135deg, #ea580c, #f97316); }
+    .team-4 .team-icon svg { color: #fff; }
+    .team-4 .team-name { color: #9a3412; }
+    .team-4 .team-count { background: #ffedd5; color: #9a3412; }
+    .team-4 .submission-card { border-left-color: #f97316; }
+
+    /* ── SUBMISSION CARDS ── */
+    .submissions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      padding-left: 1.25rem;
+    }
+    .submission-card {
+      background: #fff;
+      border: 1px solid #e5ecf4;
+      border-left: 4px solid #3b82f6;
+      border-radius: 12px;
+      padding: 1.15rem 1.25rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 6px rgba(0,40,100,0.04);
+    }
+    .submission-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,40,100,0.08);
+    }
+    .sc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .sc-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a2332;
+      line-height: 1.35;
+    }
+    .sc-description {
+      font-size: 0.84rem;
+      color: #5a7a94;
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+    }
+    .sc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .sc-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .sc-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: #7a96ad;
+    }
+    .sc-meta-item svg {
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+    .sc-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, #0077b6, #48cae4);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(0,119,182,0.25);
+      font-family: 'Inter', sans-serif;
+    }
+    .sc-download-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,119,182,0.35);
+    }
+    .sc-download-btn svg {
+      flex-shrink: 0;
+    }
+
+    /* ── EMPTY TEAM STATE ── */
+    .team-empty {
+      background: #f8fafc;
+      border: 1.5px dashed #d0dce8;
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-align: center;
+      margin-left: 1.25rem;
+    }
+    .team-empty-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.4;
+    }
+    .team-empty-text {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    .report-footer {
+      margin-top: 3rem;
+      padding: 1.75rem 0;
+      border-top: 1px solid #dce6f0;
+      text-align: center;
+    }
+    .footer-generated {
+      font-size: 0.82rem;
+      color: #7a96ad;
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    .footer-powered {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+    .footer-powered svg {
+      opacity: 0.5;
+    }
+
+    /* ── LOADING STATE ── */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 1rem;
+      text-align: center;
+    }
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e0eaf4;
+      border-top: 4px solid #0096c7;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 1.25rem;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 0.92rem;
+      color: #7a96ad;
+      font-weight: 500;
+    }
+
+    /* ── ERROR STATE (404) ── */
+    .error-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+    .error-icon-wrap {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #fee2e2, #fecaca);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(239,68,68,0.12);
+    }
+    .error-icon-wrap svg {
+      width: 56px;
+      height: 56px;
+      color: #ef4444;
+    }
+    .error-code {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ef4444, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+    .error-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #1a2332;
+      margin-bottom: 0.75rem;
+    }
+    .error-description {
+      font-size: 0.92rem;
+      color: #7a96ad;
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .error-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, #023e8a, #0096c7);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.65rem 1.75rem;
+      border-radius: 10px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 14px rgba(0,119,182,0.3);
+      font-family: 'Inter', sans-serif;
+    }
+    .error-back-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .header-project-name { font-size: 1.5rem; }
+      .header-meta { gap: 0.75rem; }
+      .psc-grid { grid-template-columns: 1fr 1fr; }
+      .report-container { padding: 0 1rem 2rem; }
+      .header-inner { padding: 0 1rem; }
+      .submissions-list { padding-left: 0; }
+      .team-empty { margin-left: 0; }
+      .sc-top { flex-direction: column; gap: 0.5rem; }
+      .sc-footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body::before { display: none; }
+
+      .report-header {
+        background: linear-gradient(135deg, #012a6b 0%, #023e8a 30%, #0077b6 65%, #0096c7 100%) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .report-container {
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .project-summary-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+      }
+
+      .submission-card {
+        box-shadow: none !important;
+        transform: none !important;
+        break-inside: avoid;
+        border: 1px solid #ddd;
+      }
+
+      .submission-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+      }
+
+      .sc-download-btn {
+        background: #0077b6 !important;
+        box-shadow: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .team-section {
+        break-inside: avoid;
+      }
+
+      .team-header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .report-footer {
+        margin-top: 2rem;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading State -->
+  <div id="loading-state" class="loading-state">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Memuat laporan...</div>
+  </div>
+
+  <!-- Error State (hidden by default) -->
+  <div id="error-state" style="display:none;">
+    <div class="error-page">
+      <div class="error-icon-wrap">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+        </svg>
+      </div>
+      <div class="error-code">404</div>
+      <div class="error-title">Laporan Tidak Ditemukan</div>
+      <div class="error-description" id="error-message">
+        Token laporan tidak valid atau laporan ini sudah tidak tersedia. Silakan periksa kembali link yang Anda terima.
+      </div>
+      <a href="/" class="error-back-btn">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+        Kembali ke Beranda
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Report Content (hidden until data loaded) -->
+  <div id="report-content" style="display:none;">
+    <!-- Header -->
+    <header class="report-header">
+      <div class="header-inner">
+        <div class="header-brand">
+          <div class="header-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path d="M20,80 L80,20 M20,20 L80,80 M10,50 L90,50 M50,10 L50,90" stroke="#48cae4" stroke-width="5" fill="none"/>
+            </svg>
+          </div>
+          <span class="header-brand-text">IntRing PM</span>
+        </div>
+        <h1 class="header-project-name" id="h-project-name"></h1>
+        <p class="header-report-title" id="h-report-title"></p>
+        <div class="header-meta">
+          <div class="header-meta-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+            <span id="h-date"></span>
+          </div>
+          <div class="header-meta-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            <span id="h-generator"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <hr class="header-divider" />
+
+    <!-- Content -->
+    <div class="report-container">
+      <!-- Project Summary Card -->
+      <div class="project-summary-card">
+        <div class="psc-title">Informasi Proyek</div>
+        <div class="psc-grid">
+          <div class="psc-field">
+            <div class="psc-label">Nama Proyek</div>
+            <div class="psc-value" id="psc-name"></div>
+          </div>
+          <div class="psc-field">
+            <div class="psc-label">Kode Proyek</div>
+            <div id="psc-key"></div>
+          </div>
+          <div class="psc-field">
+            <div class="psc-label">Tipe Proyek</div>
+            <div id="psc-type"></div>
+          </div>
+          <div class="psc-field">
+            <div class="psc-label">Status</div>
+            <div id="psc-status"></div>
+          </div>
+          <div class="psc-field psc-description" id="psc-desc-wrap">
+            <div class="psc-label">Deskripsi</div>
+            <div class="psc-value" id="psc-description"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report Summary Callout (conditional) -->
+      <div id="summary-callout" class="report-summary-callout" style="display:none;">
+        <div class="callout-header">
+          <div class="callout-icon">
+            <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+          </div>
+          <div class="callout-title">Ringkasan Laporan</div>
+        </div>
+        <div class="callout-text" id="summary-text"></div>
+      </div>
+
+      <!-- Team Sections Container -->
+      <div id="teams-container"></div>
+
+      <!-- Footer -->
+      <footer class="report-footer">
+        <div class="footer-generated" id="footer-generated"></div>
+        <div class="footer-powered">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="18" height="18">
+            <path d="M20,80 L80,20 M20,20 L80,80 M10,50 L90,50 M50,10 L50,90" stroke="#94a3b8" stroke-width="5" fill="none"/>
+          </svg>
+          Powered by IntRing PM
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const API = window.location.origin + '/api';
+
+    function getTokenFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('token');
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '-';
+      const d = new Date(dateStr);
+      const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+      const day = d.getDate();
+      const month = months[d.getMonth()];
+      const year = d.getFullYear();
+      const hours = String(d.getHours()).padStart(2, '0');
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      return `${day} ${month} ${year}, ${hours}:${minutes}`;
+    }
+
+    function formatDateShort(dateStr) {
+      if (!dateStr) return '-';
+      const d = new Date(dateStr);
+      const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+      return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function showError(message) {
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('report-content').style.display = 'none';
+      document.getElementById('error-state').style.display = 'block';
+      if (message) {
+        document.getElementById('error-message').textContent = message;
+      }
+    }
+
+    function showReport() {
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('error-state').style.display = 'none';
+      document.getElementById('report-content').style.display = 'block';
+    }
+
+    const TEAMS = [
+      {
+        name: 'Intelligence Engineering',
+        colorIndex: 1,
+        icon: '<svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>'
+      },
+      {
+        name: 'Implementation',
+        colorIndex: 2,
+        icon: '<svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>'
+      },
+      {
+        name: 'Dataset Management',
+        colorIndex: 3,
+        icon: '<svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>'
+      },
+      {
+        name: 'Intelligence Creation',
+        colorIndex: 4,
+        icon: '<svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>'
+      }
+    ];
+
+    function getTeamColorIndex(teamName) {
+      const lower = (teamName || '').toLowerCase().trim();
+      if (lower.includes('intelligence')) return 1;
+      if (lower.includes('implementation')) return 2;
+      if (lower.includes('dataset')) return 3;
+      if (lower.includes('creation')) return 4;
+      if (lower.includes('1') || lower.includes('satu')) return 1;
+      if (lower.includes('2') || lower.includes('dua')) return 2;
+      if (lower.includes('3') || lower.includes('tiga')) return 3;
+      if (lower.includes('4') || lower.includes('empat')) return 4;
+      // Fallback: cycle through colors
+      return 1;
+    }
+
+    function renderSubmissionCard(sub) {
+      const downloadUrl = sub.file_path ? `${window.location.origin}/${sub.file_path}` : '';
+      const filename = escapeHtml(sub.original_filename || 'File');
+
+      return `
+        <div class="submission-card">
+          <div class="sc-top">
+            <div class="sc-title">${escapeHtml(sub.title)}</div>
+            ${downloadUrl ? `
+              <a href="${downloadUrl}" target="_blank" download class="sc-download-btn no-print" title="Unduh ${filename}">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                ${filename}
+              </a>
+            ` : ''}
+          </div>
+          ${sub.description ? `<div class="sc-description">${escapeHtml(sub.description)}</div>` : ''}
+          <div class="sc-footer">
+            <div class="sc-meta">
+              <div class="sc-meta-item">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                <span>${escapeHtml(sub.submitter_name || 'Anonim')}</span>
+              </div>
+              <div class="sc-meta-item">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>${formatDateShort(sub.created_at)}</span>
+              </div>
+            </div>
+            ${downloadUrl ? `
+              <a href="${downloadUrl}" target="_blank" download class="sc-download-btn" style="display:none;" aria-hidden="true">
+                Unduh
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTeamSection(teamName, submissions, colorIndex) {
+      const teamConfig = TEAMS[colorIndex - 1] || TEAMS[0];
+      const count = submissions.length;
+
+      let cardsHtml = '';
+      if (count > 0) {
+        cardsHtml = `
+          <div class="submissions-list">
+            ${submissions.map(renderSubmissionCard).join('')}
+          </div>
+        `;
+      } else {
+        cardsHtml = `
+          <div class="team-empty">
+            <div class="team-empty-icon">📭</div>
+            <div class="team-empty-text">Belum ada pengumpulan</div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="team-section team-${colorIndex}">
+          <div class="team-header">
+            <div class="team-icon">${teamConfig.icon}</div>
+            <div class="team-name">${escapeHtml(teamName)}</div>
+            <div class="team-count">${count} pengumpulan</div>
+          </div>
+          ${cardsHtml}
+        </div>
+      `;
+    }
+
+    async function loadReport() {
+      const token = getTokenFromUrl();
+
+      if (!token) {
+        showError('Token laporan tidak ditemukan. Pastikan Anda mengakses link laporan yang benar.');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API}/report/${encodeURIComponent(token)}`);
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            showError('Laporan tidak ditemukan. Token mungkin sudah kadaluarsa atau tidak valid.');
+          } else if (response.status === 403) {
+            showError('Anda tidak memiliki akses untuk melihat laporan ini.');
+          } else {
+            showError('Terjadi kesalahan saat memuat laporan. Silakan coba lagi nanti.');
+          }
+          return;
+        }
+
+        const data = await response.json();
+        const report = data.report;
+        const submissions = data.submissions || [];
+
+        if (!report) {
+          showError('Data laporan kosong atau tidak valid.');
+          return;
+        }
+
+        // Set page title
+        document.title = `${report.title || 'Laporan'} — ${report.project_name || 'IntRing PM'}`;
+
+        // Populate header
+        document.getElementById('h-project-name').textContent = report.project_name || 'Proyek';
+        document.getElementById('h-report-title').textContent = report.title || 'Laporan Proyek';
+        document.getElementById('h-date').textContent = formatDate(report.created_at);
+        document.getElementById('h-generator').textContent = report.generator_name || '-';
+
+        // Populate project summary card
+        document.getElementById('psc-name').textContent = report.project_name || '-';
+        document.getElementById('psc-key').innerHTML = `<span class="psc-key-badge">${escapeHtml(report.project_key || '-')}</span>`;
+        document.getElementById('psc-type').innerHTML = `<span class="psc-type-badge">${escapeHtml(report.project_type || '-')}</span>`;
+
+        const statusText = report.status === 'done' ? 'Selesai' : 'Aktif';
+        const statusColor = report.status === 'done' ? '#16a34a' : '#0284c7';
+        const statusBg = report.status === 'done' ? '#dcfce7' : '#e0f2fe';
+        document.getElementById('psc-status').innerHTML = `<span style="display:inline-flex;align-items:center;gap:0.3rem;background:${statusBg};color:${statusColor};font-size:0.75rem;font-weight:700;padding:0.25rem 0.65rem;border-radius:6px;">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="${statusColor}"/></svg>
+          ${statusText}
+        </span>`;
+
+        // Parse description (may be JSON from project meta)
+        let descText = report.project_description || '';
+        try {
+          const meta = JSON.parse(descText);
+          descText = meta.description || descText;
+        } catch (e) {
+          // plain text, keep as is
+        }
+
+        if (descText) {
+          document.getElementById('psc-description').textContent = descText;
+        } else {
+          document.getElementById('psc-desc-wrap').style.display = 'none';
+        }
+
+        // Report summary callout
+        if (report.summary && report.summary.trim()) {
+          document.getElementById('summary-callout').style.display = 'block';
+          document.getElementById('summary-text').textContent = report.summary;
+        }
+
+        // Group submissions by team
+        const teamMap = {};
+        submissions.forEach(sub => {
+          const tname = sub.team_name || 'Tim Lainnya';
+          if (!teamMap[tname]) teamMap[tname] = [];
+          teamMap[tname].push(sub);
+        });
+
+        // Determine the team names. Use 4 teams: known from data or defaults
+        const teamNames = Object.keys(teamMap);
+        const defaultTeams = ['Intelligence Engineering', 'Implementation', 'Dataset Management', 'Intelligence Creation'];
+
+        // Merge: always show 4 sections. Use actual team names if available, fill remaining with defaults
+        const allTeams = [];
+        const usedDefaults = new Set();
+
+        // First, add all teams from actual data
+        teamNames.forEach(name => {
+          allTeams.push(name);
+        });
+
+        // If fewer than 4, pad with defaults not already present
+        if (allTeams.length < 4) {
+          defaultTeams.forEach(dt => {
+            if (allTeams.length < 4 && !allTeams.includes(dt)) {
+              allTeams.push(dt);
+            }
+          });
+        }
+
+        // Assign color indices
+        const colorAssignments = {};
+        let nextColor = 1;
+        allTeams.forEach(name => {
+          const detected = getTeamColorIndex(name);
+          if (detected && !Object.values(colorAssignments).includes(detected)) {
+            colorAssignments[name] = detected;
+          }
+        });
+        // Fill any unassigned
+        allTeams.forEach(name => {
+          if (!colorAssignments[name]) {
+            while (Object.values(colorAssignments).includes(nextColor) && nextColor <= 3) nextColor++;
+            colorAssignments[name] = nextColor <= 3 ? nextColor : ((nextColor - 1) % 3) + 1;
+            nextColor++;
+          }
+        });
+
+        // Render team sections
+        const teamsContainer = document.getElementById('teams-container');
+        teamsContainer.innerHTML = allTeams.map(name => {
+          const subs = teamMap[name] || [];
+          const ci = colorAssignments[name] || 1;
+          return renderTeamSection(name, subs, ci);
+        }).join('');
+
+        // Footer
+        const generatorName = report.generator_name || 'Sistem';
+        const generatedDate = formatDate(report.created_at);
+        document.getElementById('footer-generated').innerHTML = `Laporan ini di-generate oleh <strong>${escapeHtml(generatorName)}</strong> pada <strong>${generatedDate}</strong>`;
+
+        showReport();
+
+      } catch (err) {
+        console.error('Failed to load report:', err);
+        showError('Gagal memuat laporan. Pastikan koneksi internet Anda stabil dan coba lagi.');
+      }
+    }
+
+    // Initialize
+    loadReport();
+  </script>
+</body>
+</html>
