@@ -416,7 +416,7 @@
 <script>
   if (!requireAuth()) { /* nothing */ }
   const pid = new URLSearchParams(location.search).get('pid');
-  if (!pid) location.href = '/projects.html';
+  if (!pid) location.href = 'projects.html';
   renderSidebar('board', pid);
 
   let currentTab = 1;

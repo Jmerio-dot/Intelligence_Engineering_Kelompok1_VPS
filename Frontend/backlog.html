@@ -64,7 +64,7 @@
 <script>
   requireAuth();
   const pid = new URLSearchParams(location.search).get('pid');
-  if (!pid) location.href = '/projects.html';
+  if (!pid) location.href = 'projects.html';
 
   let sprints = [], members = [], project = {};
 
@@ -140,7 +140,7 @@
 
   function issueRow(i) {
     return `
-      <div class="backlog-issue-row" onclick="location.href='/issue.html?id=${i.id}'">
+      <div class="backlog-issue-row" onclick="location.href = 'issue.html?id=${i.id}'">
         <div class="priority-dot" style="background:${PRIORITY_COLOR[i.priority]};"></div>
         <span style="font-size:0.9rem;">${TYPE_ICON[i.type]||'✅'}</span>
         <span class="issue-key-badge">${i.issue_key}</span>

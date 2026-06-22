@@ -201,7 +201,7 @@
 <script>
   requireAuth();
   const pid = new URLSearchParams(location.search).get('pid');
-  if (!pid) location.href = '/projects.html';
+  if (!pid) location.href = 'projects.html';
 
   let boardData = {}, allMembers = [], currentSprintId = null, projectData = null;
 
@@ -353,7 +353,7 @@
       </div>
       ${issue.description?`<div style="margin-top:0.75rem;font-size:0.84rem;color:var(--text2);line-height:1.6;">${issue.description}</div>`:''}
     `;
-    document.getElementById('qv-detail-btn').href = `/issue.html?id=${id}`;
+    document.getElementById('qv-detail-btn').href=`issue.html?id=${id}`;
     document.getElementById('qv-delete-btn').onclick = async () => {
       if (!confirm('Delete this issue?')) return;
       await apiFetch(`/issues/${id}`, { method: 'DELETE' });
@@ -433,7 +433,7 @@
       const tbody = document.getElementById('ps-table-indicators').querySelector('tbody');
       tbody.innerHTML = '';
       if (d.objectives?.leading_indicators?.length > 0) {
-        d.objectives.leading_indicators.forEach(ind => addPsIndicatorRow(ind.fitur, ind.sistem_kita, ind.kompetitor));
+        d.objectives.leading_indicators.forEach(ind => addPsIndicatorRow(ind.fitur || ind.col1 || '', ind.sistem_kita || ind.col2 || '', ind.kompetitor || ind.col3 || ''));
       } else {
         addPsIndicatorRow('', '', '');
       }
@@ -540,7 +540,7 @@
     try {
       await apiFetch(`/projects/${pid}/complete`, { method: 'POST', body: { type } });
       showToast('Proyek berhasil diselesaikan! 🎉');
-      location.href = '/dashboard.html';
+      location.href = 'dashboard.html';
     } catch(e) {
       const errEl = document.getElementById('complete-error');
       errEl.textContent = e.message;

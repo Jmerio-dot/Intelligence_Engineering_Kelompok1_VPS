@@ -226,7 +226,7 @@
   (async () => {
     if (!requireAuth()) return;
     const issueId = new URLSearchParams(location.search).get('id');
-    if (!issueId) return (location.href = '/dashboard.html');
+    if (!issueId) return (location.href = 'dashboard.html');
 
     let issue = null;
     const myUser = getUser();
@@ -346,8 +346,8 @@
       document.getElementById('meta-reporter').textContent = issue.reporter_name;
       document.getElementById('meta-created').textContent = formatDate(issue.created_at);
       document.getElementById('meta-updated').textContent = formatDate(issue.updated_at);
-      document.getElementById('link-board').href = `/board.html?pid=${issue.project_id}`;
-      document.getElementById('link-backlog').href = `/backlog.html?pid=${issue.project_id}`;
+      document.getElementById('link-board').href=`board.html?pid=${issue.project_id}`;
+      document.getElementById('link-backlog').href=`backlog.html?pid=${issue.project_id}`;
 
       if (issue.project_status === 'archived') {
         document.querySelectorAll('input, textarea, select').forEach(el => el.disabled = true);

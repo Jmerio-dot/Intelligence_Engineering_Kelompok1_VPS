@@ -3,7 +3,7 @@
   if (!requireAuth()) return;
 
   const pid = new URLSearchParams(location.search).get('pid');
-  if (!pid) return (location.href = '/projects.html');
+  if (!pid) return (location.href = 'projects.html');
 
   // ── Zoom ──────────────────────────────────────────────────────────────────
   let zoomPct = 75;
