@@ -774,16 +774,21 @@
 
         if (allAtts.length) {
           const folder = zip.folder('uploads');
-          const token = localStorage.getItem('ie_token');
+          let failedFiles = [];
           await Promise.all(allAtts.map(async (a) => {
             try {
-              const res = await fetch(a.file_url, { headers: token ? { Authorization: "Bearer " + token } : {} });
+              const res = await fetch(a.file_url);
               if (!res.ok) throw new Error("HTTP " + res.status);
               const blob = await res.blob();
-              const arrBuf = await blob.arrayBuffer();
-              folder.file(a.issueKey + "_" + a.original_name, arrBuf);
-            } catch(e) { console.warn('Could not fetch', a.original_name, e.message); }
+              folder.file(a.issueKey + "_" + a.original_name, blob);
+            } catch(e) { 
+              console.warn('Could not fetch', a.original_name, e.message); 
+              failedFiles.push(a.original_name);
+            }
           }));
+          if (failedFiles.length > 0) {
+            alert("Beberapa lampiran gagal dimasukkan ke ZIP: \n" + failedFiles.join("\n") + "\n\nPastikan link file bisa dibuka secara langsung.");
+          }
         }
 
         const content = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
