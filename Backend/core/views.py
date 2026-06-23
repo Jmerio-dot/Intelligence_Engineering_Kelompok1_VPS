@@ -753,6 +753,37 @@ class TeamSubmissionDeleteView(APIView):
         sub.delete()
         return Response({'success': True})
 
+class ExternalSubmissionView(APIView):
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def post(self, request):
+        token = request.query_params.get('token')
+        if token != 'INTRING_SECRET_123':
+            return Response({'error': 'Unauthorized'}, status=403)
+        
+        project_id = request.data.get('project_id')
+        phase = request.data.get('phase', 'Implementation')
+        file_obj = request.FILES.get('file')
+
+        if not project_id or not file_obj:
+            return Response({'error': 'project_id and file are required'}, status=400)
+
+        try:
+            project = Project.objects.get(pk=project_id)
+        except Project.DoesNotExist:
+            return Response({'error': 'Project not found'}, status=404)
+
+        # Temukan user pertama (admin) sebagai uploader jika tidak ada info user
+        user = User.objects.first()
+
+        sub = TeamSubmission.objects.create(
+            project=project,
+            phase=phase,
+            file_path=file_obj,
+            uploaded_by=user
+        )
+        return Response({'success': True, 'submission_id': sub.id})
 
 # -- Client Reports ------------------------------------------------------------
 class ClientReportListCreateView(APIView):

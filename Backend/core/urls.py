@@ -61,6 +61,7 @@ urlpatterns = [
     # 🌟 Team Submissions & Client Reports ────────────────────────────────────────
     path('projects/<int:pk>/submissions', views.TeamSubmissionListCreateView.as_view(), name='project_submissions'),
     path('submissions/<int:pk>',          views.TeamSubmissionDeleteView.as_view(),     name='submission_delete'),
+    path('external-submission/',          views.ExternalSubmissionView.as_view(),       name='external_submission'),
     path('projects/<int:pk>/client-reports', views.ClientReportListCreateView.as_view(),  name='project_reports'),
     path('projects/<int:pk>/client-report',  views.ClientReportListCreateView.as_view(),  name='project_report_create'),
     path('client-reports/<int:pk>',          views.ClientReportDeleteView.as_view(),      name='report_delete'),
