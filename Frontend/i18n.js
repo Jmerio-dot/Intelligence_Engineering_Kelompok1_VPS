@@ -1,4 +1,4 @@
-// i18n.js - Theme and Localization Management
+﻿// i18n.js - Theme and Localization Management
 
 // 1. Immediately apply theme to prevent flash of wrong theme
 (function() {
@@ -30,7 +30,7 @@ const translations = {
     "prof.theme_hint": "Gunakan mode terang atau gelap",
     "prof.danger": "Selesai Bekerja?",
     "prof.danger_sub": "Pastikan semua issue sudah di-save sebelum keluar",
-    "prof.logout": "Keluar dari Akun",
+    "prof.logout": "Keluar dari Akun",`n    "prof.empty": "Belum diisi",
     // Sidebar
     "sb.search": "Cari...",
     "sb.menu": "Menu Utama",
@@ -60,7 +60,7 @@ const translations = {
     "prof.theme_hint": "Use light or dark mode",
     "prof.danger": "Done Working?",
     "prof.danger_sub": "Make sure all issues are saved before logging out",
-    "prof.logout": "Log Out",
+    "prof.logout": "Log Out",`n    "prof.empty": "Not filled yet",
     // Sidebar
     "sb.search": "Search...",
     "sb.menu": "Main Menu",
@@ -141,3 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
   updateLangButtons();
   updateThemeButtons();
 });
+
+function getTranslation(key) {
+  const lang = localStorage.getItem('ie_lang') || 'id';
+  return translations[lang] && translations[lang][key] ? translations[lang][key] : key;
+}

@@ -1,22 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Masuk â€“ Intelligence Engineering</title>
+  <title>Masuk – Intelligence Engineering</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Inter', sans-serif; }
 
-    /* â”€â”€ LAYOUT â”€â”€ */
+    /* ── LAYOUT ── */
     .login-page {
       display: flex;
       width: 100vw;
       height: 100vh;
     }
 
-    /* â”€â”€ LEFT PANEL â”€â”€ */
+    /* ── LEFT PANEL ── */
     .left-panel {
       flex: 1.1;
       background: linear-gradient(160deg, #023e8a 0%, #0077b6 35%, #0096c7 60%, #48cae4 85%, #90e0ef 100%);
@@ -139,7 +139,7 @@
       flex-shrink: 0;
     }
 
-    /* â”€â”€ RIGHT PANEL â”€â”€ */
+    /* ── RIGHT PANEL ── */
     .right-panel {
       flex: 0.9;
       background: #f0f7ff;
@@ -327,7 +327,7 @@
 
 <div class="login-page">
 
-  <!-- â”€â”€ LEFT PANEL â”€â”€ -->
+  <!-- ── LEFT PANEL ── -->
   <div class="left-panel">
     <div class="left-deco-1"></div>
     <div class="left-deco-2"></div>
@@ -337,7 +337,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="width:100%;height:100%;"><path d="M20,80 L80,20 M20,20 L80,80 M10,50 L90,50 M50,10 L50,90" stroke="#0077b6" stroke-width="5"/></svg>
     </div>
     <div class="left-title">Intelligence<br><span>Engineering</span></div>
-    <p class="left-sub">Platform manajemen proyek AI terpadu â€” kelola tim, sprint, dan issue dalam satu tempat.</p>
+    <p class="left-sub">Platform manajemen proyek AI terpadu — kelola tim, sprint, dan issue dalam satu tempat.</p>
 
     <div class="features-list">
       <div class="feature-item">
@@ -363,7 +363,7 @@
     </div>
   </div>
 
-  <!-- â”€â”€ RIGHT PANEL â”€â”€ -->
+  <!-- ── RIGHT PANEL ── -->
   <div class="right-panel">
     <div class="form-box">
 
@@ -378,7 +378,7 @@
         <button class="tab-btn" id="tab-reg-btn" onclick="switchTab('register')">Daftar</button>
       </div>
 
-      <!-- â”€â”€ LOGIN TAB â”€â”€ -->
+      <!-- ── LOGIN TAB ── -->
       <div id="tab-login" class="tab-panel active">
         <div class="demo-hint">
           Demo: <strong>demo@intring.ai</strong> / <strong>demo123</strong>
@@ -417,7 +417,7 @@
         <p class="switch-link">Belum punya akun? <a onclick="switchTab('register')" href="#">Daftar sekarang</a></p>
       </div>
 
-      <!-- â”€â”€ REGISTER TAB â”€â”€ -->
+      <!-- ── REGISTER TAB ── -->
       <div id="tab-register" class="tab-panel">
         <form id="register-form" onsubmit="handleRegister(event)" novalidate>
           <div class="form-group">
@@ -509,12 +509,12 @@
       if (!res.ok) throw new Error(data.error || data.detail || 'Login gagal');
       localStorage.setItem('ie_token', data.token);
       localStorage.setItem('ie_user', JSON.stringify(data.user));
-      btn.textContent = 'âœ… Berhasil!';
+      btn.textContent = '✅ Berhasil!';
       btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
       setTimeout(() => window.location.href = 'dashboard.html', 800);
     } catch (err) {
       errEl.textContent = err.message; errEl.style.display = 'block';
-      btn.textContent = 'Masuk â†’'; btn.disabled = false;
+      btn.textContent = 'Masuk →'; btn.disabled = false;
     }
   }
 
@@ -539,15 +539,14 @@
       if (!res.ok) throw new Error(data.error || data.detail || 'Registrasi gagal');
       localStorage.setItem('ie_token', data.token);
       localStorage.setItem('ie_user', JSON.stringify(data.user));
-      btn.textContent = 'âœ… Akun Dibuat!';
+      btn.textContent = '✅ Akun Dibuat!';
       btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
       setTimeout(() => window.location.href = 'dashboard.html', 800);
     } catch (err) {
       errEl.textContent = err.message; errEl.style.display = 'block';
-      btn.textContent = 'Buat Akun â†’'; btn.disabled = false;
+      btn.textContent = 'Buat Akun →'; btn.disabled = false;
     }
   }
 </script>
 </body>
 </html>
-

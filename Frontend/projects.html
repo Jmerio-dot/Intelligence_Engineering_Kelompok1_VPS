@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects â€“ Intelligence Engineering</title>
+  <title>Projects – Intelligence Engineering</title>
   <link rel="stylesheet" href="app-theme.css" />
   <script src="i18n.js"></script>
   <style>
-    /* â”€â”€ Project Card â”€â”€ */
+    /* ── Project Card ── */
     .proj-avatar {
       width: 40px; height: 40px; border-radius: 10px;
       background: linear-gradient(135deg, #023e8a, #0096c7, #48cae4);
@@ -22,7 +22,7 @@
     .btn-transcript { transition: opacity 0.2s, transform 0.15s !important; }
     .btn-transcript:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    /* â”€â”€ Wizard Stepper â”€â”€ */
+    /* ── Wizard Stepper ── */
     .wizard-stepper {
       display: flex; align-items: center; gap: 0; margin-bottom: 1.75rem;
     }
@@ -49,7 +49,7 @@
     }
     .step-connector.done { background: #22c55e; }
 
-    /* â”€â”€ Wizard Modal â”€â”€ */
+    /* ── Wizard Modal ── */
     .wizard-modal {
       background: #fff; border-radius: 18px; padding: 1.75rem;
       width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto;
@@ -77,12 +77,12 @@
     }
     .wizard-close:hover { background: #fee2e2; color: #dc2626; }
 
-    /* â”€â”€ Step panels â”€â”€ */
+    /* ── Step panels ── */
     .wizard-step-panel { display: none; }
     .wizard-step-panel.active { display: block; animation: fade-in 0.2s ease; }
     @keyframes fade-in { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
 
-    /* â”€â”€ Dynamic list (indicators / outcomes / etc) â”€â”€ */
+    /* ── Dynamic list (indicators / outcomes / etc) ── */
     .dyn-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.5rem; }
     .dyn-item { display: flex; gap: 0.5rem; align-items: center; }
     .dyn-item input {
@@ -108,10 +108,10 @@
     }
     .btn-add-dyn:hover { border-color: #0096c7; background: #e0f4ff; }
 
-    /* â”€â”€ Date row â”€â”€ */
+    /* ── Date row ── */
     .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
-    /* â”€â”€ Validation error style â”€â”€ */
+    /* ── Validation error style ── */
     .form-input.error, .form-select.error, .form-textarea.error,
     .dyn-item input.error {
       border-color: #ef4444 !important;
@@ -119,7 +119,7 @@
     }
     .field-error { font-size: 0.72rem; color: #ef4444; margin-top: 0.25rem; }
 
-    /* â”€â”€ Wizard footer â”€â”€ */
+    /* ── Wizard footer ── */
     .wizard-footer {
       display: flex; gap: 0.75rem; justify-content: space-between;
       margin-top: 1.5rem; padding-top: 1.25rem;
@@ -133,7 +133,7 @@
   <aside class="app-sidebar" id="sidebar"></aside>
   <main class="app-main">
     <div class="app-topbar">
-      <h1 style="flex:1;">ðŸ“ All Projects</h1>
+      <h1 style="flex:1;">📁 All Projects</h1>
       <button class="btn-primary" onclick="openWizard()" style="padding:0.4rem 1rem;font-size:0.82rem;">+ New Project</button>
     </div>
     <div class="app-content">
@@ -149,10 +149,10 @@
       <!-- Header -->
       <div class="wizard-header">
         <div class="wizard-header-left">
-          <div class="wizard-logo-box">ðŸ—‚ï¸</div>
+          <div class="wizard-logo-box">🗂️</div>
           <div class="wizard-title">Create New Project</div>
         </div>
-        <button class="wizard-close" onclick="closeWizard()" title="Close">âœ•</button>
+        <button class="wizard-close" onclick="closeWizard()" title="Close">✕</button>
       </div>
 
       <!-- Stepper -->
@@ -192,7 +192,7 @@
           <table class="dyn-table" id="table-indicators" style="margin-top:1rem;">
             <thead><tr><th>Fitur</th><th>Sistem Kita</th><th>Produk Kompetitor</th><th></th></tr></thead>
             <tbody>
-              <tr><td><input type="text" class="form-input ind-fitur" placeholder="Kecepatan Memilih Menu"></td><td><input type="text" class="form-input ind-kita" placeholder="< 10 detik"></td><td><input type="text" class="form-input ind-komp" placeholder="5 Menit"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td></tr>
+              <tr><td><input type="text" class="form-input ind-fitur" placeholder="Kecepatan Memilih Menu"></td><td><input type="text" class="form-input ind-kita" placeholder="< 10 detik"></td><td><input type="text" class="form-input ind-komp" placeholder="5 Menit"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -234,9 +234,9 @@
       <div class="wizard-footer">
         <button class="btn-outline btn-sm" onclick="closeWizard()">Cancel</button>
         <div class="wizard-footer-right">
-          <button class="btn-outline btn-sm" id="btn-back" onclick="wizardBack()" style="display:none;">â† Back</button>
-          <button class="btn-primary btn-sm" id="btn-next" onclick="wizardNext()">Next â†’</button>
-          <button class="btn-primary btn-sm" id="btn-create" onclick="createProject()" style="display:none;">âœ… Create Project</button>
+          <button class="btn-outline btn-sm" id="btn-back" onclick="wizardBack()" style="display:none;">← Back</button>
+          <button class="btn-primary btn-sm" id="btn-next" onclick="wizardNext()">Next →</button>
+          <button class="btn-primary btn-sm" id="btn-create" onclick="createProject()" style="display:none;">✅ Create Project</button>
         </div>
       </div>
     </div>
@@ -249,7 +249,7 @@
     if (!requireAuth()) return;
     await renderSidebar('projects');
 
-    // â”€â”€ Auto-fill key from name â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Auto-fill key from name ──────────────────────────────────────────────
     let keyManuallyEdited = false;
     document.getElementById('np-key').addEventListener('input', () => { keyManuallyEdited = true; });
     document.getElementById('np-name').addEventListener('input', e => {
@@ -258,24 +258,24 @@
       }
     });
 
-    // â”€â”€ Helper: parse project description â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Helper: parse project description ───────────────────────────────────
     function parseProjectMeta(raw) {
       try { return JSON.parse(raw); } catch { return null; }
     }
 
-    // â”€â”€ Projects grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Projects grid ───────────────────────────────────────────────────────
     async function loadProjects() {
       const projects = await apiFetch('/projects');
       const grid = document.getElementById('projects-grid');
       if (!projects.length) {
-        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="empty-state-icon">ðŸ“</div><p>Belum ada proyek. Buat proyek pertamamu!</p></div>`;
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="empty-state-icon">📁</div><p>Belum ada proyek. Buat proyek pertamamu!</p></div>`;
         return;
       }
       grid.innerHTML = projects.map(p => {
         const meta = parseProjectMeta(p.description);
         const desc = meta ? (meta.description || 'Tidak ada deskripsi.') : (p.description || 'Tidak ada deskripsi.');
-        const startDate = meta?.planning?.startDate ? `<span style="color:var(--cyan);font-size:0.7rem;">ðŸ“… ${meta.planning.startDate}</span>` : '';
-        const endDate   = meta?.planning?.endDate   ? `<span style="color:var(--muted);font-size:0.7rem;">â†’ ${meta.planning.endDate}</span>` : '';
+        const startDate = meta?.planning?.startDate ? `<span style="color:var(--cyan);font-size:0.7rem;">📅 ${meta.planning.startDate}</span>` : '';
+        const endDate   = meta?.planning?.endDate   ? `<span style="color:var(--muted);font-size:0.7rem;">→ ${meta.planning.endDate}</span>` : '';
         const keyInitial = p.key.substring(0,2);
         return `
         <div class="proj-card card" style="padding:0;display:flex;flex-direction:column;">
@@ -286,7 +286,7 @@
                 <div class="proj-avatar">${keyInitial}</div>
                 <div>
                   <div style="font-weight:800;font-size:0.95rem;color:var(--ocean);">${p.name}</div>
-                  <div style="font-size:0.7rem;color:var(--muted);margin-top:0.1rem;">${p.key} Â· ${p.type}</div>
+                  <div style="font-size:0.7rem;color:var(--muted);margin-top:0.1rem;">${p.key} · ${p.type}</div>
                 </div>
               </div>
               <span class="badge badge-${p.status==='active'?'in_progress':'done'}">${p.status}</span>
@@ -307,10 +307,10 @@
           </div>
           <!-- Actions -->
           <div style="padding:0.75rem 1.25rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <a href="board.html?pid=${p.id}" class="btn-sm" style="background:rgba(0,150,199,0.1);color:var(--cyan);border:1px solid rgba(0,150,199,0.25);text-decoration:none;flex:1;text-align:center;min-width:70px;">ðŸ“‹ Board</a>
-            <a href="backlog.html?pid=${p.id}" class="btn-sm" style="background:#f1f5f9;color:var(--text2);border:1px solid var(--border);text-decoration:none;flex:1;text-align:center;min-width:70px;">ðŸ“ Backlog</a>
-            <a href="transcript.html?pid=${p.id}" class="btn-sm btn-transcript" title="Download Transcript" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;text-decoration:none;flex:1;text-align:center;min-width:70px;">ðŸ“„ Transcript</a>
-            <button class="btn-sm btn-danger" onclick="deleteProject(${p.id},'${p.name}')" style="flex:0;" title="Hapus proyek">ðŸ—‘</button>
+            <a href="board.html?pid=${p.id}" class="btn-sm" style="background:rgba(0,150,199,0.1);color:var(--cyan);border:1px solid rgba(0,150,199,0.25);text-decoration:none;flex:1;text-align:center;min-width:70px;">📋 Board</a>
+            <a href="backlog.html?pid=${p.id}" class="btn-sm" style="background:#f1f5f9;color:var(--text2);border:1px solid var(--border);text-decoration:none;flex:1;text-align:center;min-width:70px;">📁 Backlog</a>
+            <a href="transcript.html?pid=${p.id}" class="btn-sm btn-transcript" title="Download Transcript" style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;text-decoration:none;flex:1;text-align:center;min-width:70px;">📄 Transcript</a>
+            <button class="btn-sm btn-danger" onclick="deleteProject(${p.id},'${p.name}')" style="flex:0;" title="Hapus proyek">🗑</button>
           </div>
         </div>
         `;
@@ -330,8 +330,8 @@
     loadProjects();
   })();
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-  // â”€â”€ Wizard State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ── Wizard State ────────────────────────────────────────────────────────
     let currentStep = 1;
     const TOTAL_STEPS = 3;
 
@@ -354,7 +354,7 @@
         const el = document.getElementById(id); if (el) el.value = '';
       });
       document.getElementById('np-type').value = 'scrum';
-      document.getElementById('table-indicators').querySelector('tbody').innerHTML = '<tr><td><input type="text" class="form-input ind-fitur" placeholder="Kecepatan Memilih Menu"></td><td><input type="text" class="form-input ind-kita" placeholder="< 10 detik"></td><td><input type="text" class="form-input ind-komp" placeholder="5 Menit"></td><td style="text-align:center;"><button type="button" class="remove-row-btn" style="border:none;background:none;color:#dc2626;cursor:pointer;font-size:1.1rem;" onclick="this.closest(\'tr\').remove()">âœ•</button></td></tr>';
+      document.getElementById('table-indicators').querySelector('tbody').innerHTML = '<tr><td><input type="text" class="form-input ind-fitur" placeholder="Kecepatan Memilih Menu"></td><td><input type="text" class="form-input ind-kita" placeholder="< 10 detik"></td><td><input type="text" class="form-input ind-komp" placeholder="5 Menit"></td><td style="text-align:center;"><button type="button" class="remove-row-btn" style="border:none;background:none;color:#dc2626;cursor:pointer;font-size:1.1rem;" onclick="this.closest(\'tr\').remove()">✕</button></td></tr>';
       initDynList('list-stakeholders','Supervisor',1);
       document.querySelectorAll('.field-error').forEach(e => e.textContent = '');
       document.querySelectorAll('.form-input.error,.form-select.error,.form-textarea.error').forEach(e => e.classList.remove('error'));
@@ -370,7 +370,7 @@
       const idx = list.children.length + 1;
       const div = document.createElement('div');
       div.className = 'dyn-item';
-      div.innerHTML = `<input type="text" placeholder="${labelPrefix} ${idx}" /><button class="dyn-remove" onclick="removeDynItem(this)" title="Remove">âœ•</button>`;
+      div.innerHTML = `<input type="text" placeholder="${labelPrefix} ${idx}" /><button class="dyn-remove" onclick="removeDynItem(this)" title="Remove">✕</button>`;
       list.appendChild(div);
     }
     function removeDynItem(btn) {
@@ -389,7 +389,7 @@
         const circle = document.getElementById(`sc-${i}`);
         const label  = document.getElementById(`sl-${i}`);
         circle.className = 'step-circle'; label.className = 'step-label';
-        if (i < currentStep)       { circle.classList.add('done');   label.classList.add('done');   circle.textContent = 'âœ“'; }
+        if (i < currentStep)       { circle.classList.add('done');   label.classList.add('done');   circle.textContent = '✓'; }
         else if (i === currentStep) { circle.classList.add('active'); label.classList.add('active'); circle.textContent = i; }
         else                        { circle.textContent = i; }
         if (i < TOTAL_STEPS) document.getElementById(`conn-${i}`).className = 'step-connector' + (i < currentStep ? ' done' : '');
@@ -409,7 +409,7 @@
     
     function addIndicatorRow() {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td><input type="text" class="form-input ind-fitur"></td><td><input type="text" class="form-input ind-kita"></td><td><input type="text" class="form-input ind-komp"></td><td style="text-align:center;"><button type="button" class="remove-row-btn" style="border:none;background:none;color:#dc2626;cursor:pointer;font-size:1.1rem;" onclick="this.closest('tr').remove()">âœ•</button></td>`;
+      tr.innerHTML = `<td><input type="text" class="form-input ind-fitur"></td><td><input type="text" class="form-input ind-kita"></td><td><input type="text" class="form-input ind-komp"></td><td style="text-align:center;"><button type="button" class="remove-row-btn" style="border:none;background:none;color:#dc2626;cursor:pointer;font-size:1.1rem;" onclick="this.closest('tr').remove()">✕</button></td>`;
       document.getElementById('table-indicators').querySelector('tbody').appendChild(tr);
     }
     function extractTableData(tableId, cls1, cls2, cls3) {
@@ -470,10 +470,10 @@
       try {
         const p = await apiFetch('/projects', { method: 'POST', body: { name: document.getElementById('np-name').value.trim(), key: document.getElementById('np-key').value.trim(), type: document.getElementById('np-type').value, description: JSON.stringify(projectMeta) } });
         closeWizard();
-        showToast(`Proyek "${p.name}" berhasil dibuat! ðŸŽ‰`);
+        showToast(`Proyek "${p.name}" berhasil dibuat! 🎉`);
         loadSidebarProjects();
         location.reload();
-      } catch(e) { showToast(e.message,'error'); btnCreate.disabled=false; btnCreate.textContent='âœ… Create Project'; }
+      } catch(e) { showToast(e.message,'error'); btnCreate.disabled=false; btnCreate.textContent='✅ Create Project'; }
     };
 
     window.openWizard = openWizard;
@@ -486,6 +486,5 @@
   </script>
 </body>
 </html>
-
 
 

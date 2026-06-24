@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="prof.title">Profil Saya – Intelligence Engineering</title>
+  <title data-i18n="prof.title">Profil Saya â€“ Intelligence Engineering</title>
   <link rel="stylesheet" href="app-theme.css" />
   <script src="i18n.js"></script>
   <style>
@@ -286,7 +286,7 @@
   <div class="profile-page">
     <!-- Top bar -->
     <div class="profile-top-bar">
-      <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
+      <a href="dashboard.html" class="btn-back">â† Kembali ke Dashboard</a>
     </div>
 
     <h1 class="profile-heading" data-i18n="prof.heading">Profil Engineer</h1>
@@ -485,15 +485,15 @@
       document.getElementById('v-email').classList.remove('muted');
 
       const bioEl = document.getElementById('v-bio');
-      bioEl.textContent = u.bio || 'Belum diisi';
+      bioEl.textContent = u.bio || getTranslation('prof.empty');
       bioEl.classList.toggle('muted', !u.bio);
 
       const locEl = document.getElementById('v-location');
-      locEl.textContent = u.location || 'Belum diisi';
+      locEl.textContent = u.location || getTranslation('prof.empty');
       locEl.classList.toggle('muted', !u.location);
 
       const webEl = document.getElementById('v-website');
-      webEl.textContent = u.website || 'Belum diisi';
+      webEl.textContent = u.website || getTranslation('prof.empty');
       webEl.classList.toggle('muted', !u.website);
     }
 
@@ -514,7 +514,7 @@
             <button class="btn-save" onclick="saveProfile()">Simpan Perubahan</button>
           </div>`;
       } else {
-        document.getElementById('edit-actions').innerHTML = `<button class="btn-edit" onclick="toggleEdit(true)">✏️ Edit Profil</button>`;
+        document.getElementById('edit-actions').innerHTML = `<button class="btn-edit" onclick="toggleEdit(true)">âœï¸ Edit Profil</button>`;
       }
     }
 
@@ -663,3 +663,4 @@
   </script>
 </body>
 </html>
+

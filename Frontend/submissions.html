@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pengumpulan Tim â€“ IntRing PM</title>
+  <title>Pengumpulan Tim – IntRing PM</title>
   <link rel="stylesheet" href="app-theme.css" />
   <script src="i18n.js"></script>
   <style>
-    /* â”€â”€ PAGE-SPECIFIC STYLES â”€â”€ */
+    /* ── PAGE-SPECIFIC STYLES ── */
 
     /* Action bar */
     .action-bar {
@@ -31,7 +31,7 @@
       box-shadow: 0 6px 20px rgba(124,58,237,0.45);
     }
 
-    /* â”€â”€ TEAM TABS â”€â”€ */
+    /* ── TEAM TABS ── */
     .team-tabs {
       display: flex; gap: 0.75rem; margin-bottom: 1.75rem; flex-wrap: wrap;
     }
@@ -134,7 +134,7 @@
       background: linear-gradient(135deg, #7c3aed, #a855f7);
     }
 
-    /* â”€â”€ SUBMISSIONS GRID â”€â”€ */
+    /* ── SUBMISSIONS GRID ── */
     .submissions-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1rem; animation: fadeSlideUp 0.35s ease;
@@ -208,7 +208,7 @@
     }
     .btn-delete-sm:hover { color: #ef4444; background: #fff0f0; }
 
-    /* â”€â”€ EMPTY STATE â”€â”€ */
+    /* ── EMPTY STATE ── */
     .empty-submissions {
       text-align: center; padding: 3.5rem 1.5rem;
       animation: fadeSlideUp 0.35s ease;
@@ -226,7 +226,7 @@
       margin: 0 auto; line-height: 1.5;
     }
 
-    /* â”€â”€ UPLOAD MODAL ENHANCEMENTS â”€â”€ */
+    /* ── UPLOAD MODAL ENHANCEMENTS ── */
     .upload-drop-zone {
       border: 2px dashed var(--border); border-radius: 14px;
       padding: 2rem 1.5rem; text-align: center;
@@ -276,7 +276,7 @@
     }
     .file-preview-remove:hover { background: #fee2e2; }
 
-    /* â”€â”€ CLIENT REPORT SECTION â”€â”€ */
+    /* ── CLIENT REPORT SECTION ── */
     .reports-section {
       margin-top: 2.5rem; animation: fadeSlideUp 0.4s ease;
     }
@@ -331,7 +331,7 @@
     }
     .btn-copy-link:hover { background: #ede9fe; border-color: #c4b5fd; }
 
-    /* â”€â”€ GENERATED LINK BOX â”€â”€ */
+    /* ── GENERATED LINK BOX ── */
     .generated-link-box {
       display: none; margin-top: 1rem; padding: 0.85rem;
       background: #f5f3ff; border: 1px solid #e9d5ff;
@@ -362,13 +362,13 @@
     }
     .btn-copy-gen:hover { opacity: 0.88; }
 
-    /* â”€â”€ SECTION DIVIDER â”€â”€ */
+    /* ── SECTION DIVIDER ── */
     .section-divider {
       height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent);
       margin: 2rem 0;
     }
 
-    /* â”€â”€ TEAM GRADIENT HEADER STRIP ON SUBMISSION CARD â”€â”€ */
+    /* ── TEAM GRADIENT HEADER STRIP ON SUBMISSION CARD ── */
     .submission-card-strip {
       height: 4px; width: 100%;
     }
@@ -385,7 +385,7 @@
       background: linear-gradient(90deg, #d97706, #f59e0b);
     }
 
-    /* â”€â”€ LOADING SPINNER â”€â”€ */
+    /* ── LOADING SPINNER ── */
     .loading-container {
       display: flex; align-items: center; justify-content: center;
       padding: 4rem 1rem; flex-direction: column; gap: 1rem;
@@ -400,7 +400,7 @@
       font-size: 0.82rem; color: var(--muted); font-weight: 500;
     }
 
-    /* â”€â”€ MODAL TEAM INDICATOR â”€â”€ */
+    /* ── MODAL TEAM INDICATOR ── */
     .modal-team-indicator {
       display: inline-flex; align-items: center; gap: 0.4rem;
       padding: 0.4rem 0.85rem; border-radius: 10px;
@@ -419,7 +419,7 @@
       background: rgba(245,158,11,0.1); color: #d97706; border: 1px solid rgba(245,158,11,0.2);
     }
 
-    /* â”€â”€ RESPONSIVE â”€â”€ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .team-tabs { flex-direction: column; }
       .team-tab { max-width: 100%; }
@@ -428,7 +428,7 @@
       .action-bar-title { font-size: 1.1rem; width: 100%; }
     }
 
-    /* â”€â”€ CONFIRM DIALOG â”€â”€ */
+    /* ── CONFIRM DIALOG ── */
     .confirm-overlay {
       position: fixed; inset: 0; z-index: 2000;
       background: rgba(2,62,138,0.3); backdrop-filter: blur(6px);
@@ -450,18 +450,18 @@
   <aside class="app-sidebar" id="sidebar"></aside>
   <main class="app-main">
     <div class="app-topbar">
-      <button class="btn-back" onclick="history.back()">â† Kembali</button>
+      <button class="btn-back" onclick="history.back()">← Kembali</button>
       <div class="topbar-title-group">
-        <div class="breadcrumb"><a href="projects.html">Proyek</a> / <span id="breadcrumb">â€”</span></div>
+        <div class="breadcrumb"><a href="projects.html">Proyek</a> / <span id="breadcrumb">—</span></div>
         <h1 id="page-title">Pengumpulan Tim</h1>
       </div>
     </div>
     <div class="app-content">
       <!-- ACTION BAR -->
       <div class="action-bar">
-        <div class="action-bar-title">ðŸ“¦ Pengumpulan Tim</div>
+        <div class="action-bar-title">📦 Pengumpulan Tim</div>
         <button class="btn-premium" onclick="openClientReportModal()">
-          <span>ðŸ“¤</span> Kirim Laporan ke Client
+          <span>📤</span> Kirim Laporan ke Client
         </button>
         <button class="btn-primary" onclick="openUploadModal()">
           <span>+</span> Upload Submission
@@ -510,7 +510,7 @@
       <!-- REPORT HISTORY -->
       <div class="reports-section">
         <div class="reports-section-header">
-          <span class="reports-section-title">ðŸ“‹ Riwayat Laporan Client</span>
+          <span class="reports-section-title">📋 Riwayat Laporan Client</span>
           <span class="reports-section-badge" id="reports-count-badge">0</span>
         </div>
         <div id="reports-container">
@@ -523,7 +523,7 @@
   </main>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• UPLOAD MODAL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════ UPLOAD MODAL ═══════════════ -->
 <div id="upload-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeUploadModal()">
   <div class="modal" style="max-width:540px;">
     <div class="modal-title">
@@ -565,7 +565,7 @@
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CLIENT REPORT MODAL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════ CLIENT REPORT MODAL ═══════════════ -->
 <div id="client-report-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeClientReportModal()">
   <div class="modal" style="max-width:520px;">
     <div class="modal-title" style="color:#7c3aed;">
@@ -583,7 +583,7 @@
     </div>
 
     <div class="generated-link-box" id="generated-link-box">
-      <div class="generated-link-label">ðŸ”— Link Publik Berhasil Dibuat</div>
+      <div class="generated-link-label">🔗 Link Publik Berhasil Dibuat</div>
       <div class="generated-link-row">
         <input type="text" class="generated-link-input" id="generated-link-input" readonly />
         <button class="btn-copy-gen" onclick="copyGeneratedLink()">
@@ -596,16 +596,16 @@
     <div class="modal-actions">
       <button class="btn-outline btn-sm" onclick="closeClientReportModal()">Tutup</button>
       <button class="btn-sm" id="btn-generate-link" onclick="generateClientReport()" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;padding:0.45rem 1.1rem;border-radius:8px;">
-        âœ¨ Generate Link
+        ✨ Generate Link
       </button>
     </div>
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CONFIRM DELETE DIALOG â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════ CONFIRM DELETE DIALOG ═══════════════ -->
 <div id="confirm-dialog" class="confirm-overlay" style="display:none;">
   <div class="confirm-box">
-    <div class="confirm-icon">ðŸ—‘ï¸</div>
+    <div class="confirm-icon">🗑️</div>
     <div class="confirm-title" id="confirm-title">Hapus item ini?</div>
     <div class="confirm-desc" id="confirm-desc">Tindakan ini tidak bisa dibatalkan.</div>
     <div class="confirm-actions">
@@ -618,7 +618,7 @@
 <script src="app.js"></script>
 <script src="sidebar.js"></script>
 <script>
-// â”€â”€ STATE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── STATE ──────────────────────────────────────────────────────────────────
 const params = new URLSearchParams(location.search);
 const pid = params.get('pid');
 let currentTab = 'intelligence';
@@ -640,7 +640,7 @@ const TEAM_COLORS = {
   creation:       '#d97706',
 };
 
-// â”€â”€ INIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── INIT ───────────────────────────────────────────────────────────────────
 (async function init() {
   if (!requireAuth()) return;
   
@@ -648,9 +648,9 @@ const TEAM_COLORS = {
     renderSidebar('submissions', null);
     document.getElementById('submissions-container').innerHTML = `
       <div class="empty-submissions">
-        <div class="empty-submissions-icon">âš ï¸</div>
+        <div class="empty-submissions-icon">⚠️</div>
         <h3>Proyek Tidak Ditemukan</h3>
-        <p>Silakan buka menu <strong>Semua Proyek</strong> atau pilih proyek dari sidebar kiri, lalu klik tab <strong>ðŸ“¦ Pengumpulan</strong> pada proyek tersebut.</p>
+        <p>Silakan buka menu <strong>Semua Proyek</strong> atau pilih proyek dari sidebar kiri, lalu klik tab <strong>📦 Pengumpulan</strong> pada proyek tersebut.</p>
         <a href="projects.html" class="btn-primary" style="text-decoration:none; display:inline-block; margin-top:1rem; padding:0.5rem 1rem;">Lihat Semua Proyek</a>
       </div>`;
     document.getElementById('report-history-container').style.display = 'none';
@@ -663,18 +663,18 @@ const TEAM_COLORS = {
   initDragDrop();
 })();
 
-// â”€â”€ PROJECT INFO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── PROJECT INFO ──────────────────────────────────────────────────────────
 async function loadProjectInfo() {
   try {
     const project = await apiFetch(`/projects/${pid}`);
-    document.getElementById('breadcrumb').textContent = project.name || 'â€”';
-    document.getElementById('page-title').textContent = `${project.name} â€” Pengumpulan`;
+    document.getElementById('breadcrumb').textContent = project.name || '—';
+    document.getElementById('page-title').textContent = `${project.name} — Pengumpulan`;
   } catch (e) {
     console.error('Failed to load project info:', e);
   }
 }
 
-// â”€â”€ SUBMISSIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── SUBMISSIONS ───────────────────────────────────────────────────────────
 async function loadSubmissions() {
   try {
     const data = await apiFetch(`/projects/${pid}/submissions`);
@@ -685,7 +685,7 @@ async function loadSubmissions() {
     console.error('Failed to load submissions:', e);
     document.getElementById('submissions-container').innerHTML = `
       <div class="empty-submissions">
-        <div class="empty-submissions-icon">âš ï¸</div>
+        <div class="empty-submissions-icon">⚠️</div>
         <h3>Gagal memuat submission</h3>
         <p>${e.message}</p>
       </div>`;
@@ -737,7 +737,7 @@ function renderSubmissionCard(s) {
   const submitter = s.submitter_name || s.user_name || s.submitted_by || 'Unknown';
   const initial = submitter.charAt(0).toUpperCase();
   const ts = s.created_at || s.submitted_at || s.timestamp;
-  const timeStr = ts ? timeAgo(ts) : 'â€”';
+  const timeStr = ts ? timeAgo(ts) : '—';
   const dateStr = ts ? formatDate(ts) : '';
   const fileUrl = s.file_url || s.file || '';
   const fileName = s.file_name || s.filename || (fileUrl ? fileUrl.split('/').pop() : '');
@@ -758,7 +758,7 @@ function renderSubmissionCard(s) {
         <div class="submission-meta">
           <div class="submission-avatar" style="background:${color};">${initial}</div>
           <span>${escapeHtml(submitter)}</span>
-          <span style="color:#d1d5db;">â€¢</span>
+          <span style="color:#d1d5db;">•</span>
           <span title="${dateStr}">${timeStr}</span>
         </div>
         ${fileUrl ? `
@@ -770,7 +770,7 @@ function renderSubmissionCard(s) {
     </div>`;
 }
 
-// â”€â”€ TAB SWITCHING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────
 function switchTab(team) {
   currentTab = team;
   document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('active'));
@@ -778,7 +778,7 @@ function switchTab(team) {
   renderSubmissions();
 }
 
-// â”€â”€ UPLOAD MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── UPLOAD MODAL ──────────────────────────────────────────────────────────
 function openUploadModal() {
   const info = TEAM_MAP[currentTab];
   const indicator = document.getElementById('modal-team-indicator');
@@ -809,21 +809,21 @@ function renderFilePreview(file) {
   const sizeKB = (file.size / 1024).toFixed(1);
   const sizeStr = file.size > 1048576 ? `${(file.size / 1048576).toFixed(1)} MB` : `${sizeKB} KB`;
   const ext = file.name.split('.').pop().toLowerCase();
-  let icon = 'ðŸ“„';
-  if (['pdf'].includes(ext)) icon = 'ðŸ“•';
-  else if (['zip', 'rar', '7z', 'tar', 'gz'].includes(ext)) icon = 'ðŸ“¦';
-  else if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext)) icon = 'ðŸ–¼ï¸';
-  else if (['py', 'js', 'ts', 'java', 'cpp', 'c', 'rs'].includes(ext)) icon = 'ðŸ’»';
-  else if (['csv', 'json', 'xml', 'xlsx', 'xls'].includes(ext)) icon = 'ðŸ“Š';
-  else if (['doc', 'docx', 'txt', 'md'].includes(ext)) icon = 'ðŸ“';
-  else if (['mp4', 'avi', 'mov', 'mkv'].includes(ext)) icon = 'ðŸŽ¬';
+  let icon = '📄';
+  if (['pdf'].includes(ext)) icon = '📕';
+  else if (['zip', 'rar', '7z', 'tar', 'gz'].includes(ext)) icon = '📦';
+  else if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext)) icon = '🖼️';
+  else if (['py', 'js', 'ts', 'java', 'cpp', 'c', 'rs'].includes(ext)) icon = '💻';
+  else if (['csv', 'json', 'xml', 'xlsx', 'xls'].includes(ext)) icon = '📊';
+  else if (['doc', 'docx', 'txt', 'md'].includes(ext)) icon = '📝';
+  else if (['mp4', 'avi', 'mov', 'mkv'].includes(ext)) icon = '🎬';
 
   document.getElementById('file-preview-container').innerHTML = `
     <div class="file-preview">
       <span class="file-preview-icon">${icon}</span>
       <span class="file-preview-name">${escapeHtml(file.name)}</span>
       <span class="file-preview-size">${sizeStr}</span>
-      <button class="file-preview-remove" onclick="removeSelectedFile()" title="Hapus file">âœ•</button>
+      <button class="file-preview-remove" onclick="removeSelectedFile()" title="Hapus file">✕</button>
     </div>`;
 }
 
@@ -864,7 +864,7 @@ async function submitUpload() {
   }
 }
 
-// â”€â”€ DRAG & DROP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── DRAG & DROP ───────────────────────────────────────────────────────────
 function initDragDrop() {
   const zone = document.getElementById('upload-drop-zone');
   if (!zone) return;
@@ -884,7 +884,7 @@ function initDragDrop() {
   });
 }
 
-// â”€â”€ DELETE SUBMISSION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── DELETE SUBMISSION ─────────────────────────────────────────────────────
 function confirmDeleteSubmission(id, title) {
   showConfirm(
     'Hapus Submission?',
@@ -901,7 +901,7 @@ function confirmDeleteSubmission(id, title) {
   );
 }
 
-// â”€â”€ CLIENT REPORT MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CLIENT REPORT MODAL ──────────────────────────────────────────────────
 function openClientReportModal() {
   document.getElementById('report-title').value = '';
   document.getElementById('report-summary').value = '';
@@ -923,7 +923,7 @@ async function generateClientReport() {
 
   const btn = document.getElementById('btn-generate-link');
   btn.disabled = true;
-  btn.textContent = 'â³ Generating...';
+  btn.textContent = '⏳ Generating...';
 
   try {
     const res = await apiFetch(`/projects/${pid}/client-report`, {
@@ -944,7 +944,7 @@ async function generateClientReport() {
     showToast(e.message || 'Gagal membuat laporan', 'error');
   } finally {
     btn.disabled = false;
-    btn.textContent = 'âœ¨ Generate Link';
+    btn.textContent = '✨ Generate Link';
   }
 }
 
@@ -959,7 +959,7 @@ function copyGeneratedLink() {
   });
 }
 
-// â”€â”€ REPORTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── REPORTS ───────────────────────────────────────────────────────────────
 async function loadReports() {
   try {
     const data = await apiFetch(`/projects/${pid}/client-reports`);
@@ -970,7 +970,7 @@ async function loadReports() {
     console.error('Failed to load reports:', e);
     document.getElementById('reports-container').innerHTML = `
       <div class="empty-submissions" style="padding:2rem;">
-        <div class="empty-submissions-icon">ðŸ“‹</div>
+        <div class="empty-submissions-icon">📋</div>
         <h3>Belum ada laporan</h3>
         <p>Buat laporan pertama untuk client dengan tombol di atas.</p>
       </div>`;
@@ -984,7 +984,7 @@ function renderReports() {
   if (allReports.length === 0) {
     container.innerHTML = `
       <div class="empty-submissions" style="padding:2rem;">
-        <div class="empty-submissions-icon">ðŸ“‹</div>
+        <div class="empty-submissions-icon">📋</div>
         <h3>Belum ada laporan client</h3>
         <p>Buat laporan pertama untuk client dengan tombol "Kirim Laporan ke Client".</p>
       </div>`;
@@ -995,11 +995,11 @@ function renderReports() {
     const token = r.public_token || r.token || r.id;
     const link = `${location.origin}/client-report.html?token=${token}`;
     const ts = r.created_at || r.timestamp;
-    const dateStr = ts ? formatDate(ts) : 'â€”';
+    const dateStr = ts ? formatDate(ts) : '—';
 
     return `
       <div class="report-card">
-        <div class="report-card-icon">ðŸ“„</div>
+        <div class="report-card-icon">📄</div>
         <div class="report-card-info">
           <div class="report-card-title">${escapeHtml(r.title || 'Untitled Report')}</div>
           <div class="report-card-meta">${dateStr}</div>
@@ -1045,7 +1045,7 @@ function confirmDeleteReport(id, title) {
   );
 }
 
-// â”€â”€ CONFIRM DIALOG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CONFIRM DIALOG ────────────────────────────────────────────────────────
 let confirmCallback = null;
 
 function showConfirm(title, desc, onConfirm) {
@@ -1069,7 +1069,7 @@ function closeConfirm() {
   confirmCallback = null;
 }
 
-// â”€â”€ UTILS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── UTILS ─────────────────────────────────────────────────────────────────
 function escapeHtml(str) {
   if (!str) return '';
   const div = document.createElement('div');
@@ -1079,4 +1079,3 @@ function escapeHtml(str) {
 </script>
 </body>
 </html>
-

@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Intelligence Issue â€“ IntRing PM</title>
+  <title>Create Intelligence Issue – IntRing PM</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="app-theme.css" />
   <script src="i18n.js"></script>
   <style>
-    /* â”€â”€ Wizard / Tabs Header â”€â”€ */
+    /* ── Wizard / Tabs Header ── */
     .tabs-header {
       display: flex;
       border-bottom: 2px solid var(--border);
@@ -37,7 +37,7 @@
       background: rgba(0,150,199,0.05);
     }
 
-    /* â”€â”€ Form Panels â”€â”€ */
+    /* ── Form Panels ── */
     .tab-panel {
       display: none;
       animation: fade-in 0.3s ease;
@@ -50,7 +50,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* â”€â”€ Dynamic Tables/Lists â”€â”€ */
+    /* ── Dynamic Tables/Lists ── */
     .dyn-table {
       width: 100%;
       border-collapse: collapse;
@@ -98,7 +98,7 @@
     }
     .add-row-btn:hover { color: var(--cyan); }
 
-    /* â”€â”€ Sections â”€â”€ */
+    /* ── Sections ── */
     .section-title {
       font-size: 1.1rem;
       font-weight: 800;
@@ -120,7 +120,7 @@
       box-shadow: var(--shadow);
     }
 
-    /* â”€â”€ Checkbox grids â”€â”€ */
+    /* ── Checkbox grids ── */
     .checkbox-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
       margin-bottom: 1.5rem;
@@ -148,9 +148,9 @@
   <aside class="app-sidebar" id="sidebar"></aside>
   <main class="app-main">
     <div class="app-topbar">
-      <button class="btn-back" onclick="history.back()">â† Kembali</button>
+      <button class="btn-back" onclick="history.back()">← Kembali</button>
       <div class="topbar-title-group">
-        <div class="breadcrumb" id="breadcrumb-container"><a href="projects.html">Proyek</a> / <span id="breadcrumb-project">â€”</span></div>
+        <div class="breadcrumb" id="breadcrumb-container"><a href="projects.html">Proyek</a> / <span id="breadcrumb-project">—</span></div>
         <h1 id="page-title">Edit Issue Cerdas</h1>
       </div>
     </div>
@@ -230,7 +230,7 @@
                     <td><input type="text" class="ind-fitur" placeholder="Kecepatan Memilih Menu"></td>
                     <td><input type="text" class="ind-kita" placeholder="< 10 detik"></td>
                     <td><input type="text" class="ind-komp" placeholder="5 Menit"></td>
-                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>
+                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -320,7 +320,7 @@
                   <tr>
                     <td><input type="text" class="fn-name" placeholder="Nama Fungsi"></td>
                     <td><input type="text" class="fn-desc" placeholder="Deskripsi..."></td>
-                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>
+                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -335,7 +335,7 @@
                   <tr>
                     <td><input type="text" class="err-name" placeholder="Nama Fungsi"></td>
                     <td><input type="text" class="err-strat" placeholder="Strategi mitigasi..."></td>
-                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>
+                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -350,7 +350,7 @@
                   <tr>
                     <td><input type="text" class="data-name" placeholder="Nama Fungsi"></td>
                     <td><input type="text" class="data-plan" placeholder="Rencana pengumpulan data..."></td>
-                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>
+                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -368,7 +368,7 @@
                   <tr>
                     <td><input type="text" class="bp-name" placeholder="Nama Proses"></td>
                     <td><input type="text" class="bp-desc" placeholder="Deskripsi proses..."></td>
-                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>
+                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -383,7 +383,7 @@
                   <tr>
                     <td><input type="text" class="tech-proc" placeholder="Nama Proses"></td>
                     <td><input type="text" class="tech-stack" placeholder="Contoh: Python, Pandas, dsb"></td>
-                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>
+                    <td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -392,7 +392,7 @@
             <div class="card-section">
               <div class="section-title">Upload Diagram Proses Bisnis</div>
               <div style="border: 2px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; margin-top: 1rem; color: var(--muted); cursor: pointer;" onclick="document.getElementById('file-upload').click()">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">â†‘</div>
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">↑</div>
                 <div style="font-weight: 600; color: var(--ocean);" id="file-name-display">Drag & drop file di sini atau <span style="color:var(--cyan);text-decoration:underline;">pilih file</span></div>
                 <div style="font-size: 0.75rem; margin-top: 0.25rem;">Format: JPG, PNG, PDF (Maks 5MB)</div>
                 <input type="file" id="file-upload" style="display:none;" onchange="document.getElementById('file-name-display').innerHTML = this.files[0] ? 'File terpilih: <span style=\'color:var(--cyan);\'>' + this.files[0].name + '</span>' : 'Drag & drop file di sini atau <span style=\'color:var(--cyan);text-decoration:underline;\'>pilih file</span>'" />
@@ -401,10 +401,10 @@
           </div>
 
           <div class="bottom-nav">
-            <button type="button" class="btn-outline" id="btn-prev" onclick="prevTab()" style="display:none;">â† Sebelumnya</button>
+            <button type="button" class="btn-outline" id="btn-prev" onclick="prevTab()" style="display:none;">← Sebelumnya</button>
             <div class="step-indicator" id="step-indicator">1 / 4</div>
-            <button type="button" class="btn-primary" id="btn-next" onclick="nextTab()">Selanjutnya â†’</button>
-            <button type="submit" class="btn-primary" id="btn-submit" style="display:none;background:#10b981;border-color:#10b981;">âœ… Simpan Perubahan</button>
+            <button type="button" class="btn-primary" id="btn-next" onclick="nextTab()">Selanjutnya →</button>
+            <button type="submit" class="btn-primary" id="btn-submit" style="display:none;background:#10b981;border-color:#10b981;">✅ Simpan Perubahan</button>
           </div>
         </form>
       </div>
@@ -486,13 +486,13 @@
 
   function addIndicatorRowVal(c1='', c2='', c3='') {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><input type="text" class="ind-fitur" value="${String(c1||'').replace(/"/g, '&quot;')}"></td><td><input type="text" class="ind-kita" value="${String(c2||'').replace(/"/g, '&quot;')}"></td><td><input type="text" class="ind-komp" value="${String(c3||'').replace(/"/g, '&quot;')}"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>`;
+    tr.innerHTML = `<td><input type="text" class="ind-fitur" value="${String(c1||'').replace(/"/g, '&quot;')}"></td><td><input type="text" class="ind-kita" value="${String(c2||'').replace(/"/g, '&quot;')}"></td><td><input type="text" class="ind-komp" value="${String(c3||'').replace(/"/g, '&quot;')}"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>`;
     document.getElementById('table-indicators').querySelector('tbody').appendChild(tr);
   }
 
   function addFuncRowVal(tableId, c1='', c2='') {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><input type="text" class="col-1 fn-name err-name data-name bp-name tech-proc" value="${String(c1||'').replace(/"/g, '&quot;')}"></td><td><input type="text" class="col-2 fn-desc err-strat data-plan bp-desc tech-stack" value="${String(c2||'').replace(/"/g, '&quot;')}"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>`;
+    tr.innerHTML = `<td><input type="text" class="col-1 fn-name err-name data-name bp-name tech-proc" value="${String(c1||'').replace(/"/g, '&quot;')}"></td><td><input type="text" class="col-2 fn-desc err-strat data-plan bp-desc tech-stack" value="${String(c2||'').replace(/"/g, '&quot;')}"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>`;
     document.getElementById(tableId).querySelector('tbody').appendChild(tr);
   }
 
@@ -545,13 +545,13 @@
 
   function addIndicatorRow() {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><input type="text" class="ind-fitur"></td><td><input type="text" class="ind-kita"></td><td><input type="text" class="ind-komp"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>`;
+    tr.innerHTML = `<td><input type="text" class="ind-fitur"></td><td><input type="text" class="ind-kita"></td><td><input type="text" class="ind-komp"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>`;
     document.getElementById('table-indicators').querySelector('tbody').appendChild(tr);
   }
 
   function addFuncRow(tableId) {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td><input type="text" class="col-1"></td><td><input type="text" class="col-2"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">âœ•</button></td>`;
+    tr.innerHTML = `<td><input type="text" class="col-1"></td><td><input type="text" class="col-2"></td><td><button type="button" class="remove-row-btn" onclick="this.closest('tr').remove()">✕</button></td>`;
     document.getElementById(tableId).querySelector('tbody').appendChild(tr);
   }
 
@@ -632,7 +632,7 @@
       setTimeout(() => location.href = `issue.html?id=${issueId}`, 1500);
     } catch(err) {
       showToast(err.message, 'error');
-      btn.disabled = false; btn.textContent = 'âœ… Simpan Perubahan';
+      btn.disabled = false; btn.textContent = '✅ Simpan Perubahan';
     }
   }
 
@@ -641,4 +641,3 @@
 </script>
 </body>
 </html>
-

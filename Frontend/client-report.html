@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laporan Proyek â€” IntRing PM</title>
+  <title>Laporan Proyek — IntRing PM</title>
   <link rel="stylesheet" href="app-theme.css" />
   <script src="i18n.js"></script>
   <style>
-    /* â”€â”€ GOOGLE FONT â”€â”€ */
+    /* ── GOOGLE FONT ── */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-    /* â”€â”€ RESET & BASE â”€â”€ */
+    /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -34,14 +34,14 @@
       pointer-events: none;
     }
 
-    /* â”€â”€ CONTAINER â”€â”€ */
+    /* ── CONTAINER ── */
     .report-container {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 1.5rem 3rem;
     }
 
-    /* â”€â”€ HEADER â”€â”€ */
+    /* ── HEADER ── */
     .report-header {
       background: linear-gradient(135deg, #012a6b 0%, #023e8a 30%, #0077b6 65%, #0096c7 100%);
       padding: 2.5rem 0 2rem;
@@ -138,7 +138,7 @@
       border: none;
     }
 
-    /* â”€â”€ PROJECT SUMMARY CARD â”€â”€ */
+    /* ── PROJECT SUMMARY CARD ── */
     .project-summary-card {
       background: #fff;
       border-radius: 16px;
@@ -222,7 +222,7 @@
       line-height: 1.65;
     }
 
-    /* â”€â”€ REPORT SUMMARY CALLOUT â”€â”€ */
+    /* ── REPORT SUMMARY CALLOUT ── */
     .report-summary-callout {
       background: linear-gradient(135deg, #f0f7ff 0%, #e8f4ff 100%);
       border: 1px solid #bae6fd;
@@ -259,7 +259,7 @@
       white-space: pre-wrap;
     }
 
-    /* â”€â”€ TEAM SECTIONS â”€â”€ */
+    /* ── TEAM SECTIONS ── */
     .team-section {
       margin-top: 2rem;
     }
@@ -321,7 +321,7 @@
     .team-4 .team-count { background: #ffedd5; color: #9a3412; }
     .team-4 .submission-card { border-left-color: #f97316; }
 
-    /* â”€â”€ SUBMISSION CARDS â”€â”€ */
+    /* ── SUBMISSION CARDS ── */
     .submissions-list {
       display: flex;
       flex-direction: column;
@@ -410,7 +410,7 @@
       flex-shrink: 0;
     }
 
-    /* â”€â”€ EMPTY TEAM STATE â”€â”€ */
+    /* ── EMPTY TEAM STATE ── */
     .team-empty {
       background: #f8fafc;
       border: 1.5px dashed #d0dce8;
@@ -430,7 +430,7 @@
       font-weight: 500;
     }
 
-    /* â”€â”€ FOOTER â”€â”€ */
+    /* ── FOOTER ── */
     .report-footer {
       margin-top: 3rem;
       padding: 1.75rem 0;
@@ -456,7 +456,7 @@
       opacity: 0.5;
     }
 
-    /* â”€â”€ LOADING STATE â”€â”€ */
+    /* ── LOADING STATE ── */
     .loading-state {
       display: flex;
       flex-direction: column;
@@ -483,7 +483,7 @@
       font-weight: 500;
     }
 
-    /* â”€â”€ ERROR STATE (404) â”€â”€ */
+    /* ── ERROR STATE (404) ── */
     .error-page {
       display: flex;
       flex-direction: column;
@@ -554,7 +554,7 @@
       transform: translateY(-2px);
     }
 
-    /* â”€â”€ RESPONSIVE â”€â”€ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .header-project-name { font-size: 1.5rem; }
       .header-meta { gap: 0.75rem; }
@@ -567,7 +567,7 @@
       .sc-footer { flex-direction: column; align-items: flex-start; }
     }
 
-    /* â”€â”€ PRINT STYLES â”€â”€ */
+    /* ── PRINT STYLES ── */
     @media print {
       body {
         background: #fff !important;
@@ -883,7 +883,7 @@
       } else {
         cardsHtml = `
           <div class="team-empty">
-            <div class="team-empty-icon">ðŸ“­</div>
+            <div class="team-empty-icon">📭</div>
             <div class="team-empty-text">Belum ada pengumpulan</div>
           </div>
         `;
@@ -933,7 +933,7 @@
         }
 
         // Set page title
-        document.title = `${report.title || 'Laporan'} â€” ${report.project_name || 'IntRing PM'}`;
+        document.title = `${report.title || 'Laporan'} — ${report.project_name || 'IntRing PM'}`;
 
         // Populate header
         document.getElementById('h-project-name').textContent = report.project_name || 'Proyek';
@@ -1049,4 +1049,3 @@
   </script>
 </body>
 </html>
-

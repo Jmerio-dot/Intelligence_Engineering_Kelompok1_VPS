@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transcript Project â€“ Intelligence Engineering</title>
+  <title>Transcript Project – Intelligence Engineering</title>
   <link rel="stylesheet" href="app-theme.css" />
   <script src="i18n.js"></script>
   <style>
-    /* â”€â”€ Page Layout â”€â”€ */
+    /* ── Page Layout ── */
     .transcript-layout {
       display: grid;
       grid-template-columns: 1fr 320px;
@@ -15,7 +15,7 @@
     }
     @media (max-width: 900px) { .transcript-layout { grid-template-columns: 1fr; } }
 
-    /* â”€â”€ Preview Panel â”€â”€ */
+    /* ── Preview Panel ── */
     .preview-wrap {
       background: #fff;
       border: 1px solid var(--border);
@@ -73,7 +73,7 @@
       word-break: break-word;
     }
 
-    /* â”€â”€ Transcript Typography â”€â”€ */
+    /* ── Transcript Typography ── */
     .tr-main-title {
       font-size: 20pt;
       font-weight: bold;
@@ -115,7 +115,7 @@
       font-size: 11pt;
       color: #d0d0d0;
     }
-    .tr-list-item::before { content: "â€¢ "; color: #7aacc8; }
+    .tr-list-item::before { content: "• "; color: #7aacc8; }
 
     .tr-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.95em; color: #d4d4d4; table-layout: fixed; }
     .tr-table th { border: 1px solid #555; padding: 6px; text-align: center; background: #2a3f54; color: #fff; font-weight: bold; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
@@ -170,7 +170,7 @@
       color: #555;
     }
 
-    /* â”€â”€ Right Control Panel â”€â”€ */
+    /* ── Right Control Panel ── */
     .ctrl-panel {
       display: flex; flex-direction: column; gap: 1rem;
       position: sticky; top: 74px;
@@ -281,10 +281,10 @@
   <aside class="app-sidebar" id="sidebar"></aside>
   <main class="app-main">
     <div class="app-topbar">
-      <button class="btn-back" onclick="history.back()">â† Kembali</button>
+      <button class="btn-back" onclick="history.back()">← Kembali</button>
       <div class="topbar-title-group">
         <div id="breadcrumb" style="font-size:0.72rem;color:var(--muted);">Projects</div>
-        <h1 id="page-title" style="margin:0;font-size:1rem;color:var(--ocean);">Loading Transcriptâ€¦</h1>
+        <h1 id="page-title" style="margin:0;font-size:1rem;color:var(--ocean);">Loading Transcript…</h1>
       </div>
     </div>
 
@@ -292,7 +292,7 @@
       <!-- Loading state -->
       <div id="loading-state">
         <div class="spinner"></div>
-        <p style="text-align:center;color:var(--muted);font-size:0.85rem;">Memuat data transcriptâ€¦</p>
+        <p style="text-align:center;color:var(--muted);font-size:0.85rem;">Memuat data transcript…</p>
       </div>
 
       <!-- Main content (hidden until loaded) -->
@@ -303,9 +303,9 @@
           <div>
             <div class="preview-wrap">
               <div class="preview-toolbar">
-                <div class="preview-toolbar-title">ðŸ“„ Preview Transcript</div>
+                <div class="preview-toolbar-title">📄 Preview Transcript</div>
                 <div class="preview-zoom">
-                  <button class="zoom-btn" onclick="changeZoom(-10)" title="Zoom out">âˆ’</button>
+                  <button class="zoom-btn" onclick="changeZoom(-10)" title="Zoom out">−</button>
                   <span class="zoom-level" id="zoom-label">75%</span>
                   <button class="zoom-btn" onclick="changeZoom(10)" title="Zoom in">+</button>
                 </div>
@@ -323,7 +323,7 @@
 
             <!-- Project Info -->
             <div class="ctrl-card">
-              <div class="ctrl-card-header">ðŸ—‚ï¸ Info Proyek</div>
+              <div class="ctrl-card-header">🗂️ Info Proyek</div>
               <div class="ctrl-card-body">
                 <div id="proj-info-rows"></div>
               </div>
@@ -331,7 +331,7 @@
 
             <!-- Stats -->
             <div class="ctrl-card">
-              <div class="ctrl-card-header">ðŸ“Š Ringkasan</div>
+              <div class="ctrl-card-header">📊 Ringkasan</div>
               <div class="ctrl-card-body">
                 <div class="stat-chips" id="stat-chips"></div>
                 <div id="issue-breakdown" style="font-size:0.78rem;color:var(--muted);"></div>
@@ -340,31 +340,31 @@
 
             <!-- Download Options -->
             <div class="ctrl-card">
-              <div class="ctrl-card-header">â¬‡ï¸ Download</div>
+              <div class="ctrl-card-header">⬇️ Download</div>
               <div class="ctrl-card-body">
                 <label class="dl-option" for="opt-pdf">
                   <input type="radio" id="opt-pdf" name="dl-type" value="pdf" checked />
                   <div>
-                    <div class="dl-option-label">ðŸ“„ Dokumen (.pdf)</div>
+                    <div class="dl-option-label">📄 Dokumen (.pdf)</div>
                     <div class="dl-option-sub">Simpan transkrip sebagai file PDF.</div>
                   </div>
                 </label>
                 <label class="dl-option" for="opt-print">
                   <input type="radio" id="opt-print" name="dl-type" value="print" />
                   <div>
-                    <div class="dl-option-label">ðŸ–¨ï¸ Print Langsung</div>
+                    <div class="dl-option-label">🖨️ Print Langsung</div>
                     <div class="dl-option-sub">Cetak halaman menggunakan printer.</div>
                   </div>
                 </label>
                 <label class="dl-option" for="opt-all">
                   <input type="radio" id="opt-all" name="dl-type" value="all" />
                   <div>
-                    <div class="dl-option-label">ðŸ“¦ Transkrip + File (.zip)</div>
+                    <div class="dl-option-label">📦 Transkrip + File (.zip)</div>
                     <div class="dl-option-sub">Download ZIP berisi transkrip PDF dan semua lampiran.</div>
                   </div>
                 </label>
                 <button class="btn-download" id="btn-dl" onclick="doDownload()">
-                  ðŸš€ Proses
+                  🚀 Proses
                 </button>
               </div>
             </div>
@@ -388,7 +388,7 @@
   const pid = new URLSearchParams(location.search).get('pid');
   if (!pid) return (location.href = 'projects.html');
 
-  // â”€â”€ Zoom â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Zoom ──────────────────────────────────────────────────────────────────
   let zoomPct = 75;
   function applyZoom() {
     const p = document.getElementById('paper-page');
@@ -402,9 +402,9 @@
     applyZoom();
   };
 
-  // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Helpers ───────────────────────────────────────────────────────────────
   function fmtDate(str) {
-    if (!str) return 'â€“';
+    if (!str) return '–';
     return new Date(str).toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
   }
   function fmtBytes(b) {
@@ -418,13 +418,13 @@
   }
   function arr(v) { return Array.isArray(v) ? v : (typeof v === 'string' ? v.split('\n').filter(Boolean) : []); }
 
-  // â”€â”€ Load Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Load Data ─────────────────────────────────────────────────────────────
   let transcriptData = null;
   try {
     transcriptData = await apiFetch(`/projects/${pid}/transcript`);
   } catch(e) {
     document.getElementById('loading-state').innerHTML =
-      `<div class="empty-state"><div class="empty-state-icon">âš ï¸</div><p>Gagal memuat transcript: ${e.message}</p></div>`;
+      `<div class="empty-state"><div class="empty-state-icon">⚠️</div><p>Gagal memuat transcript: ${e.message}</p></div>`;
     return;
   }
 
@@ -433,31 +433,31 @@
   // Parse project meta (stored as JSON in description field)
   let meta = null;
   try { meta = JSON.parse(project.description); } catch {}
-  const desc    = meta?.description || project.description || 'â€“';
+  const desc    = meta?.description || project.description || '–';
   const obj     = meta?.objectives  || {};
   const impl    = meta?.implementation || {};
   const plan    = meta?.planning || {};
 
-  // â”€â”€ Update topbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Update topbar ─────────────────────────────────────────────────────────
   document.getElementById('breadcrumb').textContent = `Projects / ${project.name}`;
-  document.getElementById('page-title').textContent = `Transcript â€“ ${project.name}`;
-  document.title = `Transcript â€“ ${project.name}`;
+  document.getElementById('page-title').textContent = `Transcript – ${project.name}`;
+  document.title = `Transcript – ${project.name}`;
 
   await renderSidebar('projects');
 
-  // â”€â”€ Project Info Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Project Info Card ─────────────────────────────────────────────────────
   const totalFiles = issues.reduce((acc,i) => acc + (i.attachments?.length||0), 0);
   document.getElementById('proj-info-rows').innerHTML = `
     <div class="info-row"><span class="info-key">Nama</span><span class="info-val">${esc(project.name)}</span></div>
     <div class="info-row"><span class="info-key">Key</span><span class="info-val">${esc(project.key)}</span></div>
     <div class="info-row"><span class="info-key">Tipe</span><span class="info-val">${esc(project.type)}</span></div>
     <div class="info-row"><span class="info-key">Status</span><span class="info-val">${esc(project.status)}</span></div>
-    <div class="info-row"><span class="info-key">Owner</span><span class="info-val">${esc(project.owner_name||'â€“')}</span></div>
+    <div class="info-row"><span class="info-key">Owner</span><span class="info-val">${esc(project.owner_name||'–')}</span></div>
     <div class="info-row"><span class="info-key">Mulai</span><span class="info-val">${fmtDate(plan.startDate)}</span></div>
     <div class="info-row"><span class="info-key">Selesai</span><span class="info-val">${fmtDate(plan.endDate)}</span></div>
   `;
 
-  // â”€â”€ Stats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Stats ──────────────────────────────────────────────────────────────────
   const doneCount   = issues.filter(i=>i.status==='done').length;
   const openCount   = issues.filter(i=>i.status!=='done').length;
   document.getElementById('stat-chips').innerHTML = `
@@ -470,11 +470,11 @@
   issues.forEach(i => { byType[i.type] = (byType[i.type]||0)+1; });
   document.getElementById('issue-breakdown').innerHTML = Object.entries(byType)
     .map(([t,c]) => `<div style="display:flex;justify-content:space-between;padding:0.2rem 0;border-bottom:1px solid #f0f5fb;">
-      <span>${{task:'âœ… Task',story:'ðŸ“— Story',bug:'ðŸ› Bug',epic:'âš¡ Epic'}[t]||t}</span>
+      <span>${{task:'✅ Task',story:'📗 Story',bug:'🐛 Bug',epic:'⚡ Epic'}[t]||t}</span>
       <strong style="color:var(--ocean);">${c}</strong>
     </div>`).join('') || '<span style="color:var(--muted);font-size:0.78rem;">Tidak ada issue.</span>';
 
-  // â”€â”€ Build Paper HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Build Paper HTML ──────────────────────────────────────────────────────
   function buildPaperHTML() {
     const orgObj     = obj.organizational || {};
     const indicators = arr(obj.leading_indicators);
@@ -490,26 +490,26 @@
       <!-- PLANNING -->
       <div class="tr-section">
         <div class="tr-section-title">Planning</div>
-        <div class="tr-row"><span class="tr-label">Start Date :</span><span class="tr-value">${esc(plan.startDate||'â€”')}</span></div>
-        <div class="tr-row"><span class="tr-label">End Date :</span><span class="tr-value">${esc(plan.endDate||'â€”')}</span></div>
+        <div class="tr-row"><span class="tr-label">Start Date :</span><span class="tr-value">${esc(plan.startDate||'—')}</span></div>
+        <div class="tr-row"><span class="tr-label">End Date :</span><span class="tr-value">${esc(plan.endDate||'—')}</span></div>
     `;
     if (supervisors.length) {
       html += `<div class="tr-row"><span class="tr-label">Supervisor :</span><span class="tr-value">`;
-      html += supervisors.map((s,i) => (i===0 ? esc(s) : `</span></div><div class="tr-row"><span class="tr-label"></span><span class="tr-value">â€¢ ${esc(s)}`)).join('');
+      html += supervisors.map((s,i) => (i===0 ? esc(s) : `</span></div><div class="tr-row"><span class="tr-label"></span><span class="tr-value">• ${esc(s)}`)).join('');
       html += `</span></div>`;
     } else {
-      html += `<div class="tr-row"><span class="tr-label">Supervisor :</span><span class="tr-value">â€”</span></div>`;
+      html += `<div class="tr-row"><span class="tr-label">Supervisor :</span><span class="tr-value">—</span></div>`;
     }
     html += `
-        <div class="tr-row"><span class="tr-label">Deployment :</span><span class="tr-value">${esc(plan.deployment||'â€”')}</span></div>
-        <div class="tr-row"><span class="tr-label">Maintenance :</span><span class="tr-value">${esc(plan.maintenance||'â€”')}</span></div>
-        <div class="tr-row"><span class="tr-label">Operations :</span><span class="tr-value">${esc(plan.operations||'â€”')}</span></div>
+        <div class="tr-row"><span class="tr-label">Deployment :</span><span class="tr-value">${esc(plan.deployment||'—')}</span></div>
+        <div class="tr-row"><span class="tr-label">Maintenance :</span><span class="tr-value">${esc(plan.maintenance||'—')}</span></div>
+        <div class="tr-row"><span class="tr-label">Operations :</span><span class="tr-value">${esc(plan.operations||'—')}</span></div>
       </div>
 
       <!-- OBJECTIVES -->
       <div class="tr-section">
         <div class="tr-section-title">Objectives</div>
-        <div class="tr-row"><span class="tr-label">Organizational :</span><span class="tr-value"><b>Tujuan:</b> ${esc(orgObj.obj||'â€”')}<br><b>Cara:</b> ${esc(orgObj.how||'â€”')}<br><b>Ukuran:</b> ${esc(orgObj.measure||'â€”')}</span></div>
+        <div class="tr-row"><span class="tr-label">Organizational :</span><span class="tr-value"><b>Tujuan:</b> ${esc(orgObj.obj||'—')}<br><b>Cara:</b> ${esc(orgObj.how||'—')}<br><b>Ukuran:</b> ${esc(orgObj.measure||'—')}</span></div>
     `;
       if (indicators.length) {
         html += `<div class="tr-row" style="margin-top:0.5rem; display:block;">
@@ -533,8 +533,8 @@
         </div>`;
       }
       html += `
-        <div class="tr-row" style="margin-top:0.5rem;"><span class="tr-label">User Outcomes :</span><span class="tr-value"><b>Tujuan:</b> ${esc(outcomes.obj||'â€”')}<br><b>Cara:</b> ${esc(outcomes.how||'â€”')}<br><b>Ukuran:</b> ${esc(outcomes.measure||'â€”')}</span></div>
-        <div class="tr-row" style="margin-top:0.5rem;"><span class="tr-label">Model Properties :</span><span class="tr-value"><b>Spesifikasi:</b> ${esc(modelProps.obj||'â€”')}<br><b>Cara:</b> ${esc(modelProps.how||'â€”')}<br><b>Ukuran:</b> ${esc(modelProps.measure||'â€”')}</span></div>
+        <div class="tr-row" style="margin-top:0.5rem;"><span class="tr-label">User Outcomes :</span><span class="tr-value"><b>Tujuan:</b> ${esc(outcomes.obj||'—')}<br><b>Cara:</b> ${esc(outcomes.how||'—')}<br><b>Ukuran:</b> ${esc(outcomes.measure||'—')}</span></div>
+        <div class="tr-row" style="margin-top:0.5rem;"><span class="tr-label">Model Properties :</span><span class="tr-value"><b>Spesifikasi:</b> ${esc(modelProps.obj||'—')}<br><b>Cara:</b> ${esc(modelProps.how||'—')}<br><b>Ukuran:</b> ${esc(modelProps.measure||'—')}</span></div>
       </div>
     `;
 
@@ -545,7 +545,7 @@
     } else {
       issues.forEach(issue => {
         const attachsHTML = (issue.attachments||[]).map(a =>
-          `<a class="tr-file-link" href="${esc(a.file_url)}" target="_blank">ðŸ“„ ${esc(a.original_name)} (${fmtBytes(a.size)})</a>`
+          `<a class="tr-file-link" href="${esc(a.file_url)}" target="_blank">📄 ${esc(a.original_name)} (${fmtBytes(a.size)})</a>`
         ).join('');
         
         const mo = issue.meaningful_objectives || {};
@@ -576,13 +576,13 @@
           intelHTML += `<div style="margin-top:0.75rem;border-top:1px dashed #4a5a6a;padding-top:0.5rem;">`;
           intelHTML += `<div style="font-size:11pt;font-weight:700;color:#7aacc8;margin-bottom:0.5rem;text-transform:uppercase;">Meaningful Objectives</div>`;
           if (mo.organizational) {
-            intelHTML += `<div class="tr-row" style="margin-top:0.25rem;"><span class="tr-label" style="min-width:140px;">Organizational :</span><span class="tr-value"><b>Tujuan:</b> ${esc(mo.organizational.obj||'â€”')}<br><b>Cara:</b> ${esc(mo.organizational.how||'â€”')}<br><b>Ukuran:</b> ${esc(mo.organizational.measure||'â€”')}</span></div>`;
+            intelHTML += `<div class="tr-row" style="margin-top:0.25rem;"><span class="tr-label" style="min-width:140px;">Organizational :</span><span class="tr-value"><b>Tujuan:</b> ${esc(mo.organizational.obj||'—')}<br><b>Cara:</b> ${esc(mo.organizational.how||'—')}<br><b>Ukuran:</b> ${esc(mo.organizational.measure||'—')}</span></div>`;
           }
           if (mo.user_outcomes) {
-            intelHTML += `<div class="tr-row" style="margin-top:0.25rem;"><span class="tr-label" style="min-width:140px;">User Outcomes :</span><span class="tr-value"><b>Tujuan:</b> ${esc(mo.user_outcomes.obj||'â€”')}<br><b>Cara:</b> ${esc(mo.user_outcomes.how||'â€”')}<br><b>Ukuran:</b> ${esc(mo.user_outcomes.measure||'â€”')}</span></div>`;
+            intelHTML += `<div class="tr-row" style="margin-top:0.25rem;"><span class="tr-label" style="min-width:140px;">User Outcomes :</span><span class="tr-value"><b>Tujuan:</b> ${esc(mo.user_outcomes.obj||'—')}<br><b>Cara:</b> ${esc(mo.user_outcomes.how||'—')}<br><b>Ukuran:</b> ${esc(mo.user_outcomes.measure||'—')}</span></div>`;
           }
           if (mo.model_properties) {
-            intelHTML += `<div class="tr-row" style="margin-top:0.25rem;"><span class="tr-label" style="min-width:140px;">Model Properties :</span><span class="tr-value"><b>Spesifikasi:</b> ${esc(mo.model_properties.obj||'â€”')}<br><b>Cara:</b> ${esc(mo.model_properties.how||'â€”')}<br><b>Ukuran:</b> ${esc(mo.model_properties.measure||'â€”')}</span></div>`;
+            intelHTML += `<div class="tr-row" style="margin-top:0.25rem;"><span class="tr-label" style="min-width:140px;">Model Properties :</span><span class="tr-value"><b>Spesifikasi:</b> ${esc(mo.model_properties.obj||'—')}<br><b>Cara:</b> ${esc(mo.model_properties.how||'—')}<br><b>Ukuran:</b> ${esc(mo.model_properties.measure||'—')}</span></div>`;
           }
           intelHTML += renderTable('Leading Indicators', ['FITUR', 'SISTEM KITA', 'KOMPETITOR'], mo.leading_indicators);
           intelHTML += `</div>`;
@@ -594,7 +594,7 @@
           intelHTML += `<div style="font-size:11pt;font-weight:700;color:#7aacc8;margin-bottom:0.5rem;text-transform:uppercase;">Intelligence Experiences</div>`;
           
           if (exp.presentation) {
-            intelHTML += `<div class="tr-row" style="margin-top:0.25rem; display:block;"><span class="tr-label">Presentation :</span><div class="tr-value" style="margin-top:0.2rem; padding-left:0.5rem; border-left:2px solid #555;"><b>Automate:</b> ${exp.presentation.automate?'Ya':'Tidak'}<br><b>Prompt:</b> ${exp.presentation.prompt?'Ya':'Tidak'}<br><b>Organisation:</b> ${exp.presentation.organisation?'Ya':'Tidak'}<br><b>Annotate:</b> ${exp.presentation.annotate?'Ya':'Tidak'}<br><b>Deskripsi:</b> ${esc(exp.presentation.desc||'â€”')}</div></div>`;
+            intelHTML += `<div class="tr-row" style="margin-top:0.25rem; display:block;"><span class="tr-label">Presentation :</span><div class="tr-value" style="margin-top:0.2rem; padding-left:0.5rem; border-left:2px solid #555;"><b>Automate:</b> ${exp.presentation.automate?'Ya':'Tidak'}<br><b>Prompt:</b> ${exp.presentation.prompt?'Ya':'Tidak'}<br><b>Organisation:</b> ${exp.presentation.organisation?'Ya':'Tidak'}<br><b>Annotate:</b> ${exp.presentation.annotate?'Ya':'Tidak'}<br><b>Deskripsi:</b> ${esc(exp.presentation.desc||'—')}</div></div>`;
           }
           intelHTML += renderTable('Functions / Nama Fungsi', ['NAMA FUNGSI', 'DESKRIPSI'], exp.functions);
           intelHTML += renderTable('Error Mitigation', ['NAMA ERROR', 'STRATEGI MITIGASI'], exp.error_mitigation);
@@ -613,14 +613,14 @@
 
           html += `
             <div class="tr-issue">
-              <div class="tr-issue-title">"${esc(issue.issue_key)}" â€” ${esc(issue.title)}</div>
+              <div class="tr-issue-title">"${esc(issue.issue_key)}" — ${esc(issue.title)}</div>
               <div class="tr-row" style="margin-bottom:0.25rem;">
                 <span class="tr-label" style="min-width:120px;">Status :</span>
-                <span class="tr-value">${esc(issue.status?.replace(/_/g,' ')||'â€“')}</span>
+                <span class="tr-value">${esc(issue.status?.replace(/_/g,' ')||'–')}</span>
               </div>
               <div class="tr-row" style="margin-bottom:0.25rem;">
                 <span class="tr-label" style="min-width:120px;">Priority :</span>
-                <span class="tr-value">${esc(issue.priority||'â€“')}</span>
+                <span class="tr-value">${esc(issue.priority||'–')}</span>
               </div>
               <div class="tr-row" style="margin-bottom:0.25rem;">
                 <span class="tr-label" style="min-width:120px;">Assignee :</span>
@@ -636,8 +636,8 @@
     html += `</div>`;
 
     html += `
-      <div class="tr-watermark">Intelligence Engineering PM Â· ${project.key}</div>
-      <div class="tr-page-num">â€” 1 â€”</div>
+      <div class="tr-watermark">Intelligence Engineering PM · ${project.key}</div>
+      <div class="tr-page-num">— 1 —</div>
     `;
     return html;
   }
@@ -645,11 +645,11 @@
   document.getElementById('paper-page').innerHTML = buildPaperHTML();
   applyZoom();
 
-  // â”€â”€ Show content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Show content ──────────────────────────────────────────────────────────
   document.getElementById('loading-state').style.display = 'none';
   document.getElementById('main-content').style.display = 'block';
 
-  // â”€â”€ Build plain-text transcript â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Build plain-text transcript ───────────────────────────────────────────
   function buildPlainText() {
     const orgObj     = obj.organizational || {};
     const indicators = arr(obj.leading_indicators);
@@ -664,44 +664,44 @@
     t += `${'='.repeat(60)}\n\n`;
 
     t += `PLANNING\n${'-'.repeat(40)}\n`;
-    t += `Start Date         : ${plan.startDate||'â€”'}\n`;
-    t += `End Date           : ${plan.endDate||'â€”'}\n`;
-    t += `Supervisor         :\n${supervisors.map(s=>`  - ${s}`).join('\n')||'  â€”'}\n`;
-    t += `Deployment         : ${plan.deployment||'â€”'}\n`;
-    t += `Maintenance        : ${plan.maintenance||'â€”'}\n`;
-    t += `Operations         : ${plan.operations||'â€”'}\n\n`;
+    t += `Start Date         : ${plan.startDate||'—'}\n`;
+    t += `End Date           : ${plan.endDate||'—'}\n`;
+    t += `Supervisor         :\n${supervisors.map(s=>`  - ${s}`).join('\n')||'  —'}\n`;
+    t += `Deployment         : ${plan.deployment||'—'}\n`;
+    t += `Maintenance        : ${plan.maintenance||'—'}\n`;
+    t += `Operations         : ${plan.operations||'—'}\n\n`;
 
     t += `OBJECTIVES\n${'-'.repeat(40)}\n`;
-    t += `Organizational     :\n  Tujuan: ${orgObj.obj||'â€”'}\n  Cara: ${orgObj.how||'â€”'}\n  Ukuran: ${orgObj.measure||'â€”'}\n`;
-    t += `Leading Indicators :\n${indicators.map(v=>`  - ${v.col1} (Kita: ${v.col2}, Komp: ${v.col3})`).join('\n')||'  â€”'}\n`;
-    t += `User Outcomes      :\n  Tujuan: ${outcomes.obj||'â€”'}\n  Cara: ${outcomes.how||'â€”'}\n  Ukuran: ${outcomes.measure||'â€”'}\n`;
-    t += `Model Properties   :\n  Spesifikasi: ${modelProps.obj||'â€”'}\n  Cara: ${modelProps.how||'â€”'}\n  Ukuran: ${modelProps.measure||'â€”'}\n\n`;
+    t += `Organizational     :\n  Tujuan: ${orgObj.obj||'—'}\n  Cara: ${orgObj.how||'—'}\n  Ukuran: ${orgObj.measure||'—'}\n`;
+    t += `Leading Indicators :\n${indicators.map(v=>`  - ${v.col1} (Kita: ${v.col2}, Komp: ${v.col3})`).join('\n')||'  —'}\n`;
+    t += `User Outcomes      :\n  Tujuan: ${outcomes.obj||'—'}\n  Cara: ${outcomes.how||'—'}\n  Ukuran: ${outcomes.measure||'—'}\n`;
+    t += `Model Properties   :\n  Spesifikasi: ${modelProps.obj||'—'}\n  Cara: ${modelProps.how||'—'}\n  Ukuran: ${modelProps.measure||'—'}\n\n`;
 
     t += `ISSUES (${issues.length})\n${'-'.repeat(40)}\n`;
     if (!issues.length) {
       t += 'Tidak ada issue.\n';
     } else {
       issues.forEach((issue, idx) => {
-        t += `\n[${idx+1}] "${issue.issue_key}" â€” ${issue.title}\n`;
+        t += `\n[${idx+1}] "${issue.issue_key}" — ${issue.title}\n`;
         t += `    Status   : ${(issue.status||'').replace(/_/g,' ')}\n`;
-        t += `    Priority : ${issue.priority||'â€“'}\n`;
-        t += `    Type     : ${issue.type||'â€“'}\n`;
+        t += `    Priority : ${issue.priority||'–'}\n`;
+        t += `    Type     : ${issue.type||'–'}\n`;
         t += `    Assignee : ${issue.assignee_name||'Unassigned'}\n`;
         if (issue.description) t += `    Desc     : ${issue.description}\n`;
         if (issue.attachments?.length) {
           t += `    Files :\n`;
           issue.attachments.forEach(a => {
-            t += `      - ${a.original_name} (${fmtBytes(a.size)}) â†’ /uploads/${a.filename}\n`;
+            t += `      - ${a.original_name} (${fmtBytes(a.size)}) → /uploads/${a.filename}\n`;
           });
         }
       });
     }
     t += `\n${'='.repeat(60)}\n`;
-    t += `Intelligence Engineering PM Â· ${project.key}\n`;
+    t += `Intelligence Engineering PM · ${project.key}\n`;
     return t;
   }
 
-  // â”€â”€ Download â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Download ──────────────────────────────────────────────────────────────
   window.doDownload = async function() {
     const type = document.querySelector('input[name="dl-type"]:checked')?.value;
     
@@ -801,7 +801,7 @@
     } finally {
       document.head.removeChild(printStyle);
       btn.disabled = false;
-      btn.innerHTML = 'ðŸš€ Proses';
+      btn.innerHTML = '🚀 Proses';
     }
   };
 
@@ -817,5 +817,4 @@
 </script>
 </body>
 </html>
-
 
