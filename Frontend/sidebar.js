@@ -48,22 +48,22 @@ async function renderSidebar(activePage, activePid) {
       <div class="sb-section-label">Menu Utama</div>
       <a href="dashboard.html" class="sb-link ${activePage === 'dashboard' ? 'active' : ''}" title="Dashboard">
         <span class="sb-link-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></span>
-        <span class="sb-link-text" data-i18n="sb.dash">Dashboard</span>
+        <span class="sb-link-text">Dashboard</span>
       </a>
       <a href="projects.html" class="sb-link ${activePage === 'projects' ? 'active' : ''}" title="Semua Proyek">
         <span class="sb-link-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg></span>
-        <span class="sb-link-text" data-i18n="sb.allproj">Semua Proyek</span>
+        <span class="sb-link-text">Semua Proyek</span>
       </a>
       <a href="laporan.html" class="sb-link ${activePage === 'laporan' ? 'active' : ''}" title="Laporan">
         <span class="sb-link-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
-        <span class="sb-link-text" data-i18n="sb.report">Laporan</span>
+        <span class="sb-link-text">Laporan</span>
       </a>
     </div>
 
     <!-- Projects Section -->
     <div class="sb-section sb-projects-section" style="flex:1;overflow:hidden;display:flex;flex-direction:column;">
       <div class="sb-section-label" style="display:flex;align-items:center;justify-content:space-between;">
-        <span data-i18n="sb.myproj">Proyek Saya</span>
+        <span>Proyek Saya</span>
         <button class="sb-add-btn" onclick="document.getElementById('new-project-modal')&&(document.getElementById('new-project-modal').style.display='flex')" title="Proyek Baru">+</button>
       </div>
       <div id="sidebar-projects" style="overflow-y:auto;flex:1;padding-bottom:0.5rem;">
