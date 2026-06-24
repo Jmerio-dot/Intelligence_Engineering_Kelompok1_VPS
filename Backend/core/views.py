@@ -887,7 +887,7 @@ class ICIssueDetailAPIView(APIView):
             },
             'c_status': {
                 'realization_status': c_status_data.get('progress', c_status_data.get('realization_status', 0)),
-                'development_constraints': c_status_data.get('constraints', c_status_data.get('development_constraints', '')),
+                'development_constraints': '\n'.join(c_status_data.get('modules', [])) if isinstance(c_status_data.get('modules'), list) else c_status_data.get('modules', c_status_data.get('development_constraints', '')),
                 'evidence_file': c_status_data.get('evidence_file', ''),
             },
             'orchestrations': c_status_data.get('orchestration', c_status_data.get('orchestrations', [])),
@@ -912,7 +912,7 @@ class ICIssueUpdateAPIView(APIView):
         if 'realization_status' in request.data:
             c_status['progress'] = int(request.data['realization_status'])
         if 'development_constraints' in request.data:
-            c_status['constraints'] = request.data['development_constraints']
+            c_status['modules'] = [m.strip() for m in request.data['development_constraints'].split('\n') if m.strip()]
         if 'orchestrations' in request.data:
             import json
             try:
