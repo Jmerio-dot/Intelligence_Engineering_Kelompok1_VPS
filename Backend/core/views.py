@@ -858,8 +858,8 @@ class ICProjectsAPIView(APIView):
                 issues_list.append({
                     'id': i.id, 'key': i.issue_key, 'title': i.title,
                     'status': i.status or 'To Do', 'priority': i.priority or 'Medium',
-                    'assignee': i.assignee.get_full_name() if i.assignee else 'Belum ditugaskan',
-                    'reporter': i.reporter.get_full_name() if i.reporter else 'Demo User',
+                    'assignee': i.assignee.name if i.assignee else 'Belum ditugaskan',
+                    'reporter': i.reporter.name if i.reporter else 'Demo User',
                     'description': i.description or ''
                 })
             data.append({
