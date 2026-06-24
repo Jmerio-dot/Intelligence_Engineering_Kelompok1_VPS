@@ -919,6 +919,22 @@ class ICIssueUpdateAPIView(APIView):
                 c_status['orchestration'] = json.loads(request.data['orchestrations'])
             except:
                 pass
+        if request.data.get('delete_evidence') == 'true':
+            old_url = c_status.get('evidence_file', '')
+            c_status['evidence_file'] = ''
+            if old_url:
+                # Try to delete the attachment from DB to clean up
+                filename = old_url.split('/')[-1]
+                Attachment.objects.filter(issue=issue, file__endswith=filename).delete()
+        
+        # Cleanup any 0 byte attachments that might have been created previously
+        for att in Attachment.objects.filter(issue=issue):
+            try:
+                if not att.file or att.file.size == 0:
+                    att.delete()
+            except:
+                pass
+                
         issue.creation_status = c_status
         issue.save()
         return Response({'status': 'success', 'c_status': c_status})
