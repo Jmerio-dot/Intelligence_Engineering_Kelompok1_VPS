@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profil Saya – Intelligence Engineering</title>
+  <title data-i18n="prof.title">Profil Saya – Intelligence Engineering</title>
   <link rel="stylesheet" href="app-theme.css" />
+  <script src="i18n.js"></script>
   <style>
     body {
       background: var(--bg);
@@ -288,26 +289,26 @@
       <a href="dashboard.html" class="btn-back">← Kembali ke Dashboard</a>
     </div>
 
-    <h1 class="profile-heading">Profil Engineer</h1>
-    <p class="profile-heading-sub">Kelola identitas dan detail kontak Anda dalam proyek</p>
+    <h1 class="profile-heading" data-i18n="prof.heading">Profil Engineer</h1>
+    <p class="profile-heading-sub" data-i18n="prof.heading_sub">Kelola identitas dan detail kontak Anda dalam proyek</p>
 
     <!-- Profile Info Card -->
     <div class="profile-card" id="profile-info-card">
       <div class="profile-card-header">
         <div>
-          <div class="profile-card-title">Informasi Pribadi</div>
-          <div class="profile-card-sub">Data ini akan terlihat oleh tim proyek Anda</div>
+          <div class="profile-card-title" data-i18n="prof.info_title">Informasi Pribadi</div>
+          <div class="profile-card-sub" data-i18n="prof.info_sub">Data ini akan terlihat oleh tim proyek Anda</div>
         </div>
         <div id="edit-actions">
-          <button class="btn-edit" id="btn-edit" onclick="toggleEdit(true)">✏️ Edit Profil</button>
+          <button class="btn-edit" id="btn-edit" onclick="toggleEdit(true)" data-i18n="prof.edit">Edit Profil</button>
         </div>
       </div>
 
       <!-- Avatar -->
       <div class="profile-avatar-row">
         <div class="profile-avatar-wrap" onclick="openPhotoModal()" title="Ganti foto profil">
-          <div class="profile-avatar" id="profile-avatar">👨‍💻</div>
-          <div class="profile-avatar-hint">📷</div>
+          <div class="profile-avatar" id="profile-avatar">&#x1F464;</div>
+          <div class="profile-avatar-hint">&#x1F4F7;</div>
         </div>
         <div class="profile-user-info">
           <h3 id="display-name">...</h3>
@@ -319,24 +320,24 @@
       <!-- Fields (View Mode) -->
       <div id="view-mode">
         <div class="profile-field">
-          <div class="profile-field-label">Nama Lengkap</div>
+          <div class="profile-field-label" data-i18n="prof.fullname">Nama Lengkap</div>
           <div class="profile-field-value" id="v-name">...</div>
         </div>
         <div class="profile-field">
-          <div class="profile-field-label">Email Terdaftar</div>
+          <div class="profile-field-label" data-i18n="prof.email">Email Terdaftar</div>
           <div class="profile-field-value" id="v-email">...</div>
-          <div class="profile-field-hint">Email bersifat tetap sebagai ID utama sistem</div>
+          <div class="profile-field-hint" data-i18n="prof.email_hint">Email bersifat tetap sebagai ID utama sistem</div>
         </div>
         <div class="profile-field">
-          <div class="profile-field-label">Peran & Keahlian (Bio)</div>
+          <div class="profile-field-label" data-i18n="prof.bio">Peran & Keahlian (Bio)</div>
           <div class="profile-field-value" id="v-bio">...</div>
         </div>
         <div class="profile-field">
-          <div class="profile-field-label">Lokasi / Kampus</div>
+          <div class="profile-field-label" data-i18n="prof.loc">Lokasi / Kampus</div>
           <div class="profile-field-value" id="v-location">...</div>
         </div>
         <div class="profile-field">
-          <div class="profile-field-label">Tautan Portofolio</div>
+          <div class="profile-field-label" data-i18n="prof.web">Tautan Portofolio</div>
           <div class="profile-field-value" id="v-website">...</div>
         </div>
       </div>
@@ -371,28 +372,28 @@
     <div class="profile-card">
       <div class="profile-card-header" style="margin-bottom:1.5rem; padding-bottom:1rem;">
         <div>
-          <h2 class="profile-card-title">Preferensi Antarmuka</h2>
-          <p class="profile-card-sub">Sesuaikan bahasa dan tema layar sesuai gaya kerjamu</p>
+          <h2 class="profile-card-title" data-i18n="prof.pref">Preferensi Antarmuka</h2>
+          <p class="profile-card-sub" data-i18n="prof.pref_sub">Sesuaikan bahasa dan tema layar sesuai gaya kerjamu</p>
         </div>
       </div>
       <div class="profile-field" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
         <div>
-          <div class="profile-field-label" style="margin-bottom:0.25rem;">Bahasa / Language</div>
-          <div class="profile-field-hint" style="margin-top:0;">Pilih bahasa pengantar antarmuka sistem</div>
+          <div class="profile-field-label" style="margin-bottom:0.25rem;" data-i18n="prof.lang">Bahasa / Language</div>
+          <div class="profile-field-hint" style="margin-top:0;" data-i18n="prof.lang_hint">Pilih bahasa pengantar antarmuka sistem</div>
         </div>
         <div style="display:flex; gap:0.5rem;">
-          <button class="btn-cancel-edit" onclick="alert('Fitur Bahasa Inggris segera hadir!')">ðŸ‡ºðŸ‡¸ English</button>
-          <button class="btn-cancel-edit" style="background:#f0f7ff; border-color:var(--cyan); color:var(--cyan);">ðŸ‡®ðŸ‡© Indonesia</button>
+          <button id="btn-lang-en" class="btn-pref" onclick="setLanguage('en')">EN English</button>
+          <button id="btn-lang-id" class="btn-pref" onclick="setLanguage('id')">ID Indonesia</button>
         </div>
       </div>
       <div class="profile-field" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0;">
         <div>
-          <div class="profile-field-label" style="margin-bottom:0.25rem;">Tema Layar / Theme</div>
-          <div class="profile-field-hint" style="margin-top:0;">Gunakan mode terang atau gelap</div>
+          <div class="profile-field-label" style="margin-bottom:0.25rem;" data-i18n="prof.theme">Tema Layar / Theme</div>
+          <div class="profile-field-hint" style="margin-top:0;" data-i18n="prof.theme_hint">Gunakan mode terang atau gelap</div>
         </div>
         <div style="display:flex; gap:0.5rem;">
-          <button class="btn-cancel-edit" style="background:#f0f7ff; border-color:var(--cyan); color:var(--cyan);">â˜€ï¸  Terang</button>
-          <button class="btn-cancel-edit" onclick="alert('Mode Gelap masih dalam tahap pengembangan UI!')">ðŸŒ™ Gelap</button>
+          <button id="btn-theme-light" class="btn-pref" onclick="setTheme('light')">&#x2600;&#xFE0F; Terang</button>
+          <button id="btn-theme-dark" class="btn-pref" onclick="setTheme('dark')">&#x1F319; Gelap</button>
         </div>
       </div>
     </div>
@@ -400,30 +401,30 @@
     <!-- Danger Zone -->
     <div class="danger-zone">
       <div>
-        <h3>Selesai Bekerja?</h3>
-        <p>Pastikan semua issue sudah di-save sebelum keluar</p>
+        <h3 data-i18n="prof.danger">Selesai Bekerja?</h3>
+        <p data-i18n="prof.danger_sub">Pastikan semua issue sudah di-save sebelum keluar</p>
       </div>
-      <button class="btn-logout" onclick="logout()">Keluar dari Akun</button>
+      <button class="btn-logout" onclick="logout()" data-i18n="prof.logout">Keluar dari Akun</button>
     </div>
   </div>
 
   <!-- Photo Modal -->
   <div class="photo-modal-overlay" id="photo-modal" onclick="if(event.target===this)closePhotoModal()">
     <div class="photo-modal" style="position:relative;">
-      <button class="photo-modal-close" onclick="closePhotoModal()">✕</button>
+      <button class="photo-modal-close" onclick="closePhotoModal()">&#x2715;</button>
       <h3>Pilih Foto Profil</h3>
       <p class="modal-sub">Unggah dari perangkat atau ambil foto langsung</p>
 
       <div id="photo-options">
         <div class="photo-option" onclick="triggerFileUpload()">
-          <div class="photo-option-icon upload">📁</div>
+          <div class="photo-option-icon upload">&#x1F4C1;</div>
           <div class="photo-option-text">
             <h4>Upload dari Komputer</h4>
             <p>Mendukung JPG, PNG, GIF (max 5MB)</p>
           </div>
         </div>
         <div class="photo-option" onclick="startCamera()">
-          <div class="photo-option-icon camera">📷</div>
+          <div class="photo-option-icon camera">&#x1F4F7;</div>
           <div class="photo-option-text">
             <h4>Ambil Foto dengan Kamera</h4>
             <p>Gunakan webcam laptop/komputer Anda</p>
@@ -473,7 +474,7 @@
       if (u.profile_photo_url) {
         av.innerHTML = `<img src="${u.profile_photo_url}" alt="avatar" />`;
       } else {
-        av.textContent = u.avatar || '👨‍💻';
+        av.textContent = u.avatar || '&#x1F464;';
       }
 
       document.getElementById('display-name').textContent = u.name;

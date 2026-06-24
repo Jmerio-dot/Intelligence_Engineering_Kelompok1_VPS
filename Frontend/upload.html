@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upload Project – Intelligence Engineering</title>
+  <title>Upload Project â€“ Intelligence Engineering</title>
   <meta name="description" content="Share your project files and let us help bring your AI vision to life." />
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -39,8 +39,8 @@
     <li><a href="upload.html" class="active">Upload Project</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="nav-search">🔍</button>
-    <a href="login.html" class="btn-nav">👤 Pengguna Demo</a>
+    <button class="nav-search">ðŸ”</button>
+    <a href="login.html" class="btn-nav">ðŸ‘¤ Pengguna Demo</a>
   </div>
 </nav>
 
@@ -59,7 +59,7 @@
   <!-- Project Details -->
   <div class="form-card">
     <div class="form-card-title">
-      <span style="font-size:1.2rem;">📤</span> Project Details
+      <span style="font-size:1.2rem;">ðŸ“¤</span> Project Details
     </div>
     <div class="form-group">
       <label class="form-label" for="proj-name">Project Name</label>
@@ -87,10 +87,10 @@
   <!-- Upload Files -->
   <div class="form-card">
     <div class="form-card-title">
-      <span style="font-size:1.2rem;">📁</span> Upload Files
+      <span style="font-size:1.2rem;">ðŸ“</span> Upload Files
     </div>
     <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
-      <div class="upload-zone-icon">⬆️</div>
+      <div class="upload-zone-icon">â¬†ï¸</div>
       <p>Drag &amp; drop files here</p>
       <p style="font-size:0.82rem; color:var(--text-muted); margin-top:0.3rem;">or click to browse</p>
       <span>Supports: Documents, Images, Code Files, Databases</span>
@@ -101,7 +101,7 @@
 
   <!-- Submit -->
   <div class="submit-wrap">
-    <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">⬆ Submit Project</button>
+    <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">â¬† Submit Project</button>
   </div>
 </div>
 
@@ -140,7 +140,7 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Intelligence Engineering. All rights reserved.</div>
+  <div class="footer-bottom">Â© 2026 Intelligence Engineering. All rights reserved.</div>
 </footer>
 
 <script>
@@ -167,7 +167,7 @@
     selectedFiles.forEach((f, i) => {
       const div = document.createElement('div');
       div.className = 'file-item';
-      div.innerHTML = `<span>📄</span><span>${f.name}</span><span style="color:var(--text-muted);font-size:0.72rem;">${(f.size/1024).toFixed(1)} KB</span><button onclick="removeFile(${i})">✕</button>`;
+      div.innerHTML = `<span>ðŸ“„</span><span>${f.name}</span><span style="color:var(--text-muted);font-size:0.72rem;">${(f.size/1024).toFixed(1)} KB</span><button onclick="removeFile(${i})">âœ•</button>`;
       fileList.appendChild(div);
     });
   }
@@ -183,11 +183,11 @@
       return;
     }
     const btn = document.getElementById('submit-btn');
-    btn.textContent = '✅ Project Submitted!';
+    btn.textContent = 'âœ… Project Submitted!';
     btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
     btn.disabled = true;
     setTimeout(() => {
-      btn.innerHTML = '⬆ Submit Project';
+      btn.innerHTML = 'â¬† Submit Project';
       btn.style.background = '';
       btn.disabled = false;
     }, 3000);
@@ -195,3 +195,4 @@
 </script>
 </body>
 </html>
+

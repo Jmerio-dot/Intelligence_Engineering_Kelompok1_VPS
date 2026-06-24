@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Issue – Intelligence Engineering</title>
+  <title>Issue â€“ Intelligence Engineering</title>
   <link rel="stylesheet" href="app-theme.css" />
+  <script src="i18n.js"></script>
   <style>
-    /* ── Attachment UI ── */
+    /* â”€â”€ Attachment UI â”€â”€ */
     .attach-drop-zone {
       border: 2px dashed var(--border); border-radius: 12px;
       padding: 1.5rem 1rem; text-align: center; cursor: pointer;
@@ -70,7 +71,7 @@
 <div class="app-layout">
   <aside class="app-sidebar" id="sidebar"></aside>
   <main class="app-main">
-    <div class="app-topbar"><button class="btn-back" onclick="history.back()">← Kembali</button>
+    <div class="app-topbar"><button class="btn-back" onclick="history.back()">â† Kembali</button>
       <div class="topbar-title-group">
         <div id="breadcrumb" style="font-size:0.72rem;color:var(--muted);">Projects</div>
         <h1 id="issue-key-title" style="margin:0;font-size:0.95rem;color:var(--text2);">Loading...</h1>
@@ -98,7 +99,7 @@
                   <button class="intel-tab-btn" onclick="switchIntelTab('orch')">Orchestration</button>
                 </div>
                 <div style="padding: 0.5rem 1rem; border-left: 1px solid var(--border); display:flex; align-items:center;">
-                  <a id="btn-edit-intel" href="#" class="btn-outline btn-sm" style="text-decoration:none; white-space:nowrap; padding: 0.25rem 0.75rem; font-size:0.75rem;">✏️ Edit Data</a>
+                  <a id="btn-edit-intel" href="#" class="btn-outline btn-sm" style="text-decoration:none; white-space:nowrap; padding: 0.25rem 0.75rem; font-size:0.75rem;">âœï¸ Edit Data</a>
                 </div>
               </div>
             <div id="intel-content" style="padding:1.5rem; background:#fff;"></div>
@@ -107,20 +108,20 @@
           <!-- ATTACHMENTS -->
           <div style="margin-top:1.75rem;">
             <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
-              📎 Lampiran <span id="attach-count" style="color:var(--muted);font-weight:400;font-size:0.8rem;"></span>
+              ðŸ“Ž Lampiran <span id="attach-count" style="color:var(--muted);font-weight:400;font-size:0.8rem;"></span>
             </div>
 
             <!-- Drop Zone -->
             <div class="attach-drop-zone" id="drop-zone">
               <input type="file" id="file-input" multiple accept="*/*" onchange="handleFileSelect(this.files)" />
-              <div class="attach-drop-icon">☁️</div>
+              <div class="attach-drop-icon">â˜ï¸</div>
               <div class="attach-drop-text">Drag & drop file di sini atau <span>klik untuk memilih</span></div>
               <div class="attach-drop-text" style="margin-top:0.2rem;">Maks. 10MB per file</div>
             </div>
 
             <!-- Upload progress indicator -->
             <div id="upload-indicator" style="display:none;" class="attach-uploading">
-              <span class="spin">⏳</span> Mengupload...
+              <span class="spin">â³</span> Mengupload...
             </div>
 
             <!-- Attachment List -->
@@ -129,7 +130,7 @@
 
           <!-- COMMENTS -->
           <div style="margin-top:2rem;">
-            <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;">💬 Komentar <span id="comment-count" style="color:var(--muted);font-weight:400;font-size:0.8rem;"></span></div>
+            <div style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;">ðŸ’¬ Komentar <span id="comment-count" style="color:var(--muted);font-weight:400;font-size:0.8rem;"></span></div>
             <div id="comment-list" class="comment-list"></div>
             <div class="comment-input-row">
               <div class="comment-avatar" id="my-avatar" style="flex-shrink:0;"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:100%;height:100%;display:block;color:var(--ocean);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></div>
@@ -154,10 +155,10 @@
             <div class="meta-row">
               <div class="meta-label">Priority</div>
               <select id="meta-priority" class="meta-select" onchange="quickSave()">
-                <option value="low">🟢 Low</option>
-                <option value="medium">🟡 Medium</option>
-                <option value="high">🟠 High</option>
-                <option value="critical">🔴 Critical</option>
+                <option value="low">ðŸŸ¢ Low</option>
+                <option value="medium">ðŸŸ¡ Medium</option>
+                <option value="high">ðŸŸ  High</option>
+                <option value="critical">ðŸ”´ Critical</option>
               </select>
             </div>
             <div class="meta-row">
@@ -181,7 +182,7 @@
             </div>
             <div class="meta-row">
               <div class="meta-label">Story Points</div>
-              <input id="meta-sp" type="number" class="meta-select" placeholder="—" min="1" max="100" onchange="quickSave()" />
+              <input id="meta-sp" type="number" class="meta-select" placeholder="â€”" min="1" max="100" onchange="quickSave()" />
             </div>
             <div class="meta-row">
               <div class="meta-label">Labels</div>
@@ -193,25 +194,25 @@
             </div>
             <div class="meta-row">
               <div class="meta-label">Reporter</div>
-              <div class="meta-value" id="meta-reporter" style="color:var(--text2);">—</div>
+              <div class="meta-value" id="meta-reporter" style="color:var(--text2);">â€”</div>
             </div>
             <div class="meta-row">
               <div class="meta-label">Created</div>
-              <div class="meta-value" id="meta-created" style="color:var(--text2);font-size:0.8rem;">—</div>
+              <div class="meta-value" id="meta-created" style="color:var(--text2);font-size:0.8rem;">â€”</div>
             </div>
             <div class="meta-row">
               <div class="meta-label">Updated</div>
-              <div class="meta-value" id="meta-updated" style="color:var(--text2);font-size:0.8rem;">—</div>
+              <div class="meta-value" id="meta-updated" style="color:var(--text2);font-size:0.8rem;">â€”</div>
             </div>
           </div>
 
           <!-- Quick links -->
           <div style="margin-top:1rem;display:flex;flex-direction:column;gap:0.5rem;">
             <a id="link-board" href="#" class="sb-link" style="background:#fff;border:1px solid var(--border);border-radius:10px;color:var(--text2);">
-              <span class="sb-link-icon">📋</span><span>View on Board</span>
+              <span class="sb-link-icon">ðŸ“‹</span><span>View on Board</span>
             </a>
             <a id="link-backlog" href="#" class="sb-link" style="background:#fff;border:1px solid var(--border);border-radius:10px;color:var(--text2);">
-              <span class="sb-link-icon">📁</span><span>View Backlog</span>
+              <span class="sb-link-icon">ðŸ“</span><span>View Backlog</span>
             </a>
           </div>
         </div>
@@ -236,7 +237,7 @@
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitComment(); }
     });
 
-    // ── Drag & Drop ──────────────────────────────────────────────────────────
+    // â”€â”€ Drag & Drop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const dropZone = document.getElementById('drop-zone');
     dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-active'); });
     dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-active'));
@@ -245,19 +246,19 @@
       handleFileSelect(e.dataTransfer.files);
     });
 
-    // ── File Type Icons ──────────────────────────────────────────────────────
+    // â”€â”€ File Type Icons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function fileIcon(mimetype, name) {
       const ext = name.split('.').pop().toLowerCase();
-      if (mimetype.startsWith('image/')) return '🖼️';
-      if (mimetype === 'application/pdf' || ext === 'pdf') return '📄';
-      if (['zip','rar','7z','tar','gz'].includes(ext)) return '🗜️';
-      if (['doc','docx'].includes(ext)) return '📝';
-      if (['xls','xlsx','csv'].includes(ext)) return '📊';
-      if (['ppt','pptx'].includes(ext)) return '📊';
-      if (['mp4','mov','avi','mkv'].includes(ext)) return '🎬';
-      if (['mp3','wav','ogg'].includes(ext)) return '🎵';
-      if (['js','ts','py','java','go','rs','html','css','json'].includes(ext)) return '💻';
-      return '📎';
+      if (mimetype.startsWith('image/')) return 'ðŸ–¼ï¸';
+      if (mimetype === 'application/pdf' || ext === 'pdf') return 'ðŸ“„';
+      if (['zip','rar','7z','tar','gz'].includes(ext)) return 'ðŸ—œï¸';
+      if (['doc','docx'].includes(ext)) return 'ðŸ“';
+      if (['xls','xlsx','csv'].includes(ext)) return 'ðŸ“Š';
+      if (['ppt','pptx'].includes(ext)) return 'ðŸ“Š';
+      if (['mp4','mov','avi','mkv'].includes(ext)) return 'ðŸŽ¬';
+      if (['mp3','wav','ogg'].includes(ext)) return 'ðŸŽµ';
+      if (['js','ts','py','java','go','rs','html','css','json'].includes(ext)) return 'ðŸ’»';
+      return 'ðŸ“Ž';
     }
 
     function formatBytes(bytes) {
@@ -266,7 +267,7 @@
       return `${(bytes/1024/1024).toFixed(1)} MB`;
     }
 
-    // ── Upload ───────────────────────────────────────────────────────────────
+    // â”€â”€ Upload â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     async function handleFileSelect(files) {
       if (!files?.length) return;
       const indicator = document.getElementById('upload-indicator');
@@ -294,7 +295,7 @@
       await loadAttachments();
     }
 
-    // ── Load Attachments ─────────────────────────────────────────────────────
+    // â”€â”€ Load Attachments â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     async function loadAttachments() {
       const atts = await apiFetch(`/issues/${issueId}/attachments`);
       document.getElementById('attach-count').textContent = `(${atts.length})`;
@@ -308,9 +309,9 @@
           <div class="attach-file-icon">${fileIcon(a.mimetype, a.original_name)}</div>
           <div class="attach-info">
             <a class="attach-name" href="uploads/${a.filename}" target="_blank" download="${a.original_name}">${a.original_name}</a>
-            <div class="attach-meta">${formatBytes(a.size)} · ${a.uploader_name} · ${timeAgo(a.created_at)}</div>
+            <div class="attach-meta">${formatBytes(a.size)} Â· ${a.uploader_name} Â· ${timeAgo(a.created_at)}</div>
           </div>
-          <button class="attach-del" title="Hapus lampiran" onclick="deleteAttachment(${a.id}, '${a.original_name.replace(/'/g,"\\'")}')">🗑</button>
+          <button class="attach-del" title="Hapus lampiran" onclick="deleteAttachment(${a.id}, '${a.original_name.replace(/'/g,"\\'")}')">ðŸ—‘</button>
         </div>
       `).join('');
     }
@@ -328,12 +329,12 @@
       } catch(e) { showToast(e.message, 'error'); }
     }
 
-    // ── Init ─────────────────────────────────────────────────────────────────
+    // â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     async function init() {
       issue = await apiFetch(`/issues/${issueId}`);
-      document.title = `${issue.issue_key} – ${issue.title}`;
+      document.title = `${issue.issue_key} â€“ ${issue.title}`;
       document.getElementById('breadcrumb').textContent = `${issue.project_name} / Issue`;
-      document.getElementById('issue-key-title').innerHTML = `${issue.issue_key} — ${TYPE_ICON[issue.type]||''} ${issue.type}`;
+      document.getElementById('issue-key-title').innerHTML = `${issue.issue_key} â€” ${TYPE_ICON[issue.type]||''} ${issue.type}`;
 
       document.getElementById('issue-title').value = issue.title;
       document.getElementById('issue-desc').value = issue.description || '';
@@ -370,7 +371,7 @@
       ]);
       const assigneeEl = document.getElementById('meta-assignee');
       assigneeEl.innerHTML = '<option value="">Unassigned</option>' +
-        allUsers.map(u => `<option value="${u.id}">${u.avatar||'👤'} ${u.name}</option>`).join('') +
+        allUsers.map(u => `<option value="${u.id}">${u.avatar||'ðŸ‘¤'} ${u.name}</option>`).join('') +
         '<option value="ADD_BY_EMAIL" style="font-weight:bold;color:var(--ocean);">+ Invite / Add Assignee...</option>';
       assigneeEl.value = issue.assignee_id || '';
       
@@ -430,7 +431,7 @@
           </div>
           <div class="intel-section-title">Leading Indicators</div>
           <div class="intel-box">
-            ${(mo.leading_indicators||[]).map(i => `• ${i.col1} (Kita: ${i.col2}, Komp: ${i.col3})`).join('<br>') || '-'}
+            ${(mo.leading_indicators||[]).map(i => `â€¢ ${i.col1} (Kita: ${i.col2}, Komp: ${i.col3})`).join('<br>') || '-'}
           </div>
           <div class="intel-section-title">User Outcomes</div>
           <div class="intel-box">
@@ -460,15 +461,15 @@
           </div>
           <div class="intel-section-title">Fungsi Realisasi</div>
           <div class="intel-box">
-            ${(ie.functions||[]).map(f => `• <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
+            ${(ie.functions||[]).map(f => `â€¢ <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
           </div>
           <div class="intel-section-title">Minimalisasi Kesalahan</div>
           <div class="intel-box">
-            ${(ie.error_mitigation||[]).map(f => `• <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
+            ${(ie.error_mitigation||[]).map(f => `â€¢ <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
           </div>
           <div class="intel-section-title">Pengumpulan Data</div>
           <div class="intel-box">
-            ${(ie.data_collection||[]).map(f => `• <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
+            ${(ie.data_collection||[]).map(f => `â€¢ <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
           </div>
         `;
       } else if (tab === 'impl') {
@@ -477,11 +478,11 @@
         content.innerHTML = `
           <div class="intel-section-title">Proses Bisnis</div>
           <div class="intel-box">
-            ${(im.business_process||[]).map(f => `• <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
+            ${(im.business_process||[]).map(f => `â€¢ <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
           </div>
           <div class="intel-section-title">Teknologi per Proses</div>
           <div class="intel-box">
-            ${(im.technology||[]).map(f => `• <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
+            ${(im.technology||[]).map(f => `â€¢ <b>${f.col1}:</b> ${f.col2}`).join('<br>') || '-'}
           </div>
         `;
       } else if (tab === 'stat') {
@@ -497,7 +498,7 @@
           </div>
           <div class="intel-section-title">Batas Pengembangan</div>
           <div class="intel-box">
-            ${(st.modules||[]).map(m => `• ${m}`).join('<br>') || 'Belum ada batas / modul spesifik'}
+            ${(st.modules||[]).map(m => `â€¢ ${m}`).join('<br>') || 'Belum ada batas / modul spesifik'}
           </div>
           <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px dashed var(--border);">
             <div class="intel-section-title" style="margin-top:0;">Upload Bukti / Evidence</div>
@@ -536,7 +537,7 @@
         <div class="comment-item">
           <div class="comment-avatar">${c.user_avatar && c.user_avatar.length < 5 ? '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:100%;height:100%;display:block;color:var(--ocean);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>' : (c.user_avatar||'<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:100%;height:100%;display:block;color:var(--ocean);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>')}</div>
           <div class="comment-bubble">
-            <div class="comment-meta"><strong>${c.user_name}</strong> · ${timeAgo(c.created_at)}</div>
+            <div class="comment-meta"><strong>${c.user_name}</strong> Â· ${timeAgo(c.created_at)}</div>
             <div class="comment-text">${c.content.replace(/\n/g,'<br>')}</div>
           </div>
         </div>
@@ -596,3 +597,4 @@
 </script>
 </body>
 </html>
+
