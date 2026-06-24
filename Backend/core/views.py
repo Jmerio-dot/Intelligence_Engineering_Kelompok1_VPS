@@ -880,10 +880,10 @@ class ICIssueDetailAPIView(APIView):
             'issue': {
                 'id': issue.id, 'issue_key': issue.issue_key, 'title': issue.title,
                 'description': issue.description, 'project_name': issue.project.name,
-                'reporter_name': issue.reporter.get_full_name() if issue.reporter else 'Demo User',
+                'reporter_name': issue.reporter.name if issue.reporter else 'Demo User',
                 'created_at': issue.created_at, 'updated_at': issue.updated_at,
                 'priority': issue.priority, 'type': issue.type,
-                'assignee_name': issue.assignee.get_full_name() if issue.assignee else 'Unassigned',
+                'assignee_name': issue.assignee.name if issue.assignee else 'Unassigned',
             },
             'c_status': {
                 'realization_status': c_status_data.get('realization_status', 0),
