@@ -15,6 +15,7 @@ services:
 
   web:
     build: .
+    container_name: ie_web
     restart: unless-stopped
     volumes:
       - static_volume:/app/Backend/staticfiles
