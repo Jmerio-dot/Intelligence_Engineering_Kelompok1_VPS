@@ -16,6 +16,7 @@ urlpatterns = [
     # ── Users ─────────────────────────────────────────────────────────────────
     path('users',         views.UserListView.as_view(), name='users'),
     path('admin/users',   views.AdminUserListView.as_view(), name='admin_users'),
+    path('admin/users/<int:pk>', views.AdminUserDetailView.as_view(), name='admin_user_detail'),
 
     # ── Projects ──────────────────────────────────────────────────────────────
     path('projects',                    views.ProjectListCreateView.as_view(), name='projects'),

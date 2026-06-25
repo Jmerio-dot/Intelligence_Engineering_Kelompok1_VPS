@@ -125,6 +125,42 @@ class AdminUserListView(APIView):
         return Response(data)
 
 
+class AdminUserDetailView(APIView):
+    """Admin endpoint: update role/status or delete a user."""
+    def patch(self, request, pk):
+        """Update user role or active status."""
+        if request.user.role != 'admin':
+            return Response({'error': 'Admin access required'}, status=status.HTTP_403_FORBIDDEN)
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        if user.pk == request.user.pk:
+            return Response({'error': 'Cannot modify your own account'}, status=status.HTTP_400_BAD_REQUEST)
+        new_role = request.data.get('role')
+        new_active = request.data.get('is_active')
+        if new_role and new_role in ('admin', 'member', 'viewer'):
+            user.role = new_role
+        if new_active is not None:
+            user.is_active = new_active
+        user.save()
+        return Response({'message': 'User updated', 'id': user.id, 'role': user.role, 'is_active': user.is_active})
+
+    def delete(self, request, pk):
+        """Delete a user account."""
+        if request.user.role != 'admin':
+            return Response({'error': 'Admin access required'}, status=status.HTTP_403_FORBIDDEN)
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        if user.pk == request.user.pk:
+            return Response({'error': 'Cannot delete your own account'}, status=status.HTTP_400_BAD_REQUEST)
+        name = user.name
+        user.delete()
+        return Response({'message': f'{name} has been deleted'})
+
+
 # ── PROJECTS ─────────────────────────────────────────────────────────────────
 class ProjectListCreateView(APIView):
     def get(self, request):
