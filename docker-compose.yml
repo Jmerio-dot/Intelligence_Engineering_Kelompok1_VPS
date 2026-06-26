@@ -26,8 +26,10 @@ services:
     depends_on:
       - db
     networks:
-      - django_net
-      - global_gateway_net
+      django_net:
+      global_gateway_net:
+        aliases:
+          - ieweb
 
   nginx:
     image: nginx:alpine
