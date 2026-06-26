@@ -920,6 +920,10 @@ class ICIssueDetailAPIView(APIView):
                 'created_at': issue.created_at, 'updated_at': issue.updated_at,
                 'priority': issue.priority, 'type': issue.type,
                 'assignee_name': issue.assignee.name if issue.assignee else 'Unassigned',
+                'story_points': issue.story_points,
+                'labels': issue.labels,
+                'due_date': issue.due_date,
+                'sprint_name': issue.sprint.name if issue.sprint else 'No Sprint (Backlog)',
             },
             'c_status': {
                 'realization_status': c_status_data.get('progress', c_status_data.get('realization_status', 0)),
