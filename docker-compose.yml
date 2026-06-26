@@ -27,6 +27,7 @@ services:
       - db
     networks:
       - django_net
+      - global_gateway_net
 
   nginx:
     image: nginx:alpine
