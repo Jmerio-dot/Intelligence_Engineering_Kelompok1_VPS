@@ -864,7 +864,7 @@
       formData.append('description', 'Auto-submitted transcript from Intelligence Engineering.\\n' + (project.description || ''));
       formData.append('contact_email', '');
       formData.append('urgency', 'high');
-      formData.append('sender_name', user.name || 'IE Project Manager');
+      formData.append('sender_name', (project.owner_name || 'IE Project Manager'));
       formData.append('sender_team', 'Intelligence Engineering');
 
       const res = await fetch('/creation/api/v2/submissions/', {
